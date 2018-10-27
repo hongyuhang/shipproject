@@ -201,7 +201,15 @@
 		                <div class="col-sm-10" id="area">
 		                    	<button type="button" class="btn btn-default btn-circle btn-xl" id="subArea" data-toggle="modal" data-target="#myArea"><i class="fa fa-plus"></i>
 		                </div>
-                  </div>-->
+                  </div>
+					<div class="form-group">
+						<div class="col-sm-1 col-sm-offset-1">
+							<button type="submit" class="btn btn-primary control-label" name="signup" value="Sign up">提交</button>
+						</div>
+						<div class="col-sm-1">
+							<button type="submit" class="btn btn-primary" name="signup" value="Sign up">清空</button>
+						</div>
+					</div>-->
            		</form>
 
        		    <!-- Modal -->
@@ -344,17 +352,18 @@
     <script src="../vendor/raphael/raphael.min.js"></script>
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script>
-
+    <!-- validation -->
+    <script src="../vendor/validation/jquery.validate.js"></script>
+    <script src="../vendor/validation/additional-methods.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
+    
     <!-- test data -->
     <script src="../testdata/testdata.js"></script>
     
     <script src="../js/sib.js"></script>
     <script type="text/javascript">
-
     	$(document).ready(function(){
-    		
 		$("#popupSel").click(function(){
 			//$('#radio1').val()''
 			$('#textInput').val($('#radio1:checked').val());
@@ -376,30 +385,62 @@
 		});
 		   
 		initialInputItems(testdata);
-	});
-
-		function initialInputItems(jsonData) {
-			if (jsonData.items) {
-				var inputItem1;
-				var inputItem2;
-				$.each(jsonData.items, function(i,val){      
-			    		if ((i % 2) == 0) {
-			    			inputItem1 = createInputItem(val);
-			    		} else {
-			    			inputItem2 = createInputItem(val);
-			    			$('form').first().append(createFormGroup(inputItem1, inputItem2));
-			    		}
-				});
-				if ((jsonData.items.length % 2) > 0) {
-					$('form').first().append(createFormGroup(inputItem1));
-				}
-			}
-			$('.selectpicker').selectpicker({"noneSelectedText":"请选择"});
-			
-			if (jsonData.subArea) {
-				$('form').first().append(createSubArea(jsonData.subArea))
-			}
-		}
+		var submitBtn = $('<div class="form-group">\
+						<div class="col-sm-1 col-sm-offset-1">\
+							<button type="submit" class="btn btn-primary control-label" name="signup" value="Sign up">提交</button>\
+						</div>\
+						<div class="col-sm-1">\
+							<button type="submit" class="btn btn-primary" name="signup" value="Sign up">清空</button>\
+						</div>\
+					</div>');
+		$('form').first().append(submitBtn);
+		initialCheck("#form1", testdata);
+//		// 加入校验
+//		$( "#form1" ).validate( {
+//		  	onfocusin: function(element) { $(element).valid(); },
+//		  	onfocusout: function(element) { $(element).valid(); },
+//		  	onclick: function(element) { $(element).valid(); },
+//		  	onkeyup: function(element) { $(element).valid(); },
+//			rules: {
+//				txtItm: {
+//					required: true,
+//					minlength: 2
+//				},
+//				popselItm: "required",
+//				selItm: "required",
+//				selpickerItm: "required"
+//				},
+//				messages: {
+//					txtItm: {
+//						required: "",
+//						minlength: "最少录入2位"
+//					},
+//					popselItm: "请录入纬度",
+//					selItm: "请录入位置精度",
+//					selpickerItm: "请录入模糊查询下拉"
+//				},
+//				errorElement: "em",
+//				errorPlacement: function ( error, element ) {
+//					// Add the `help-block` class to the error element
+//					error.addClass( "help-block" );
+//	
+//					if ( element.prop( "type" ) === "checkbox" ) {
+//						error.insertAfter( element.parent( "label" ) );
+//					} else {
+//						error.insertAfter( element );
+//					}
+//				},
+//				highlight: function ( element, errorClass, validClass ) {
+//					$( element ).parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );
+////					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );	
+//				},
+//				unhighlight: function (element, errorClass, validClass) {
+//					$( element ).parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
+////					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
+//				}
+//			});
+		});
+    		
     		//创建子区域
 		function createArea(title) {
 			var area = $('<div class="panel panel-default">\

@@ -16,11 +16,22 @@ function createInputItem(jsonData) {
 		case 'text':
 			inputItem = $('<label class="col-sm-2 control-label"></label>\
 		                 <div class="col-sm-3">\
-		                    	<input type="text" id="" class="form-control" placeholder="">\
+		                    	<input type="text" id="" name="" class="form-control" placeholder="">\
 		                 </div>');
 			inputItem.first().html(jsonData.label);
 			inputItem.find("input:first").attr("id", jsonData.id);
-			inputItem.find("input:first").attr("placeholder", jsonData.placeholder);
+			inputItem.find("input:first").attr("name", jsonData.id);
+			if (isNotNull(jsonData.placeholder)) {
+				inputItem.find("input:first").attr("placeholder", jsonData.placeholder);
+			}
+			
+			if (isNotNull(jsonData.disabled)) {
+				inputItem.find("input:first").attr("disabled", jsonData.disabled);
+			}
+			
+			if (isNotNull(jsonData.val)) {
+				inputItem.find("input:first").val(jsonData.val);
+			}
 			break;
 		case 'select':
 			inputItem = $('<label class="col-sm-2 control-label"></label>\
@@ -30,11 +41,18 @@ function createInputItem(jsonData) {
 		                   </div>');
 		    inputItem.first().html(jsonData.label);
 		    inputItem.find("select:first").attr("id", jsonData.id);
+		    inputItem.find("select:first").attr("name", jsonData.id);
 		    $.each(jsonData.vals, function(i,val){      
 			    for (var key in val) {
 			    		inputItem.find("select:first").append($('<option value="'+ key +'">' + val[key] + '</option>'));
 			    	}
 			});  
+			if (isNotNull(jsonData.disabled)) {
+				inputItem.find("select:first").attr("disabled", jsonData.disabled);
+			}
+			if (isNotNull(jsonData.val)) {
+				inputItem.find("select:first").val(jsonData.val);
+			}
 			break;
 		case 'popupSelect':
 			inputItem = $('<label class="col-sm-2 control-label"></label>\
@@ -49,9 +67,18 @@ function createInputItem(jsonData) {
 	                        </div>');
 	        inputItem.first().html(jsonData.label);
 	        inputItem.find("input:first").attr("id", jsonData.id);
-	        inputItem.find("input:first").attr("placeholder", jsonData.placeholder);
+	        inputItem.find("input:first").attr("name", jsonData.id);
+	        	if (isNotNull(jsonData.placeholder)) {
+				inputItem.find("input:first").attr("placeholder", jsonData.placeholder);
+			}
 	        inputItem.find("button:first").attr("data-target", jsonData.modelId);
 	        inputItem.find("button:first").attr("id", jsonData.modelId + "Btn");
+	        	if (isNotNull(jsonData.disabled)) {
+				inputItem.find("button:first").attr("disabled", jsonData.disabled);
+			}
+	        	if (isNotNull(jsonData.val)) {
+				inputItem.find("input:first").val(jsonData.val);
+			}
 			break;
 		case 'selectPicker':
 			inputItem = $('<label class="col-sm-2 control-label"></label>\
@@ -61,13 +88,19 @@ function createInputItem(jsonData) {
 		                   </div>');
 		    inputItem.first().html(jsonData.label);
 		    inputItem.find("select:first").attr("id", jsonData.id);
+		    inputItem.find("select:first").attr("name", jsonData.id);
 		    inputItem.find("input:first").attr("placeholder", jsonData.placeholder);
 		    $.each(jsonData.vals, function(i,val){      
 			    for (var key in val) {
 			    		inputItem.find("select:first").append($('<option value="'+ key +'">' + val[key] + '</option>'));
 			    	}
 			});  
-			break;
+			if (isNotNull(jsonData.disabled)) {
+				inputItem.find("select:first").attr("disabled", jsonData.disabled);
+			}
+			if (isNotNull(jsonData.val)) {
+				inputItem.find("select:first").val(jsonData.val);
+			}
 			break;
 	}
 	return inputItem;
@@ -83,7 +116,98 @@ function createSubArea(jsonData){
 	                    </div>');
 	inputItem.find('label:first').html(jsonData.label);
 	inputItem.find("button:first").attr("data-target", jsonData.modelId);
+	if (isNotNull(jsonData.disabled)) {
+		inputItem.find("button:first").attr("disabled", jsonData.disabled);
+	}
 	return inputItem;
+}
+
+// 初始化各个控件
+function initialInputItems(jsonData) {
+	if (jsonData.items) {
+		var inputItem1;
+		var inputItem2;
+		$.each(jsonData.items, function(i,val){      
+	    		if ((i % 2) == 0) {
+	    			inputItem1 = createInputItem(val);
+	    		} else {
+	    			inputItem2 = createInputItem(val);
+	    			$('form').first().append(createFormGroup(inputItem1, inputItem2));
+	    		}
+		});
+		if ((jsonData.items.length % 2) > 0) {
+			$('form').first().append(createFormGroup(inputItem1));
+		}
+	}
+	$('.selectpicker').selectpicker({"noneSelectedText":"请选择"});
+	
+	if (jsonData.subArea) {
+		$('form').first().append(createSubArea(jsonData.subArea))
+	}
+}
+
+// 初始化画面check
+function initialCheck(formId, jsonData) {
+	$.validator.setDefaults( {
+		submitHandler: function () {
+			alert( "submitted!" );
+		}
+	} );
+	
+	if (!$.isEmptyObject(jsonData.checkRules)) {
+		// 加入校验
+		$( formId ).validate( {
+		  	onfocusin: function(element) { $(element).valid(); },
+		  	onfocusout: function(element) { $(element).valid(); },
+		  	onclick: function(element) { $(element).valid(); },
+		  	onkeyup: function(element) { $(element).valid(); },
+			rules: jsonData.checkRules,
+			messages: jsonData.checkMessages,
+			errorElement: "em",
+			errorPlacement: function ( error, element ) {
+					// Add the `help-block` class to the error element
+					error.addClass( "help-block" );
+	
+					if ( element.prop( "type" ) === "checkbox" ) {
+						error.insertAfter( element.parent( "label" ) );
+					} else {
+						error.insertAfter( element );
+					}
+				},
+			highlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );
+//					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );	
+				},
+			unhighlight: function (element, errorClass, validClass) {
+					$( element ).parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
+//					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
+				}
+		});
+	}
+	
+	$.validator.addMethod("checkReg", function(value, element,param) {     
+		var pass = true;
+		if(typeof(param.reg)!="undefined"){
+		    return checkReg(value, param.reg);
+		} 
+	});
+}
+
+// 判断是否为空
+function isNotNull(data) {
+	if (data && data != "" && data != null) {
+		return true;
+	}
+	return false;
+}
+
+// 正则表达式校验
+function checkReg(value, rule){
+	if (isNotNull(value)) {
+		return true;
+	}
+	var patt1=new RegExp(rule);
+	return value.match(patt1);
 }
 
 // 创建popup
