@@ -1,3 +1,5 @@
+// 子区域各个形状本地数据缓存
+var subAreaShapeDataCache;
 // 创建一个装有两个控件的输入项行
 function createFormGroup(inputItem1, inputItem2) {
 	var formGroup = $('<div class="form-group"></div>');
@@ -186,9 +188,14 @@ function initialChecks(formId, jsonData) {
 	}
 	
 	$.validator.addMethod("checkReg", function(value, element,param) {     
-		var pass = true;
 		if(typeof(param.reg)!="undefined"){
 		    return checkReg(value, param.reg);
+		} 
+	});
+	
+	$.validator.addMethod("dataTypeCheck", function(value, element,param) {     
+		if(typeof(param.dataType)!="undefined"){
+		    return dataTypeCheck(value, param.dataType);
 		} 
 	});
 }
@@ -228,4 +235,25 @@ function checkReg(value, rule){
 // 创建popup
 function createModelDialog() {
 	
+}
+// 校验数据类型
+function dataTypeCheck(value, type) {
+	if (isNotNull(type)) {
+		// 数字情况
+		if (type.substr(0, 1) == "N") {
+			var temp = type.substring(1).split(",");
+			if (Math.pow(10, temp[0]) <= value) {
+				return false;
+			}
+			if (temp.length >1) {
+				var strValue = value + "";
+				if (strValue.indexOf(".") > 0) {
+					if (strValue.split(".")[1] >= Math.pow(10, temp[1])) {
+						return false;
+					}
+				}
+			}
+		}
+	}
+	return true;
 }

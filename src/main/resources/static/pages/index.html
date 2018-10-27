@@ -380,7 +380,7 @@
 				title = "区域类型:1:矩形";
 			}
 			
-			$('#subArea').find('button:first').before(createArea(title));
+			$('#subArea').find('.btn-circle').before(createArea(title));
 			$('#myArea').modal('hide');
 		});
 		   
@@ -455,7 +455,8 @@
 		function createArea(title) {
 			var area = $('<div class="panel panel-default">\
 		                        <div class="panel-heading">\
-		                            区域类型1:矩形\
+		                            <span>区域类型1:矩形</span>\
+		                            <button type="button" name="closeSubArea" style="float:right"><i class="fa fa-times"></i>\
 		                        </div>\
 		                        <div class="panel-body">\
 				                    <div class="form-group">\
@@ -481,7 +482,10 @@
 		                        </div>\
 		                    </div>');
 
-			area.find('div:first').text(title);
+			area.find('div span:first').text(title);
+			area.find('button:first').click(function(e) {
+				$(e.target).parents(".panel:first").remove();
+			});
 			return area;
 		}
     </script>

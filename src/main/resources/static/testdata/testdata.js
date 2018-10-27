@@ -39,7 +39,7 @@ var testdata = {
 			"placeholder":"请选择纬度",
 			"modelId":"#myModal",
 			"val":"Larry",
-			"disabled":true
+			"disabled":null
 		},
 		{
 			"type":"select",
@@ -60,8 +60,7 @@ var testdata = {
 	],
 	"subArea" : {
 			"label":"子区域:",
-			"modelId":"#myArea",
-			"disabled":true
+			"modelId":"#myArea"
 	},
 	"checkRules": {
 			txtItm1: {
@@ -73,7 +72,8 @@ var testdata = {
 				maxlength: 5
 			},
 			txtItm3: {
-				number: true
+				number: true,
+				dataTypeCheck : {dataType : "N4,3"}
 			},
 			txtItm4: {
 				checkReg:{reg : "^(((13[0-9]{1})|(15[0-9]{1}))+\\d{8})$"}
@@ -89,7 +89,8 @@ var testdata = {
 				maxlength: "最多录入5位"
 			},
 			txtItm3: {
-				number: "请录入数字"
+				number: "请录入数字",
+				dataTypeCheck:"请录入整数4位小数3位以内的数字"
 			},
 			txtItm4: {
 				checkReg: "请录入电话号码"
