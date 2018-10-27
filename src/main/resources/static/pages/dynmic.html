@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>sib - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+     <!-- selectpicker -->
+    <link href="../vendor/selectpicker/css/bootstrap-select.css" rel="stylesheet" type="text/css">   
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SIB System</a>
+            </div>
+            <!-- /.navbar-header -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Icons</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Sample</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+            	<form id="form1" class="form-horizontal" role="form">
+                	<!--<div class="form-group">
+	                    <label class="col-sm-2 control-label">经度:</label>
+	                    <div class="col-sm-3">
+	                    		<input type="text" class="form-control" placeholder="请录入-180到181之间的值">
+	                    </div>
+
+                        <label class="col-sm-2 control-label">纬度</label>
+                        <div class="col-sm-3">
+	                        <div class="input-group">
+	                            <input id="textInput" type="text" disabled class="form-control">
+	                            <span class="input-group-btn">
+	                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i>
+	                                </button>
+	                            </span>
+	                        </div>
+                        </div>
+                    </div>
+
+                	<div class="form-group">
+	                    <label class="col-sm-2 control-label">位置精度:</label>
+	                    <div class="col-sm-3">
+		                    	<select class="form-control">
+		                    	  <option value="0">低</option>
+						      <option value="1">高</option>
+						    </select>
+	                    </div>
+
+                        <label class="col-sm-2 control-label">模糊查询下拉:</label>
+                        <div class="col-sm-3">
+                        		<select class="form-control selectpicker" data-live-search="true">
+		                    	  <option value="0">低13434</option>
+						      <option value="1">高78978</option>
+						    </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="areaRow">
+	                    	<label class="col-sm-2 control-label">子区域:</label>
+		                <div class="col-sm-10" id="area">
+		                    	<button type="button" class="btn btn-default btn-circle btn-xl" id="subArea" data-toggle="modal" data-target="#myArea"><i class="fa fa-plus"></i>
+		                </div>
+                  </div>
+					<div class="form-group">
+						<div class="col-sm-1 col-sm-offset-1">
+							<button type="submit" class="btn btn-primary control-label" name="signup" value="Sign up">提交</button>
+						</div>
+						<div class="col-sm-1">
+							<button type="submit" class="btn btn-primary" name="signup" value="Sign up">清空</button>
+						</div>
+					</div>-->
+           		</form>
+
+       		    <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">请选择</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Context Classes
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>choose</th>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Username</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="success">
+                                                        <td>1</td>
+                                                        <td><input type="radio" name="radio1" id="radio1" value="Mark"></td>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <td>2</td>
+                                                        <td><input type="radio" name="radio1" id="radio1" value="Jacob"></td>
+                                                        <td>Jacob</td>
+                                                        <td>Thornton</td>
+                                                        <td>@fat</td>
+                                                    </tr>
+                                                    <tr class="warning">
+                                                        <td>3</td>
+                                                        <td><input type="radio" name="radio1" id="radio1" value="Larry"></td>
+                                                        <td>Larry</td>
+                                                        <td>the Bird</td>
+                                                        <td>@twitter</td>
+                                                    </tr>
+                                                    <tr class="danger">
+                                                        <td>4</td>
+                                                        <td><input type="radio" name="radio1" id="radio1" value="John"></td>
+                                                        <td>John</td>
+                                                        <td>Smith</td>
+                                                        <td>@jsmith</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" id="popupSel" class="btn btn-primary">选择</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+
+       		    <!-- Modal -->
+                <div class="modal fade" id="myArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">请选择</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Context Classes
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="row">
+							            	<form id="form2" class="form-horizontal" role="form">
+							                	<div class="form-group">
+								                    <label class="col-sm-2 control-label">区域类型:</label>
+								                    <div class="col-sm-4">
+								                    	<select id="areatype" class="form-control">
+								                    	  <option value="0">0:圆形</option>
+													      <option value="1">1:矩形</option>
+													    </select>
+								                    </div>
+							                    </div>
+							                </form>
+							            </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" id="areaSel" class="btn btn-primary">选择</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- selectpicker JavaScript -->
+    <script src="../vendor/selectpicker/js/bootstrap-select.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+    <!-- validation -->
+    <script src="../vendor/validation/jquery.validate.js"></script>
+    <script src="../vendor/validation/additional-methods.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/sb-admin-2.js"></script>
+    
+    <!-- test data -->
+    <script src="../testdata/testdata.js"></script>
+    
+    <script src="../js/sib.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			$("#popupSel").click(function(){
+				//$('#radio1').val()''
+				$('#textInput').val($('#radio1:checked').val());
+				//$('#textInput').val($('#radio1').val());
+				$('#myModal').modal('hide');
+			});
+			
+			$("#areaSel").click(function(){
+				var selValue = $('#areatype').val();
+				var title = "";
+				if (selValue == "0") {
+					title = "区域类型:0:圆形";
+				} else {
+					title = "区域类型:1:矩形";
+				}
+				
+				$('#subArea').find('button:first').before(createArea(title));
+				$('#myArea').modal('hide');
+			});
+			
+			$.ajax({ 
+					url: "/sib/initialInfo",
+					context: document.body,
+					dataType: "json",
+					success: function(data){
+		        					initialInputItems(data.data);
+								var submitBtn = $('<div class="form-group">\
+												<div class="col-sm-1 col-sm-offset-1">\
+													<button type="submit" class="btn btn-primary control-label" name="signup" value="Sign up">提交</button>\
+												</div>\
+												<div class="col-sm-1">\
+													<button type="submit" class="btn btn-primary" name="signup" value="Sign up">清空</button>\
+												</div>\
+											</div>');
+								$('form').first().append(submitBtn);
+								initialChecks("#form1", data.data);
+								initialEvents(data.data);
+		      			},
+		      		error: function(request, error, exception) {
+		      			alert('error!');
+		      		}
+			});
+
+		});
+    		
+    		function itemTxtLostFouse() {
+    			if (isNotNull($('#txtItm1').val())) {
+    				$('#selItm').removeAttr("disabled");
+    			} else {
+    				$('#selItm').attr("disabled", "disabled");
+    			}
+    		}
+    		
+    		//创建子区域
+		function createArea(title) {
+			var area = $('<div class="panel panel-default">\
+		                        <div class="panel-heading">\
+		                            区域类型1:矩形\
+		                        </div>\
+		                        <div class="panel-body">\
+				                    <div class="form-group">\
+					                    <label class="col-sm-2 control-label">经度:</label>\
+					                    <div class="col-sm-3">\
+					                    	<input type="text" class="form-control" placeholder="请录入>=0并且<=31的值">\
+					                    </div>\
+				                        <label class="col-sm-2 control-label">纬度:</label>\
+				                        <div class="col-sm-3">\
+				                        	<input class="form-control" placeholder="请录入>=0并且<=511的值">\
+				                        </div>\
+				                    </div>\
+				                    <div class="form-group">\
+					                    <label class="col-sm-2 control-label">长:</label>\
+					                    <div class="col-sm-3">\
+					                    	<input type="text" class="form-control" placeholder="请录入>=0并且<=31的值">\
+					                    </div>\
+				                        <label class="col-sm-2 control-label">宽:</label>\
+				                        <div class="col-sm-3">\
+				                        	<input class="form-control" placeholder="请录入>=0并且<=511的值">\
+				                        </div>\
+				                    </div>\
+		                        </div>\
+		                    </div>');
+
+			area.find('div:first').text(title);
+			return area;
+		}
+    </script>
+</body>
+
+</html>
