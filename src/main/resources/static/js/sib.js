@@ -147,7 +147,7 @@ function initialInputItems(jsonData) {
 }
 
 // 初始化画面check
-function initialCheck(formId, jsonData) {
+function initialChecks(formId, jsonData) {
 	$.validator.setDefaults( {
 		submitHandler: function () {
 			alert( "submitted!" );
@@ -191,6 +191,21 @@ function initialCheck(formId, jsonData) {
 		    return checkReg(value, param.reg);
 		} 
 	});
+}
+
+// 初始化事件处理
+function initialEvents(jsonData) {
+	if (!$.isEmptyObject(jsonData.events)) {
+		$.each(jsonData.events, function(i,val){      
+		    if (val.eventType == 'blur') {
+		    		$('#' + val.id).blur(eval(val.method));
+		    }
+		    // TODO:还需要添加其他的事件
+		    if (val.eventType == 'click') {
+		    		$('#' + val.id).click(eval(val.method));
+		    } 
+		}); 
+	}
 }
 
 // 判断是否为空

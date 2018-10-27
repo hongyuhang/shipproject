@@ -394,7 +394,9 @@
 						</div>\
 					</div>');
 		$('form').first().append(submitBtn);
-		initialCheck("#form1", testdata);
+		initialChecks("#form1", testdata);
+		initialEvents(testdata);
+		//$('#txtItm1').blur(eval('itemTxtLostFouse'));
 //		// 加入校验
 //		$( "#form1" ).validate( {
 //		  	onfocusin: function(element) { $(element).valid(); },
@@ -440,6 +442,14 @@
 //				}
 //			});
 		});
+    		
+    		function itemTxtLostFouse() {
+    			if (isNotNull($('#txtItm1').val())) {
+    				$('#selItm').removeAttr("disabled");
+    			} else {
+    				$('#selItm').attr("disabled", "disabled");
+    			}
+    		}
     		
     		//创建子区域
 		function createArea(title) {

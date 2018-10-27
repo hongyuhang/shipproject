@@ -47,7 +47,7 @@ var testdata = {
 			"id":"selItm",
 			"vals":[{"":""},{"0":"低"},{"1":"高"}],
 			"val":"",
-			"disabled":""
+			"disabled":true
 		},
 		{
 			"type":"selectPicker",
@@ -94,5 +94,13 @@ var testdata = {
 			txtItm4: {
 				checkReg: "请录入电话号码"
 			},
-	}
+	},
+	"events":[
+			{
+				"id":"txtItm1",
+				"eventType":"blur",
+				"method":"itemTxtLostFouse"
+			}
+		]
+	
 }
