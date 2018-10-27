@@ -218,7 +218,7 @@ function isNotNull(data) {
 
 // 正则表达式校验
 function checkReg(value, rule){
-	if (isNotNull(value)) {
+	if (!isNotNull(value)) {
 		return true;
 	}
 	var patt1=new RegExp(rule);

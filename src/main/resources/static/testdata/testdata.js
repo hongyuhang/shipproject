@@ -86,7 +86,7 @@ var testdata = {
 			},
 			txtItm2: {
 				required: "",
-				minlength: "最多录入5位"
+				maxlength: "最多录入5位"
 			},
 			txtItm3: {
 				number: "请录入数字"
