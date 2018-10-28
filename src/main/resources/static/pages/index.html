@@ -299,7 +299,7 @@
                             <div class="modal-body">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        Context Classes
+                                        形状选择
                                     </div>
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
@@ -308,10 +308,14 @@
 							                	<div class="form-group">
 								                    <label class="col-sm-2 control-label">区域类型:</label>
 								                    <div class="col-sm-4">
-								                    	<select id="areatype" class="form-control">
-								                    	  <option value="0">0:圆形</option>
-													      <option value="1">1:矩形</option>
-													    </select>
+									                    	<select id="areatype" class="form-control">
+									                    	  <option value="0">0:圆形或点</option>
+														  <option value="1">1:矩形</option>
+														  <option value="2">2:扇形</option>
+														  <option value="3">3:折线</option>
+														  <option value="4">4:多边形</option>
+														  <option value="5">5:关联文本</option>
+														</select>
 								                    </div>
 							                    </div>
 							                </form>
@@ -362,6 +366,7 @@
     <script src="../testdata/testdata.js"></script>
     
     <script src="../js/sib.js"></script>
+    <script src="../js/subArea.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
 		$("#popupSel").click(function(){
@@ -372,15 +377,14 @@
 		});
 		
 		$("#areaSel").click(function(){
-			var selValue = $('#areatype').val();
-			var title = "";
-			if (selValue == "0") {
-				title = "区域类型:0:圆形";
-			} else {
-				title = "区域类型:1:矩形";
-			}
-			
-			$('#subArea').find('.btn-circle').before(createArea(title));
+			$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
+			registCheckForSubArea($('#areatype').val());
+			$("#scaleFactor" + "_1").rules("add",{
+					dataTypeCheck : {dataType : "N2"},
+					messages:{
+					dataTypeCheck: "请录入两位数字"
+				}
+			});
 			$('#myArea').modal('hide');
 		});
 		   
@@ -396,98 +400,16 @@
 		$('form').first().append(submitBtn);
 		initialChecks("#form1", testdata);
 		initialEvents(testdata);
-		//$('#txtItm1').blur(eval('itemTxtLostFouse'));
-//		// 加入校验
-//		$( "#form1" ).validate( {
-//		  	onfocusin: function(element) { $(element).valid(); },
-//		  	onfocusout: function(element) { $(element).valid(); },
-//		  	onclick: function(element) { $(element).valid(); },
-//		  	onkeyup: function(element) { $(element).valid(); },
-//			rules: {
-//				txtItm: {
-//					required: true,
-//					minlength: 2
-//				},
-//				popselItm: "required",
-//				selItm: "required",
-//				selpickerItm: "required"
-//				},
-//				messages: {
-//					txtItm: {
-//						required: "",
-//						minlength: "最少录入2位"
-//					},
-//					popselItm: "请录入纬度",
-//					selItm: "请录入位置精度",
-//					selpickerItm: "请录入模糊查询下拉"
-//				},
-//				errorElement: "em",
-//				errorPlacement: function ( error, element ) {
-//					// Add the `help-block` class to the error element
-//					error.addClass( "help-block" );
-//	
-//					if ( element.prop( "type" ) === "checkbox" ) {
-//						error.insertAfter( element.parent( "label" ) );
-//					} else {
-//						error.insertAfter( element );
-//					}
-//				},
-//				highlight: function ( element, errorClass, validClass ) {
-//					$( element ).parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );
-////					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );	
-//				},
-//				unhighlight: function (element, errorClass, validClass) {
-//					$( element ).parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
-////					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
-//				}
-//			});
-		});
-    		
-    		function itemTxtLostFouse() {
-    			if (isNotNull($('#txtItm1').val())) {
-    				$('#selItm').removeAttr("disabled");
-    			} else {
-    				$('#selItm').attr("disabled", "disabled");
-    			}
-    		}
-    		
-    		//创建子区域
-		function createArea(title) {
-			var area = $('<div class="panel panel-default">\
-		                        <div class="panel-heading">\
-		                            <span>区域类型1:矩形</span>\
-		                            <button type="button" name="closeSubArea" style="float:right"><i class="fa fa-times"></i>\
-		                        </div>\
-		                        <div class="panel-body">\
-				                    <div class="form-group">\
-					                    <label class="col-sm-2 control-label">经度:</label>\
-					                    <div class="col-sm-3">\
-					                    	<input type="text" class="form-control" placeholder="请录入>=0并且<=31的值">\
-					                    </div>\
-				                        <label class="col-sm-2 control-label">纬度:</label>\
-				                        <div class="col-sm-3">\
-				                        	<input class="form-control" placeholder="请录入>=0并且<=511的值">\
-				                        </div>\
-				                    </div>\
-				                    <div class="form-group">\
-					                    <label class="col-sm-2 control-label">长:</label>\
-					                    <div class="col-sm-3">\
-					                    	<input type="text" class="form-control" placeholder="请录入>=0并且<=31的值">\
-					                    </div>\
-				                        <label class="col-sm-2 control-label">宽:</label>\
-				                        <div class="col-sm-3">\
-				                        	<input class="form-control" placeholder="请录入>=0并且<=511的值">\
-				                        </div>\
-				                    </div>\
-		                        </div>\
-		                    </div>');
 
-			area.find('div span:first').text(title);
-			area.find('button:first').click(function(e) {
-				$(e.target).parents(".panel:first").remove();
-			});
-			return area;
+	});
+    		
+	function itemTxtLostFouse() {
+		if (isNotNull($('#txtItm1').val())) {
+			$('#selItm').removeAttr("disabled");
+		} else {
+			$('#selItm').attr("disabled", "disabled");
 		}
+	}
     </script>
 </body>
 
