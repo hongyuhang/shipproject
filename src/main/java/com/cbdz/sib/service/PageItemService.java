@@ -74,7 +74,13 @@ public class PageItemService {
                 p_tmpCheckRule = new HashMap<>();
                 p_checkRules.put(per.getItemId(), p_tmpCheckRule);
             }
-            p_tmpCheckRule.put(per.getCheckMethod(), per.getCheckParam());
+            if (StringUtils.equals(per.getCheckMethod(), "dataTypeCheck")) {
+                Map<String, Object> p_dataTypeTmp = new HashMap<>();
+                p_dataTypeTmp.put("dataType", per.getCheckParam());
+                p_tmpCheckRule.put(per.getCheckMethod(), p_dataTypeTmp);
+            } else {
+                p_tmpCheckRule.put(per.getCheckMethod(), per.getCheckParam());
+            }
 
 
             Map<String, Object> p_tmpCheckMsg = null;
