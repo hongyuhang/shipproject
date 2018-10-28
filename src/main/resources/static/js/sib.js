@@ -152,6 +152,13 @@ function initialInputItems(jsonData) {
 function initialChecks(formId, jsonData) {
 	$.validator.setDefaults( {
 		submitHandler: function () {
+			if ($('#subAreaRow')) {
+				if ($('#subAreaRow').find('.panel').length == 0) {
+					alert('必须添加一个子区域');
+					return;
+				}
+			}
+			
 			alert( "submitted!" );
 		}
 	} );
