@@ -238,6 +238,17 @@ function createModelDialog() {
 }
 // 校验数据类型
 function dataTypeCheck(value, type) {
+	if (!isNotNull(value)) {
+		return true;
+	}
+	if (!isNumber(value)) {
+		return false;
+	}
+	
+	if (value.substr(0, 1) == "-1") {
+		value = value.substring(1);
+	}
+	
 	if (isNotNull(type)) {
 		// 数字情况
 		if (type.substr(0, 1) == "N") {
@@ -256,4 +267,16 @@ function dataTypeCheck(value, type) {
 		}
 	}
 	return true;
+}
+// 判断是否数字
+function isNumber(val){
+
+    var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+    var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+    if(regPos.test(val) || regNeg.test(val)){
+        return true;
+    }else{
+        return false;
+    }
+
 }
