@@ -149,7 +149,6 @@
     <script src="../js/subArea.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-		
 		$("#areaSel").click(function(){
 			$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
 			registCheckForSubArea($('#areatype').val());
@@ -161,10 +160,24 @@
 			});
 			$('#myArea').modal('hide');
 		});
+		
+		
 		var menuCode = getParams('menuCode');
-		createMenu(menuData, menuCode);
+		// 服务器通信，并初始化菜单
+		$.ajax({ 
+				url: "/sib/menuInfo",
+				context: document.body,
+				dataType: "json",
+				success: function(data){
+					createMenu(menuData, menuCode);
+	      		error: function(request, error, exception) {
+	      			alert('error!');
+	      		}
+		});
+		
 		
 		if (isNotNull(menuCode)) {
+			// 服务器通信，并初始化画面项目以及check
 			$.ajax({ 
 					url: "/sib/initialInfo?menuCode=" + menuCode,
 					context: document.body,
