@@ -1,5 +1,7 @@
 // 子区域各个形状本地数据缓存
 var subAreaShapeDataCache;
+// 菜单缓存
+var menuCache;
 // 创建一个装有两个控件的输入项行
 function createFormGroup(inputItem1, inputItem2) {
 	var formGroup = $('<div class="form-group"></div>');
@@ -222,23 +224,6 @@ function initialEvents(jsonData) {
 	}
 }
 
-// 判断是否为空
-function isNotNull(data) {
-	if (data && data != "" && data != null) {
-		return true;
-	}
-	return false;
-}
-
-// 正则表达式校验
-function checkReg(value, rule){
-	if (!isNotNull(value)) {
-		return true;
-	}
-	var patt1=new RegExp(rule);
-	return value.match(patt1);
-}
-
 // 创建popup
 function createModelDialog() {
 	
@@ -275,15 +260,52 @@ function dataTypeCheck(value, type) {
 	}
 	return true;
 }
-// 判断是否数字
-function isNumber(val){
 
-    var regPos = /^\d+(\.\d+)?$/; //非负浮点数
-    var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
-    if(regPos.test(val) || regNeg.test(val)){
-        return true;
-    }else{
-        return false;
-    }
-
+// 创建菜单
+function createMenu(jsonData, activeMenuCode) {
+	var navSidebar = $('<!-- /.navbar-header -->\
+            <div class="navbar-default sidebar" role="navigation">\
+                <div class="sidebar-nav navbar-collapse">\
+                    <ul class="nav" id="side-menu">\
+                    </ul>\
+                </div>\
+                <!-- /.sidebar-collapse -->\
+            </div>\
+            <!-- /.navbar-static-side -->');
+    $.each(jsonData, function(i,val){ 
+    		var item;
+		if (isNotNull(val.subMenu)) {
+			var flag = false;
+			item = $('<li><a href="#"><i class="fa fa-files-o fa-fw"></i> ' + val.menuName + '<span class="fa arrow"></span></a>\
+                      <ul class="nav nav-second-level">\
+                      </ul></li>');
+            $.each(val.subMenu, function(i, subval){
+            		var active = ''; 
+				if (activeMenuCode == subval.menuCode) {
+					active = ' class="active"';
+					flag = true;
+				}
+            		var subItem = $('<li>\
+                                    <a href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + active + '>' + subval.menuName + '</a>\
+                                </li>');
+                item.find('ul').append(subItem);
+            });
+            
+            if (flag) {
+            		item.addClass('active');
+            }
+		} else {
+			var active = '';
+			if (activeMenuCode == val.menuCode) {
+				active = ' class="active"';
+			}
+			item = $('<li>\
+                        <a href="' + val.url + '?menuCode=' + val.menuCode + '" ' + active + '><i class="fa fa-dashboard fa-fw"></i> ' + val.menuName + '</a>\
+                    </li>');
+		}
+		navSidebar.find('#side-menu').append(item);
+	}); 
+    
+    $('.navbar-header').after(navSidebar);
+    $("#side-menu").metisMenu();
 }

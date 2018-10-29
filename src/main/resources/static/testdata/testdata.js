@@ -105,3 +105,29 @@ var testdata = {
 		]
 	
 }
+
+
+var menuData = [
+		{
+			"menuCode":"aa",
+			"menuName":"历史数据",
+			"url":"history.html"
+		},
+		{
+			"menuCode":"aa",
+			"menuName":"菜单1",
+			"subMenu" :[
+				{
+					"menuCode":"bb",
+					"menuName":"子菜单1",
+					"url":"index.html",
+				},
+				{
+					"menuCode":"cc",
+					"menuName":"子菜单2",
+					"url":"blank.html",
+				}
+			]
+		}
+	]
+
