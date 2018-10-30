@@ -106,6 +106,11 @@ function createInputItem(jsonData) {
 				inputItem.find("select:first").val(jsonData.val);
 			}
 			break;
+		case 'blank':
+			inputItem = $('<label class="col-sm-2 control-label"></label>\
+		                   <div class="col-sm-3">\
+		                   </div>');
+		    break;
 	}
 	return inputItem;
 }

@@ -9,6 +9,9 @@ var testdata = {
 			"disabled":null
 		},
 		{
+			"type":"blank"
+		},
+		{
 			"type":"text",
 			"label":"文本2:",
 			"id":"txtItm2",

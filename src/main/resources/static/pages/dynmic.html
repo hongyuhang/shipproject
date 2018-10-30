@@ -195,6 +195,8 @@
 								$('form').first().append(submitBtn);
 								initialChecks("#form1", data.data);
 								initialEvents(data.data);
+								// 初始化子区域
+								initialSubArea(data.data, $('#subArea').find('.btn-circle'));
 		      			},
 		      		error: function(request, error, exception) {
 		      			alert('error!');
