@@ -800,3 +800,17 @@
 		});
 		return subArea;
 	}
+	
+// 初始化子区域
+function initialSubArea(jsonData, obj) {
+	if (isNotNull(jsonData.subArea)) {
+		$.each(jsonData.subArea, function(i, subArea){
+        		obj.before(createArea(subArea.type));
+        		registCheckForSubArea(subArea.type);
+        		var index = $('#subAreaRow').find('.panel').length;
+        		for (var key in subArea) {
+				$('#' + key + "_" + index).val(subArea[key]);
+			}
+        });
+	}
+}

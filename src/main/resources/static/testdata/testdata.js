@@ -102,8 +102,31 @@ var testdata = {
 				"eventType":"blur",
 				"method":"itemTxtLostFouse"
 			}
-		]
-	
+		],
+	"subArea":[
+		{
+			"type":"0",
+			"scaleFactor":20,
+			"longitude":-90
+		},
+		{
+			"type":"0",
+			"scaleFactor":10,
+			"longitude":160,
+			"precision":4
+		},
+		{
+			"type":"1",
+			"scaleFactor":10,
+			"latitude":-45,
+			"dimensionE":211
+		}
+		,
+		{
+			"type":"5",
+			"text":"aadfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"
+		}
+	]
 }
 
 

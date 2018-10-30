@@ -153,12 +153,12 @@
 		$("#areaSel").click(function(){
 			$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
 			registCheckForSubArea($('#areatype').val());
-			$("#scaleFactor" + "_1").rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入两位数字"
-				}
-			});
+//			$("#scaleFactor" + "_1").rules("add",{
+//					dataTypeCheck : {dataType : "N2"},
+//					messages:{
+//					dataTypeCheck: "请录入两位数字"
+//				}
+//			});
 			$('#myArea').modal('hide');
 		});
 		var menuCode = getParams('menuCode');
@@ -179,6 +179,9 @@
 		initialChecks("#form1", testdata);
 		
 		initialEvents(testdata);
+		
+		// 初始化子区域
+		initialSubArea(testdata, $('#subArea').find('.btn-circle'));
 
 	});
     		

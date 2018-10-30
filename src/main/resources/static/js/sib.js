@@ -228,38 +228,6 @@ function initialEvents(jsonData) {
 function createModelDialog() {
 	
 }
-// 校验数据类型
-function dataTypeCheck(value, type) {
-	if (!isNotNull(value)) {
-		return true;
-	}
-	if (!isNumber(value)) {
-		return false;
-	}
-	
-	if (value.substr(0, 1) == "-1") {
-		value = value.substring(1);
-	}
-	
-	if (isNotNull(type)) {
-		// 数字情况
-		if (type.substr(0, 1) == "N") {
-			var temp = type.substring(1).split(",");
-			if (Math.pow(10, temp[0]) <= value) {
-				return false;
-			}
-			if (temp.length >1) {
-				var strValue = value + "";
-				if (strValue.indexOf(".") > 0) {
-					if (strValue.split(".")[1] >= Math.pow(10, temp[1])) {
-						return false;
-					}
-				}
-			}
-		}
-	}
-	return true;
-}
 
 // 创建菜单
 function createMenu(jsonData, activeMenuCode) {
