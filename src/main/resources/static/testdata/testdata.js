@@ -6,7 +6,7 @@ var testdata = {
 			"id":"txtItm1",
 			"placeholder":"非空，最小长度2",
 			"val":"109.66",
-			"disabled":null
+			"disabled":true
 		},
 		{
 			"type":"blank"
@@ -17,7 +17,7 @@ var testdata = {
 			"id":"txtItm2",
 			"placeholder":"非空，最大长度5",
 			"val":"",
-			"disabled":null
+			"disabled":true
 		},
 		{
 			"type":"text",
@@ -25,7 +25,7 @@ var testdata = {
 			"id":"txtItm3",
 			"placeholder":"数字",
 			"val":"",
-			"disabled":null
+			"disabled":true
 		},
 		{
 			"type":"text",
@@ -33,7 +33,7 @@ var testdata = {
 			"id":"txtItm4",
 			"placeholder":"正则表达式电话号码",
 			"val":"",
-			"disabled":null
+			"disabled":true
 		},
 		{
 			"type":"popupSelect",
@@ -42,7 +42,7 @@ var testdata = {
 			"placeholder":"请选择纬度",
 			"modelId":"#myModal",
 			"val":"Larry",
-			"disabled":null
+			"disabled":true
 		},
 		{
 			"type":"select",
@@ -58,12 +58,14 @@ var testdata = {
 			"id":"selpickerItm",
 			"placeholder":"请选择值",
 			"val":"1",
-			"vals":[{"":""},{"0":"低123123"},{"1":"高567567"}]
+			"vals":[{"":""},{"0":"低123123"},{"1":"高567567"}],
+			"disabled":true
 		}
 	],
 	"subArea" : {
 			"label":"子区域:",
-			"modelId":"#myArea"
+			"modelId":"#myArea",
+			"disabled":true
 	},
 	"checkRules": {
 			txtItm1: {
@@ -106,7 +108,7 @@ var testdata = {
 				"method":"itemTxtLostFouse"
 			}
 		],
-	"subArea":[
+	"subAreaData":[
 		{
 			"type":"0",
 			"scaleFactor":20,

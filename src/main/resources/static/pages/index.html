@@ -149,18 +149,14 @@
     <script src="../js/subArea.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-		
-		$("#areaSel").click(function(){
-			$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
-			registCheckForSubArea($('#areatype').val());
-//			$("#scaleFactor" + "_1").rules("add",{
-//					dataTypeCheck : {dataType : "N2"},
-//					messages:{
-//					dataTypeCheck: "请录入两位数字"
-//				}
-//			});
-			$('#myArea').modal('hide');
-		});
+    		if ($("#areaSel")) {
+    			$("#areaSel").click(function(){
+				$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
+				registCheckForSubArea($('#areatype').val());
+				$('#myArea').modal('hide');
+			});
+    		}
+
 		var menuCode = getParams('menuCode');
 		createMenu(menuData, menuCode);
 		
@@ -168,14 +164,19 @@
 		
 		var submitBtn = $('<div class="form-group">\
 						<div class="col-sm-1 col-sm-offset-1">\
-							<button type="submit" class="btn btn-primary control-label" name="signup" value="Sign up">提交</button>\
+							<button type="submit" class="btn btn-primary control-label">发送</button>\
 						</div>\
 						<div class="col-sm-1">\
-							<button type="submit" class="btn btn-primary" name="signup" value="Sign up">清空</button>\
+							<button type="button" id="modifyBtn" class="btn btn-primary">修改</button>\
 						</div>\
 					</div>');
 		$('form').first().append(submitBtn);
-		
+		$('#modifyBtn').click(function(){
+    			$("[disabled]").removeAttr("disabled");
+    			//$('#selpickerItm').prop('disabled', false); 
+    			$('.selectpicker').selectpicker('refresh');
+    		});
+    		
 		initialChecks("#form1", testdata);
 		
 		initialEvents(testdata);

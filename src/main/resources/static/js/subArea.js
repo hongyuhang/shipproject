@@ -803,14 +803,16 @@
 	
 // 初始化子区域
 function initialSubArea(jsonData, obj) {
-	if (isNotNull(jsonData.subArea)) {
-		$.each(jsonData.subArea, function(i, subArea){
-        		obj.before(createArea(subArea.type));
+	if (isNotNull(jsonData.subAreaData)) {
+		$.each(jsonData.subAreaData, function(i, subArea){
+			var node = createArea(subArea.type);
+        		obj.before(node);
         		registCheckForSubArea(subArea.type);
         		var index = $('#subAreaRow').find('.panel').length;
         		for (var key in subArea) {
 				$('#' + key + "_" + index).val(subArea[key]);
 			}
+        		node.find(".col-sm-3").children().attr("disabled", true);
         });
 	}
 }
