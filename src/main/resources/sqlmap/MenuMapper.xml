@@ -4,9 +4,12 @@
   <resultMap id="BaseResultMap" type="com.cbdz.sib.model.Menu">
     <constructor>
       <idArg column="m_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_code" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="m_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="m_level" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="m_dispno" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="m_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="send_flag" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    m_code, m_name, m_level, m_dispno
+    m_code, msg_code, m_name, m_level, m_dispno, m_url, send_flag
   </sql>
   <select id="selectByExample" parameterType="com.cbdz.sib.model.MenuExample" resultMap="BaseResultMap">
     select
@@ -102,16 +105,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cbdz.sib.model.Menu">
-    insert into menu (m_code, m_name, m_level, 
-      m_dispno)
-    values (#{mCode,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, #{mLevel,jdbcType=INTEGER}, 
-      #{mDispno,jdbcType=INTEGER})
+    insert into menu (m_code, msg_code, m_name, 
+      m_level, m_dispno, m_url, 
+      send_flag)
+    values (#{mCode,jdbcType=VARCHAR}, #{msgCode,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, 
+      #{mLevel,jdbcType=INTEGER}, #{mDispno,jdbcType=INTEGER}, #{mUrl,jdbcType=VARCHAR}, 
+      #{sendFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cbdz.sib.model.Menu">
     insert into menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mCode != null">
         m_code,
+      </if>
+      <if test="msgCode != null">
+        msg_code,
       </if>
       <if test="mName != null">
         m_name,
@@ -122,10 +130,19 @@
       <if test="mDispno != null">
         m_dispno,
       </if>
+      <if test="mUrl != null">
+        m_url,
+      </if>
+      <if test="sendFlag != null">
+        send_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mCode != null">
         #{mCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCode != null">
+        #{msgCode,jdbcType=VARCHAR},
       </if>
       <if test="mName != null">
         #{mName,jdbcType=VARCHAR},
@@ -135,6 +152,12 @@
       </if>
       <if test="mDispno != null">
         #{mDispno,jdbcType=INTEGER},
+      </if>
+      <if test="mUrl != null">
+        #{mUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null">
+        #{sendFlag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -150,6 +173,9 @@
       <if test="record.mCode != null">
         m_code = #{record.mCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.msgCode != null">
+        msg_code = #{record.msgCode,jdbcType=VARCHAR},
+      </if>
       <if test="record.mName != null">
         m_name = #{record.mName,jdbcType=VARCHAR},
       </if>
@@ -159,6 +185,12 @@
       <if test="record.mDispno != null">
         m_dispno = #{record.mDispno,jdbcType=INTEGER},
       </if>
+      <if test="record.mUrl != null">
+        m_url = #{record.mUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendFlag != null">
+        send_flag = #{record.sendFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -167,9 +199,12 @@
   <update id="updateByExample" parameterType="map">
     update menu
     set m_code = #{record.mCode,jdbcType=VARCHAR},
+      msg_code = #{record.msgCode,jdbcType=VARCHAR},
       m_name = #{record.mName,jdbcType=VARCHAR},
       m_level = #{record.mLevel,jdbcType=INTEGER},
-      m_dispno = #{record.mDispno,jdbcType=INTEGER}
+      m_dispno = #{record.mDispno,jdbcType=INTEGER},
+      m_url = #{record.mUrl,jdbcType=VARCHAR},
+      send_flag = #{record.sendFlag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,6 +212,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cbdz.sib.model.Menu">
     update menu
     <set>
+      <if test="msgCode != null">
+        msg_code = #{msgCode,jdbcType=VARCHAR},
+      </if>
       <if test="mName != null">
         m_name = #{mName,jdbcType=VARCHAR},
       </if>
@@ -186,14 +224,23 @@
       <if test="mDispno != null">
         m_dispno = #{mDispno,jdbcType=INTEGER},
       </if>
+      <if test="mUrl != null">
+        m_url = #{mUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFlag != null">
+        send_flag = #{sendFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     where m_code = #{mCode,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cbdz.sib.model.Menu">
     update menu
-    set m_name = #{mName,jdbcType=VARCHAR},
+    set msg_code = #{msgCode,jdbcType=VARCHAR},
+      m_name = #{mName,jdbcType=VARCHAR},
       m_level = #{mLevel,jdbcType=INTEGER},
-      m_dispno = #{mDispno,jdbcType=INTEGER}
+      m_dispno = #{mDispno,jdbcType=INTEGER},
+      m_url = #{mUrl,jdbcType=VARCHAR},
+      send_flag = #{sendFlag,jdbcType=VARCHAR}
     where m_code = #{mCode,jdbcType=VARCHAR}
   </update>
 </mapper>

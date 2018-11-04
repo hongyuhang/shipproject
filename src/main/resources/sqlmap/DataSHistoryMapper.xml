@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbdz.sib.dao.DataSHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.cbdz.sib.model.DataSHistory">
+    <constructor>
+      <idArg column="seq" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="s_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="m_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="m_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="s_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mmsi" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ret_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ret_msg" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="page_json" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="s_json" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="exec_ms" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    seq, s_time, m_code, msg_code, m_name, s_type, mmsi, ret_code, ret_msg, page_json, 
+    s_json, exec_ms
+  </sql>
+  <select id="selectByExample" parameterType="com.cbdz.sib.model.DataSHistoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from data_s_history
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from data_s_history
+    where seq = #{seq,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from data_s_history
+    where seq = #{seq,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cbdz.sib.model.DataSHistoryExample">
+    delete from data_s_history
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cbdz.sib.model.DataSHistory">
+    insert into data_s_history (seq, s_time, m_code, 
+      msg_code, m_name, s_type, 
+      mmsi, ret_code, ret_msg, 
+      page_json, s_json, exec_ms
+      )
+    values (#{seq,jdbcType=BIGINT}, #{sTime,jdbcType=TIMESTAMP}, #{mCode,jdbcType=VARCHAR}, 
+      #{msgCode,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, #{sType,jdbcType=VARCHAR}, 
+      #{mmsi,jdbcType=VARCHAR}, #{retCode,jdbcType=VARCHAR}, #{retMsg,jdbcType=VARCHAR}, 
+      #{pageJson,jdbcType=VARCHAR}, #{sJson,jdbcType=VARCHAR}, #{execMs,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cbdz.sib.model.DataSHistory">
+    insert into data_s_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="sTime != null">
+        s_time,
+      </if>
+      <if test="mCode != null">
+        m_code,
+      </if>
+      <if test="msgCode != null">
+        msg_code,
+      </if>
+      <if test="mName != null">
+        m_name,
+      </if>
+      <if test="sType != null">
+        s_type,
+      </if>
+      <if test="mmsi != null">
+        mmsi,
+      </if>
+      <if test="retCode != null">
+        ret_code,
+      </if>
+      <if test="retMsg != null">
+        ret_msg,
+      </if>
+      <if test="pageJson != null">
+        page_json,
+      </if>
+      <if test="sJson != null">
+        s_json,
+      </if>
+      <if test="execMs != null">
+        exec_ms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seq != null">
+        #{seq,jdbcType=BIGINT},
+      </if>
+      <if test="sTime != null">
+        #{sTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mCode != null">
+        #{mCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCode != null">
+        #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mName != null">
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="sType != null">
+        #{sType,jdbcType=VARCHAR},
+      </if>
+      <if test="mmsi != null">
+        #{mmsi,jdbcType=VARCHAR},
+      </if>
+      <if test="retCode != null">
+        #{retCode,jdbcType=VARCHAR},
+      </if>
+      <if test="retMsg != null">
+        #{retMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="pageJson != null">
+        #{pageJson,jdbcType=VARCHAR},
+      </if>
+      <if test="sJson != null">
+        #{sJson,jdbcType=VARCHAR},
+      </if>
+      <if test="execMs != null">
+        #{execMs,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cbdz.sib.model.DataSHistoryExample" resultType="java.lang.Long">
+    select count(*) from data_s_history
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update data_s_history
+    <set>
+      <if test="record.seq != null">
+        seq = #{record.seq,jdbcType=BIGINT},
+      </if>
+      <if test="record.sTime != null">
+        s_time = #{record.sTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mCode != null">
+        m_code = #{record.mCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.msgCode != null">
+        msg_code = #{record.msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mName != null">
+        m_name = #{record.mName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sType != null">
+        s_type = #{record.sType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mmsi != null">
+        mmsi = #{record.mmsi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retCode != null">
+        ret_code = #{record.retCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retMsg != null">
+        ret_msg = #{record.retMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageJson != null">
+        page_json = #{record.pageJson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sJson != null">
+        s_json = #{record.sJson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.execMs != null">
+        exec_ms = #{record.execMs,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update data_s_history
+    set seq = #{record.seq,jdbcType=BIGINT},
+      s_time = #{record.sTime,jdbcType=TIMESTAMP},
+      m_code = #{record.mCode,jdbcType=VARCHAR},
+      msg_code = #{record.msgCode,jdbcType=VARCHAR},
+      m_name = #{record.mName,jdbcType=VARCHAR},
+      s_type = #{record.sType,jdbcType=VARCHAR},
+      mmsi = #{record.mmsi,jdbcType=VARCHAR},
+      ret_code = #{record.retCode,jdbcType=VARCHAR},
+      ret_msg = #{record.retMsg,jdbcType=VARCHAR},
+      page_json = #{record.pageJson,jdbcType=VARCHAR},
+      s_json = #{record.sJson,jdbcType=VARCHAR},
+      exec_ms = #{record.execMs,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cbdz.sib.model.DataSHistory">
+    update data_s_history
+    <set>
+      <if test="sTime != null">
+        s_time = #{sTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mCode != null">
+        m_code = #{mCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCode != null">
+        msg_code = #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mName != null">
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="sType != null">
+        s_type = #{sType,jdbcType=VARCHAR},
+      </if>
+      <if test="mmsi != null">
+        mmsi = #{mmsi,jdbcType=VARCHAR},
+      </if>
+      <if test="retCode != null">
+        ret_code = #{retCode,jdbcType=VARCHAR},
+      </if>
+      <if test="retMsg != null">
+        ret_msg = #{retMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="pageJson != null">
+        page_json = #{pageJson,jdbcType=VARCHAR},
+      </if>
+      <if test="sJson != null">
+        s_json = #{sJson,jdbcType=VARCHAR},
+      </if>
+      <if test="execMs != null">
+        exec_ms = #{execMs,jdbcType=INTEGER},
+      </if>
+    </set>
+    where seq = #{seq,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cbdz.sib.model.DataSHistory">
+    update data_s_history
+    set s_time = #{sTime,jdbcType=TIMESTAMP},
+      m_code = #{mCode,jdbcType=VARCHAR},
+      msg_code = #{msgCode,jdbcType=VARCHAR},
+      m_name = #{mName,jdbcType=VARCHAR},
+      s_type = #{sType,jdbcType=VARCHAR},
+      mmsi = #{mmsi,jdbcType=VARCHAR},
+      ret_code = #{retCode,jdbcType=VARCHAR},
+      ret_msg = #{retMsg,jdbcType=VARCHAR},
+      page_json = #{pageJson,jdbcType=VARCHAR},
+      s_json = #{sJson,jdbcType=VARCHAR},
+      exec_ms = #{execMs,jdbcType=INTEGER}
+    where seq = #{seq,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class InitialPageController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(InitialPageController.class);
+public class SendDataController extends BaseController {
+    private static final Logger logger = LoggerFactory.getLogger(SendDataController.class);
     @Autowired
     private PageItemService g_servicePageItem;
 
-    @RequestMapping(value = "/initialInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/sendData", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> getInitialInfo(HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> items = new ArrayList();

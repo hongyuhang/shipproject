@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbdz.sib.dao.MmsiCurrentMapper">
+  <resultMap id="BaseResultMap" type="com.cbdz.sib.model.MmsiCurrent">
+    <constructor>
+      <idArg column="seq" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="r_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="mmsi" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="length" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="width" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="speed" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="longitude" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="latitude" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="report_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="use_flag" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    seq, r_time, mmsi, name, length, width, speed, longitude, latitude, report_time, 
+    use_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.cbdz.sib.model.MmsiCurrentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from mmsi_current
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mmsi_current
+    where seq = #{seq,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mmsi_current
+    where seq = #{seq,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cbdz.sib.model.MmsiCurrentExample">
+    delete from mmsi_current
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cbdz.sib.model.MmsiCurrent">
+    insert into mmsi_current (seq, r_time, mmsi, 
+      name, length, width, 
+      speed, longitude, latitude, 
+      report_time, use_flag)
+    values (#{seq,jdbcType=BIGINT}, #{rTime,jdbcType=TIMESTAMP}, #{mmsi,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{length,jdbcType=INTEGER}, #{width,jdbcType=INTEGER}, 
+      #{speed,jdbcType=DECIMAL}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, 
+      #{reportTime,jdbcType=TIMESTAMP}, #{useFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cbdz.sib.model.MmsiCurrent">
+    insert into mmsi_current
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="rTime != null">
+        r_time,
+      </if>
+      <if test="mmsi != null">
+        mmsi,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="speed != null">
+        speed,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="reportTime != null">
+        report_time,
+      </if>
+      <if test="useFlag != null">
+        use_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seq != null">
+        #{seq,jdbcType=BIGINT},
+      </if>
+      <if test="rTime != null">
+        #{rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mmsi != null">
+        #{mmsi,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=DECIMAL},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="reportTime != null">
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useFlag != null">
+        #{useFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cbdz.sib.model.MmsiCurrentExample" resultType="java.lang.Long">
+    select count(*) from mmsi_current
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mmsi_current
+    <set>
+      <if test="record.seq != null">
+        seq = #{record.seq,jdbcType=BIGINT},
+      </if>
+      <if test="record.rTime != null">
+        r_time = #{record.rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mmsi != null">
+        mmsi = #{record.mmsi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.length != null">
+        length = #{record.length,jdbcType=INTEGER},
+      </if>
+      <if test="record.width != null">
+        width = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.speed != null">
+        speed = #{record.speed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reportTime != null">
+        report_time = #{record.reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.useFlag != null">
+        use_flag = #{record.useFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mmsi_current
+    set seq = #{record.seq,jdbcType=BIGINT},
+      r_time = #{record.rTime,jdbcType=TIMESTAMP},
+      mmsi = #{record.mmsi,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      length = #{record.length,jdbcType=INTEGER},
+      width = #{record.width,jdbcType=INTEGER},
+      speed = #{record.speed,jdbcType=DECIMAL},
+      longitude = #{record.longitude,jdbcType=DECIMAL},
+      latitude = #{record.latitude,jdbcType=DECIMAL},
+      report_time = #{record.reportTime,jdbcType=TIMESTAMP},
+      use_flag = #{record.useFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cbdz.sib.model.MmsiCurrent">
+    update mmsi_current
+    <set>
+      <if test="rTime != null">
+        r_time = #{rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mmsi != null">
+        mmsi = #{mmsi,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="speed != null">
+        speed = #{speed,jdbcType=DECIMAL},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="reportTime != null">
+        report_time = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useFlag != null">
+        use_flag = #{useFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where seq = #{seq,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cbdz.sib.model.MmsiCurrent">
+    update mmsi_current
+    set r_time = #{rTime,jdbcType=TIMESTAMP},
+      mmsi = #{mmsi,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      length = #{length,jdbcType=INTEGER},
+      width = #{width,jdbcType=INTEGER},
+      speed = #{speed,jdbcType=DECIMAL},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      report_time = #{reportTime,jdbcType=TIMESTAMP},
+      use_flag = #{useFlag,jdbcType=VARCHAR}
+    where seq = #{seq,jdbcType=BIGINT}
+  </update>
+</mapper>

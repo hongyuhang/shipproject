@@ -174,6 +174,76 @@ public class MenuExample {
             return (Criteria) this;
         }
 
+        public Criteria andMsgCodeIsNull() {
+            addCriterion("msg_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeIsNotNull() {
+            addCriterion("msg_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeEqualTo(String value) {
+            addCriterion("msg_code =", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeNotEqualTo(String value) {
+            addCriterion("msg_code <>", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeGreaterThan(String value) {
+            addCriterion("msg_code >", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("msg_code >=", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeLessThan(String value) {
+            addCriterion("msg_code <", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeLessThanOrEqualTo(String value) {
+            addCriterion("msg_code <=", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeLike(String value) {
+            addCriterion("msg_code like", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeNotLike(String value) {
+            addCriterion("msg_code not like", value, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeIn(List<String> values) {
+            addCriterion("msg_code in", values, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeNotIn(List<String> values) {
+            addCriterion("msg_code not in", values, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeBetween(String value1, String value2) {
+            addCriterion("msg_code between", value1, value2, "msgCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgCodeNotBetween(String value1, String value2) {
+            addCriterion("msg_code not between", value1, value2, "msgCode");
+            return (Criteria) this;
+        }
+
         public Criteria andMNameIsNull() {
             addCriterion("m_name is null");
             return (Criteria) this;
@@ -361,6 +431,146 @@ public class MenuExample {
 
         public Criteria andMDispnoNotBetween(Integer value1, Integer value2) {
             addCriterion("m_dispno not between", value1, value2, "mDispno");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlIsNull() {
+            addCriterion("m_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlIsNotNull() {
+            addCriterion("m_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlEqualTo(String value) {
+            addCriterion("m_url =", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlNotEqualTo(String value) {
+            addCriterion("m_url <>", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlGreaterThan(String value) {
+            addCriterion("m_url >", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("m_url >=", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlLessThan(String value) {
+            addCriterion("m_url <", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlLessThanOrEqualTo(String value) {
+            addCriterion("m_url <=", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlLike(String value) {
+            addCriterion("m_url like", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlNotLike(String value) {
+            addCriterion("m_url not like", value, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlIn(List<String> values) {
+            addCriterion("m_url in", values, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlNotIn(List<String> values) {
+            addCriterion("m_url not in", values, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlBetween(String value1, String value2) {
+            addCriterion("m_url between", value1, value2, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMUrlNotBetween(String value1, String value2) {
+            addCriterion("m_url not between", value1, value2, "mUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagIsNull() {
+            addCriterion("send_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagIsNotNull() {
+            addCriterion("send_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagEqualTo(String value) {
+            addCriterion("send_flag =", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagNotEqualTo(String value) {
+            addCriterion("send_flag <>", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagGreaterThan(String value) {
+            addCriterion("send_flag >", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("send_flag >=", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagLessThan(String value) {
+            addCriterion("send_flag <", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagLessThanOrEqualTo(String value) {
+            addCriterion("send_flag <=", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagLike(String value) {
+            addCriterion("send_flag like", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagNotLike(String value) {
+            addCriterion("send_flag not like", value, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagIn(List<String> values) {
+            addCriterion("send_flag in", values, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagNotIn(List<String> values) {
+            addCriterion("send_flag not in", values, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagBetween(String value1, String value2) {
+            addCriterion("send_flag between", value1, value2, "sendFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendFlagNotBetween(String value1, String value2) {
+            addCriterion("send_flag not between", value1, value2, "sendFlag");
             return (Criteria) this;
         }
     }
