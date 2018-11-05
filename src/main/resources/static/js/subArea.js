@@ -648,8 +648,8 @@
 	                    <div class="form-group">\
 	                    		<input type="hidden" id="areaShape" name="areaShape" value="5"></input>\
 		                    <label class="col-sm-2 control-label">文本:</label>\
-		                    <div class="col-sm-3">\
-		                    		<textarea id="text" name="text" rows="5" class="form-control" placeholder=""></textarea>\
+		                    <div class="col-sm-8">\
+		                    		<textarea id="text" name="text" rows="4" class="form-control" placeholder=""></textarea>\
 		                    </div>\
 	                    </div>\
                     </div>\
@@ -813,6 +813,7 @@ function initialSubArea(jsonData, obj) {
 				$('#' + key + "_" + index).val(subArea[key]);
 			}
         		node.find(".col-sm-3").children().attr("disabled", true);
+        		node.find(".col-sm-8").children().attr("disabled", true);
         });
 	}
 }

@@ -17,6 +17,26 @@ function createFormGroup(inputItem1, inputItem2) {
 function createInputItem(jsonData) {
 	var inputItem;
 	switch (jsonData.type) {
+		case 'textarea':
+			inputItem = $('<label class="col-sm-2 control-label"></label>\
+		                 <div class="col-sm-8">\
+		                    	<textarea id="" name="" rows="4" class="form-control" placeholder=""></textarea>\
+		                 </div>');
+			inputItem.first().html(jsonData.label);
+			inputItem.find("input:first").attr("id", jsonData.id);
+			inputItem.find("input:first").attr("name", jsonData.id);
+			if (isNotNull(jsonData.placeholder)) {
+				inputItem.find("textarea:first").attr("placeholder", jsonData.placeholder);
+			}
+			
+			if (isNotNull(jsonData.disabled)) {
+				inputItem.find("textarea:first").attr("disabled", jsonData.disabled);
+			}
+			
+			if (isNotNull(jsonData.val)) {
+				inputItem.find("textarea:first").val(jsonData.val);
+			}
+			break;
 		case 'text':
 			inputItem = $('<label class="col-sm-2 control-label"></label>\
 		                 <div class="col-sm-3">\
@@ -136,14 +156,32 @@ function initialInputItems(jsonData) {
 	if (jsonData.items) {
 		var inputItem1;
 		var inputItem2;
-		$.each(jsonData.items, function(i,val){      
-	    		if ((i % 2) == 0) {
-	    			inputItem1 = createInputItem(val);
-	    		} else {
-	    			inputItem2 = createInputItem(val);
-	    			$('form').first().append(createFormGroup(inputItem1, inputItem2));
-	    		}
+		var inputItemArrays1 = new Array();
+		var inputItemArrays2 = new Array();
+		$.each(jsonData.items, function(i,val){  
+			inputItem = createInputItem(val);
+			if (val.type != 'textarea') {
+				if (inputItemArrays1.length == inputItemArrays2.length) {
+					inputItemArrays1.push(inputItem);
+				} else {
+					inputItemArrays2.push(inputItem);
+				}
+			} else {
+				if (inputItemArrays1.length == inputItemArrays2.length) {
+					inputItemArrays1.push(inputItem);
+					inputItemArrays2.push(null);
+				} else {
+					inputItemArrays2.push(null);
+					inputItemArrays1.push(inputItem);
+					inputItemArrays2.push(null);
+				}
+			}
 		});
+		
+		for (idx = 0; idx < inputItemArrays1.length; idx++) {
+			$('form').first().append(createFormGroup(inputItemArrays1[idx], inputItemArrays2[idx]));
+		}
+		
 		if ((jsonData.items.length % 2) > 0) {
 			$('form').first().append(createFormGroup(inputItem1));
 		}

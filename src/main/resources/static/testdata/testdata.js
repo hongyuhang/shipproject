@@ -9,15 +9,15 @@ var testdata = {
 			"disabled":true
 		},
 		{
-			"type":"blank"
-		},
-		{
-			"type":"text",
+			"type":"textarea",
 			"label":"文本2:",
 			"id":"txtItm2",
 			"placeholder":"非空，最大长度5",
 			"val":"",
 			"disabled":true
+		},
+		{
+			"type":"blank"
 		},
 		{
 			"type":"text",
@@ -28,7 +28,7 @@ var testdata = {
 			"disabled":true
 		},
 		{
-			"type":"text",
+			"type":"textarea",
 			"label":"文本4:",
 			"id":"txtItm4",
 			"placeholder":"正则表达式电话号码",
