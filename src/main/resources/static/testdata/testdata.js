@@ -13,7 +13,7 @@ var testdata = {
 			"label":"文本2:",
 			"id":"txtItm2",
 			"placeholder":"非空，最大长度5",
-			"val":"",
+			"val":"aaaaaa",
 			"disabled":true
 		},
 		{
@@ -24,7 +24,7 @@ var testdata = {
 			"label":"文本3:",
 			"id":"txtItm3",
 			"placeholder":"数字",
-			"val":"",
+			"val":"aaa",
 			"disabled":true
 		},
 		{

@@ -164,7 +164,7 @@
 		
 		var submitBtn = $('<div class="form-group">\
 						<div class="col-sm-1 col-sm-offset-1">\
-							<button type="submit" class="btn btn-primary control-label">发送</button>\
+							<button type="button" id="sendBtn" class="btn btn-primary control-label">发送</button>\
 						</div>\
 						<div class="col-sm-1">\
 							<button type="button" id="modifyBtn" class="btn btn-primary">修改</button>\
@@ -175,6 +175,28 @@
     			$("[disabled]").removeAttr("disabled");
     			//$('#selpickerItm').prop('disabled', false); 
     			$('.selectpicker').selectpicker('refresh');
+    		});
+    		
+    		$('#sendBtn').click(function(){
+    			$('#modifyBtn').trigger("click");
+    			var sendData = buildSendData();
+			if ($('#form1').valid()) {
+				$.ajax({
+					url: "/sib/sendData",
+					dataType:"json",
+					data:JSON.stringify(sendData),
+					method:"post",
+					contentType:"application/json",
+					success: function(data){
+						alert('发送成功!');
+		      		},
+		      		error: function(request, error, exception) {
+		      			alert('发送错误!');
+		      		}
+				});
+			} else {
+				alert('请先修改输入错误!');
+			}
     		});
     		
 		initialChecks("#form1", testdata);
@@ -193,6 +215,7 @@
 			$('#selItm').attr("disabled", "disabled");
 		}
 	}
+	
     </script>
 </body>
 

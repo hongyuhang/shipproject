@@ -23,8 +23,8 @@ function createInputItem(jsonData) {
 		                    	<textarea id="" name="" rows="4" class="form-control" placeholder=""></textarea>\
 		                 </div>');
 			inputItem.first().html(jsonData.label);
-			inputItem.find("input:first").attr("id", jsonData.id);
-			inputItem.find("input:first").attr("name", jsonData.id);
+			inputItem.find("textarea:first").attr("id", jsonData.id);
+			inputItem.find("textarea:first").attr("name", jsonData.id);
 			if (isNotNull(jsonData.placeholder)) {
 				inputItem.find("textarea:first").attr("placeholder", jsonData.placeholder);
 			}
@@ -192,21 +192,20 @@ function initialInputItems(jsonData) {
 		$('form').first().append(createSubArea(jsonData.subArea))
 	}
 }
-
+var validatorObj;
 // 初始化画面check
-function initialChecks(formId, jsonData) {
-	$.validator.setDefaults( {
-		submitHandler: function () {
-			if ($('#subAreaRow')) {
-				if ($('#subAreaRow').find('.panel').length == 0) {
-					alert('必须添加一个子区域');
-					return;
-				}
-			}
-			
-			alert( "submitted!" );
-		}
-	} );
+function initialChecks(formId, jsonData) {	
+	$.validator.addMethod("checkReg", function(value, element,param) {     
+		if(typeof(param.reg)!="undefined"){
+		    return checkReg(value, param.reg);
+		} 
+	});
+	
+	$.validator.addMethod("dataTypeCheck", function(value, element,param) {     
+		if(typeof(param.dataType)!="undefined"){
+		    return dataTypeCheck(value, param.dataType);
+		} 
+	});
 	
 	if (!$.isEmptyObject(jsonData.checkRules)) {
 		// 加入校验
@@ -230,26 +229,18 @@ function initialChecks(formId, jsonData) {
 				},
 			highlight: function ( element, errorClass, validClass ) {
 					$( element ).parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );
+					$( element ).parents( ".col-sm-8" ).addClass( "has-error" ).removeClass( "has-success" );
 //					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-error" ).removeClass( "has-success" );	
 				},
 			unhighlight: function (element, errorClass, validClass) {
 					$( element ).parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
+					$( element ).parents( ".col-sm-8" ).addClass( "has-success" ).removeClass( "has-error" );
 //					$( element ).parent().parents( ".col-sm-3" ).addClass( "has-success" ).removeClass( "has-error" );
 				}
 		});
 	}
 	
-	$.validator.addMethod("checkReg", function(value, element,param) {     
-		if(typeof(param.reg)!="undefined"){
-		    return checkReg(value, param.reg);
-		} 
-	});
-	
-	$.validator.addMethod("dataTypeCheck", function(value, element,param) {     
-		if(typeof(param.dataType)!="undefined"){
-		    return dataTypeCheck(value, param.dataType);
-		} 
-	});
+
 }
 
 // 初始化事件处理
@@ -320,3 +311,63 @@ function createMenu(jsonData, activeMenuCode) {
     $('.navbar-header').after(navSidebar);
     $("#side-menu").metisMenu();
 }
+
+	/**
+	 * 拼发送给后台的json字符串
+	 */
+	function buildSendData() {
+		var sendData = {};
+		// 抛去子区域部分的数据
+		$.each($('#form1').find('input'), function(i, item) {
+			item = $(item);
+			if (item.attr('id')) {
+				if (item.attr('id').indexOf('_') <= 0) {
+					sendData[item.attr("id")] = item.val();
+				}
+			}
+		});
+		$.each($('#form1').find('textarea'), function(i, item) {
+			item = $(item);
+			if (item.attr('id')) {
+				if (item.attr('id').indexOf('_') <= 0) {
+					sendData[item.attr("id")] = item.val();
+				}
+			}
+		});
+		$.each($('#form1').find('textarea'), function(i, item) {
+			item = $(item);
+			if (item.attr('id')) {
+				if (item.attr('id').indexOf('_') <= 0) {
+					sendData[item.attr("id")] = item.val();
+				}
+			}
+		});
+		// 子区域部分的数据
+		console.log(sendData);
+		var subAreaData = [];
+		$('subArea').find('.panel');
+		$.each($('#subArea').find('.panel'), function(i, panel) {
+			panel = $(panel);
+			var temp = {};
+			$.each(panel.find('input'), function(i, item) {
+				item = $(item);
+				if (item.attr('id')) {
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_') - 1)] = item.val();
+				}
+			});
+			$.each(panel.find('textarea'), function(i, item) {
+				item = $(item);
+				if (item.attr('id')) {
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_') - 1)] = item.val();
+				}
+			});
+			$.each(panel.find('textarea'), function(i, item) {
+				item = $(item);
+				if (item.attr('id')) {
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_') - 1)] = item.val();
+				}
+			});
+			subAreaData.push(temp);
+		});
+		sendData["subAreas"] = subAreaData;
+	}

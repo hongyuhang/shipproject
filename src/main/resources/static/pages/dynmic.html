@@ -193,6 +193,29 @@
 						    			//$('#selpickerItm').prop('disabled', false); 
 						    			$('.selectpicker').selectpicker('refresh');
 						    		});
+						    		
+				    		    		$('#sendBtn').click(function(){
+						    			$('#modifyBtn').trigger("click");
+						    			var sendData = buildSendData();
+									if ($('#form1').valid()) {
+										$.ajax({
+											url: "/sib/sendData",
+											type:"post",
+											dataType: "json",
+											data:sendData,
+											contentType:"application/json",
+											success: function(data){
+												alert('发送成功!');
+								      		},
+								      		error: function(request, error, exception) {
+								      			alert('发送错误!');
+								      		}
+										});
+									} else {
+										alert('请先修改输入错误!');
+									}
+						    		});
+						    		
 								initialChecks("#form1", data.data);
 								initialEvents(data.data);
 								// 初始化子区域
