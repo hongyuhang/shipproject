@@ -504,73 +504,73 @@ public class MenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagIsNull() {
-            addCriterion("send_flag is null");
+        public Criteria andSTypeIsNull() {
+            addCriterion("s_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagIsNotNull() {
-            addCriterion("send_flag is not null");
+        public Criteria andSTypeIsNotNull() {
+            addCriterion("s_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagEqualTo(String value) {
-            addCriterion("send_flag =", value, "sendFlag");
+        public Criteria andSTypeEqualTo(String value) {
+            addCriterion("s_type =", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagNotEqualTo(String value) {
-            addCriterion("send_flag <>", value, "sendFlag");
+        public Criteria andSTypeNotEqualTo(String value) {
+            addCriterion("s_type <>", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagGreaterThan(String value) {
-            addCriterion("send_flag >", value, "sendFlag");
+        public Criteria andSTypeGreaterThan(String value) {
+            addCriterion("s_type >", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagGreaterThanOrEqualTo(String value) {
-            addCriterion("send_flag >=", value, "sendFlag");
+        public Criteria andSTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("s_type >=", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagLessThan(String value) {
-            addCriterion("send_flag <", value, "sendFlag");
+        public Criteria andSTypeLessThan(String value) {
+            addCriterion("s_type <", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagLessThanOrEqualTo(String value) {
-            addCriterion("send_flag <=", value, "sendFlag");
+        public Criteria andSTypeLessThanOrEqualTo(String value) {
+            addCriterion("s_type <=", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagLike(String value) {
-            addCriterion("send_flag like", value, "sendFlag");
+        public Criteria andSTypeLike(String value) {
+            addCriterion("s_type like", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagNotLike(String value) {
-            addCriterion("send_flag not like", value, "sendFlag");
+        public Criteria andSTypeNotLike(String value) {
+            addCriterion("s_type not like", value, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagIn(List<String> values) {
-            addCriterion("send_flag in", values, "sendFlag");
+        public Criteria andSTypeIn(List<String> values) {
+            addCriterion("s_type in", values, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagNotIn(List<String> values) {
-            addCriterion("send_flag not in", values, "sendFlag");
+        public Criteria andSTypeNotIn(List<String> values) {
+            addCriterion("s_type not in", values, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagBetween(String value1, String value2) {
-            addCriterion("send_flag between", value1, value2, "sendFlag");
+        public Criteria andSTypeBetween(String value1, String value2) {
+            addCriterion("s_type between", value1, value2, "sType");
             return (Criteria) this;
         }
 
-        public Criteria andSendFlagNotBetween(String value1, String value2) {
-            addCriterion("send_flag not between", value1, value2, "sendFlag");
+        public Criteria andSTypeNotBetween(String value1, String value2) {
+            addCriterion("s_type not between", value1, value2, "sType");
             return (Criteria) this;
         }
     }

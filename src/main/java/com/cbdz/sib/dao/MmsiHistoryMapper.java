@@ -2,6 +2,8 @@ package com.cbdz.sib.dao;
 
 import com.cbdz.sib.model.MmsiHistory;
 import com.cbdz.sib.model.MmsiHistoryExample;
+
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,6 @@ public interface MmsiHistoryMapper {
     int updateByPrimaryKeySelective(MmsiHistory record);
 
     int updateByPrimaryKey(MmsiHistory record);
+
+    int saveMmsiHistory(Date r_time);
 }

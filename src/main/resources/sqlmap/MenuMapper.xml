@@ -9,7 +9,7 @@
       <arg column="m_level" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="m_dispno" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="m_url" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="send_flag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="s_type" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    m_code, msg_code, m_name, m_level, m_dispno, m_url, send_flag
+    m_code, msg_code, m_name, m_level, m_dispno, m_url, s_type
   </sql>
   <select id="selectByExample" parameterType="com.cbdz.sib.model.MenuExample" resultMap="BaseResultMap">
     select
@@ -107,10 +107,10 @@
   <insert id="insert" parameterType="com.cbdz.sib.model.Menu">
     insert into menu (m_code, msg_code, m_name, 
       m_level, m_dispno, m_url, 
-      send_flag)
+      s_type)
     values (#{mCode,jdbcType=VARCHAR}, #{msgCode,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, 
       #{mLevel,jdbcType=INTEGER}, #{mDispno,jdbcType=INTEGER}, #{mUrl,jdbcType=VARCHAR}, 
-      #{sendFlag,jdbcType=VARCHAR})
+      #{sType,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cbdz.sib.model.Menu">
     insert into menu
@@ -133,8 +133,8 @@
       <if test="mUrl != null">
         m_url,
       </if>
-      <if test="sendFlag != null">
-        send_flag,
+      <if test="sType != null">
+        s_type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -156,8 +156,8 @@
       <if test="mUrl != null">
         #{mUrl,jdbcType=VARCHAR},
       </if>
-      <if test="sendFlag != null">
-        #{sendFlag,jdbcType=VARCHAR},
+      <if test="sType != null">
+        #{sType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,8 +188,8 @@
       <if test="record.mUrl != null">
         m_url = #{record.mUrl,jdbcType=VARCHAR},
       </if>
-      <if test="record.sendFlag != null">
-        send_flag = #{record.sendFlag,jdbcType=VARCHAR},
+      <if test="record.sType != null">
+        s_type = #{record.sType,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -204,7 +204,7 @@
       m_level = #{record.mLevel,jdbcType=INTEGER},
       m_dispno = #{record.mDispno,jdbcType=INTEGER},
       m_url = #{record.mUrl,jdbcType=VARCHAR},
-      send_flag = #{record.sendFlag,jdbcType=VARCHAR}
+      s_type = #{record.sType,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,8 +227,8 @@
       <if test="mUrl != null">
         m_url = #{mUrl,jdbcType=VARCHAR},
       </if>
-      <if test="sendFlag != null">
-        send_flag = #{sendFlag,jdbcType=VARCHAR},
+      <if test="sType != null">
+        s_type = #{sType,jdbcType=VARCHAR},
       </if>
     </set>
     where m_code = #{mCode,jdbcType=VARCHAR}
@@ -240,7 +240,7 @@
       m_level = #{mLevel,jdbcType=INTEGER},
       m_dispno = #{mDispno,jdbcType=INTEGER},
       m_url = #{mUrl,jdbcType=VARCHAR},
-      send_flag = #{sendFlag,jdbcType=VARCHAR}
+      s_type = #{sType,jdbcType=VARCHAR}
     where m_code = #{mCode,jdbcType=VARCHAR}
   </update>
 </mapper>

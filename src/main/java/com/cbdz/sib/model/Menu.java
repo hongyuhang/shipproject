@@ -13,16 +13,16 @@ public class Menu {
 
     private String mUrl;
 
-    private String sendFlag;
+    private String sType;
 
-    public Menu(String mCode, String msgCode, String mName, Integer mLevel, Integer mDispno, String mUrl, String sendFlag) {
+    public Menu(String mCode, String msgCode, String mName, Integer mLevel, Integer mDispno, String mUrl, String sType) {
         this.mCode = mCode;
         this.msgCode = msgCode;
         this.mName = mName;
         this.mLevel = mLevel;
         this.mDispno = mDispno;
         this.mUrl = mUrl;
-        this.sendFlag = sendFlag;
+        this.sType = sType;
     }
 
     public Menu() {
@@ -77,11 +77,11 @@ public class Menu {
         this.mUrl = mUrl == null ? null : mUrl.trim();
     }
 
-    public String getSendFlag() {
-        return sendFlag;
+    public String getsType() {
+        return sType;
     }
 
-    public void setSendFlag(String sendFlag) {
-        this.sendFlag = sendFlag == null ? null : sendFlag.trim();
+    public void setsType(String sType) {
+        this.sType = sType == null ? null : sType.trim();
     }
 }
