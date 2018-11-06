@@ -11,18 +11,15 @@ public class MenuItem extends MenuItemKey {
 
     private String itemSelText;
 
-    private String mustFlag;
-
     private String itemInitval;
 
-    public MenuItem(String mCode, String itemId, String itemLabel, Integer itemDispno, String itemType, String itemPlaceholder, String itemSelText, String mustFlag, String itemInitval) {
+    public MenuItem(String mCode, String itemId, String itemLabel, Integer itemDispno, String itemType, String itemPlaceholder, String itemSelText, String itemInitval) {
         super(mCode, itemId);
         this.itemLabel = itemLabel;
         this.itemDispno = itemDispno;
         this.itemType = itemType;
         this.itemPlaceholder = itemPlaceholder;
         this.itemSelText = itemSelText;
-        this.mustFlag = mustFlag;
         this.itemInitval = itemInitval;
     }
 
@@ -68,14 +65,6 @@ public class MenuItem extends MenuItemKey {
 
     public void setItemSelText(String itemSelText) {
         this.itemSelText = itemSelText == null ? null : itemSelText.trim();
-    }
-
-    public String getMustFlag() {
-        return mustFlag;
-    }
-
-    public void setMustFlag(String mustFlag) {
-        this.mustFlag = mustFlag == null ? null : mustFlag.trim();
     }
 
     public String getItemInitval() {
