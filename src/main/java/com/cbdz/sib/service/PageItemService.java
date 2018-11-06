@@ -78,6 +78,18 @@ public class PageItemService {
                 Map<String, Object> p_dataTypeTmp = new HashMap<>();
                 p_dataTypeTmp.put("dataType", per.getCheckParam());
                 p_tmpCheckRule.put(per.getCheckMethod(), p_dataTypeTmp);
+            } else if (StringUtils.equals(per.getCheckMethod(), "required")
+                || StringUtils.equals(per.getCheckMethod(), "number")) {
+                if (StringUtils.equals(per.getCheckParam(), "true")) {
+                    p_tmpCheckRule.put(per.getCheckMethod(), true);
+                }
+            } else if (StringUtils.equals(per.getCheckMethod(), "min")
+                    || StringUtils.equals(per.getCheckMethod(), "max")
+                    || StringUtils.equals(per.getCheckMethod(), "maxlength")
+                    || StringUtils.equals(per.getCheckMethod(), "minlength")) {
+                if (!StringUtils.isEmpty(per.getCheckParam())) {
+                    p_tmpCheckRule.put(per.getCheckMethod(), Double.valueOf(per.getCheckParam()));
+                }
             } else {
                 p_tmpCheckRule.put(per.getCheckMethod(), per.getCheckParam());
             }
