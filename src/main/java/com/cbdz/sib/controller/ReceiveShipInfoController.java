@@ -17,9 +17,9 @@ public class ReceiveShipInfoController extends BaseController {
 
     @RequestMapping(value = "/receiveShipInfo", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject receiveMmsi(@RequestBody JSONObject x_data) {
-        logger.debug("ReceiveShipInfoController.receiveMmsi() Param= " + JSON.toJSONString(x_data, true));
-        JSONObject p_ret = g_service.receiveMmsi(x_data);
+    public JSONObject receiveMmsi(@RequestBody JSONObject params) {
+        logger.debug("ReceiveShipInfoController.receiveMmsi() Param= " + JSON.toJSONString(params, true));
+        JSONObject p_ret = g_service.receiveMmsi(params);
 
         logger.info("ReceiveShipInfoController.receiveMmsi() return value= " + JSON.toJSONString(p_ret, true));
         return p_ret;

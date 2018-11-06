@@ -2,6 +2,7 @@ package com.cbdz.sib.service;
 
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
+import com.cbdz.sib.common.AppUtils;
 import com.cbdz.sib.dao.MenuItemCheckMapper;
 import com.cbdz.sib.dao.MenuItemMapper;
 import com.cbdz.sib.model.MenuItem;
@@ -39,8 +40,8 @@ public class PageItemService {
             p_tmp.put("type", per.getItemType());
             p_tmp.put("label", per.getItemLabel());
             p_tmp.put("id", per.getItemId());
-            p_tmp.put("placeholder", per.getItemPlaceholder());
-            p_tmp.put("val", per.getItemInitval());
+            p_tmp.put("placeholder", AppUtils.getDefault(per.getItemPlaceholder(), ""));
+            p_tmp.put("val", AppUtils.getDefault(per.getItemInitval(), ""));
             if (!StringUtils.isEmpty(per.getItemSelText())) {
                 List<Map<String, String>> options = new ArrayList<>();
                 Map<String, String> opt1 = new HashMap<>();

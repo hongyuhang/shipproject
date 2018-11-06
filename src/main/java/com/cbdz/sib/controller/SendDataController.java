@@ -20,11 +20,13 @@ public class SendDataController extends BaseController {
 
     @RequestMapping(value = "/sendData", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> sendData(@RequestParam String x_menuCd, @RequestBody JSONObject x_data) {
-        JSONObject p_ret = g_service.sendData(x_menuCd, x_data);
+    public ResponseEntity<Map<String, Object>> sendData(@RequestBody JSONObject params) {
+        // 菜单CODE
+        String p_mCode = params.getString("menuCode");
+        JSONObject p_ret = g_service.sendData(p_mCode, params);
 
         logger.info("SendDataController return value= " + JSON.toJSONString(p_ret, true));
-        if (StringUtils.equals(p_ret.getString(""), "200")) {
+        if (StringUtils.equals(p_ret.getString("rst_code"), "200")) {
             return this.success(p_ret);
         } else {
             return super.fail(p_ret, p_ret.getString("rst_message"));

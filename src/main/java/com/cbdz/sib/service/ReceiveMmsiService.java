@@ -3,6 +3,7 @@ package com.cbdz.sib.service;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cbdz.sib.common.RSAUtils;
 import com.cbdz.sib.dao.DataSHistoryMapper;
 import com.cbdz.sib.dao.MenuMapper;
 import com.cbdz.sib.dao.MmsiCurrentMapper;
@@ -31,16 +32,24 @@ public class ReceiveMmsiService {
 
     @Transactional
     public JSONObject receiveMmsi(JSONObject x_json) {
+        String p_param = x_json.getString("params");
+        try {
+            p_param = RSAUtils.decrypt(p_param);
+        } catch (Exception e) {
+            logger.error("ReceiveMmsiService.receiveMmsi() RSA解密失败 ： " + p_param);
+            return ErrorCode.RECEIVE_DATA_ERROR.getJson();
+        }
         List<MmsiCurrent> p_list = new ArrayList<MmsiCurrent>();
         try {
-            JSONArray p_ary = x_json.getJSONArray("shipInfo");
+            JSONObject p_json = JSONObject.parseObject(p_param);
+            JSONArray p_ary = p_json.getJSONArray("shipInfo");
             for (int i = 0; i < p_ary.size(); i++) {
                 JSONObject p_jsonObj = p_ary.getJSONObject(i);
                 MmsiCurrent p_tmp = JSONObject.toJavaObject(p_jsonObj, MmsiCurrent.class);
                 p_list.add(p_tmp);
             }
         } catch (Exception e) {
-            logger.error("ReceiveMmsiService.receiveMmsi() 转换JSON失败 ： " + x_json.toJSONString());
+            logger.error("ReceiveMmsiService.receiveMmsi() 转换JSON失败 ： " + p_param);
             return ErrorCode.RECEIVE_DATA_ERROR.getJson();
         }
         for (MmsiCurrent per : p_list) {

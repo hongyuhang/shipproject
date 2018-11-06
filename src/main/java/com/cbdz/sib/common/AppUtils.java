@@ -94,4 +94,17 @@ public class AppUtils {
     public static String currentTimestamp() {
         return toStringYmdHmsS(Calendar.getInstance());
     }
+
+    /**
+     *
+     * @param x_val
+     * @param x_default
+     * @return
+     */
+    public static String getDefault(String x_val, String x_default) {
+        if (x_val == null) {
+            return x_default;
+        }
+        return x_val;
+    }
 }

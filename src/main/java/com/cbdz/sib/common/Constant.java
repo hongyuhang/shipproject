@@ -12,9 +12,9 @@ import java.util.HashMap;
 public class Constant {
 	public class Value {
 		// 使用VDES服务URL区分（1:从互联互通平台取得服务URL）
-		public static final String CFG_ENVIRONMENT_FLAG_HLHT = "environment_flag";
+		public static final String CFG_ENVIRONMENT_FLAG_HLHT = "1";
 		// 使用VDES服务URL区分（2:用测试VDES服务URL）
-		public static final String CFG_ENVIRONMENT_FLAG_TEST = "environment_flag";
+		public static final String CFG_ENVIRONMENT_FLAG_TEST = "2";
 
 		public static final String CONST_SEND_FLAG_BROADCAST = "1";
 		public static final String CONST_SEND_FLAG_ADDRESSING = "2";

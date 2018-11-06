@@ -1,20 +1,19 @@
 package com.cbdz.sib.common;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import com.alibaba.druid.util.Base64;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
-
-import com.alibaba.druid.util.Base64;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.security.*;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * RSA公钥/私钥工具包
@@ -22,31 +21,6 @@ import com.alibaba.druid.util.Base64;
 public class RSAUtils {
 	private static final int MAX_DECRYPT_BLOCK = 128;
 	private static final int MAX_ENCRYPT_BLOCK = 64;
-	/**
-	 * 生成RSA公私钥，保存文件至publickey.dat、privatekey.dat
-	 */
-	public static void generateKeyPair() {
-		try {
-			KeyPairGenerator p_keyGenerator = KeyPairGenerator
-					.getInstance("RSA");
-			p_keyGenerator.initialize(1024);
-			KeyPair kp = p_keyGenerator.genKeyPair();
-			PublicKey pbkey = kp.getPublic();
-			PrivateKey prkey = kp.getPrivate();
-			// 保存公钥
-			FileOutputStream f1 = new FileOutputStream("publickey.dat");
-			ObjectOutputStream b1 = new ObjectOutputStream(f1);
-			b1.writeObject(pbkey);
-			b1.close();
-			// 保存私钥
-			FileOutputStream f2 = new FileOutputStream("privatekey.dat");
-			ObjectOutputStream b2 = new ObjectOutputStream(f2);
-			b2.writeObject(prkey);
-			b2.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * RSA公钥加密（包括BASE64转码）
@@ -181,5 +155,97 @@ public class RSAUtils {
 	 */
 	private static String getPrivateKeyString() throws Exception {
 		return Constant.getExtensionConfig(Constant.Key.CFG_MY_RSA_PRIVATE_KEY);
+	}
+
+	private static final String KEY_ALGORITHM = "RSA";
+
+	private static final String PUBLIC_KEY = "RSAPublicKey";
+
+	private static final String PRIVATE_KEY = "RSAPrivateKey";
+
+
+
+	public static void main(String[] args) {
+
+		Map<String, Object> keyMap;
+
+		try {
+
+			keyMap = initKey();
+
+			String publicKey =  getPublicKey(keyMap);
+
+			System.out.println(publicKey);
+
+			String privateKey =  getPrivateKey(keyMap);
+
+			System.out.println(privateKey);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
+	private static String getPublicKey(Map<String, Object> keyMap) throws Exception {
+
+		Key key = (Key) keyMap.get(PUBLIC_KEY);
+
+		byte[] publicKey = key.getEncoded();
+
+		return encryptBASE64(key.getEncoded());
+
+	}
+
+	private static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
+
+		Key key = (Key) keyMap.get(PRIVATE_KEY);
+
+		byte[] privateKey =key.getEncoded();
+
+		return encryptBASE64(key.getEncoded());
+
+	}
+
+
+
+	private static byte[] decryptBASE64(String key) throws Exception {
+
+		return (new BASE64Decoder()).decodeBuffer(key);
+
+	}
+
+
+
+	private static String encryptBASE64(byte[] key) throws Exception {
+
+		return (new BASE64Encoder()).encodeBuffer(key);
+
+	}
+
+
+
+	private static Map<String, Object> initKey() throws Exception {
+
+		KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
+
+		keyPairGen.initialize(1024);
+
+		KeyPair keyPair = keyPairGen.generateKeyPair();
+
+		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+
+		RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+
+		Map<String, Object> keyMap = new HashMap<>(2);
+
+		keyMap.put(PUBLIC_KEY, publicKey);
+
+		keyMap.put(PRIVATE_KEY, privateKey);
+
+		return keyMap;
+
 	}
 }
