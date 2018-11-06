@@ -148,6 +148,7 @@
     <script src="../js/sib.js"></script>
     <script src="../js/subArea.js"></script>
     <script type="text/javascript">
+    	var menuCode;
     	$(document).ready(function(){
     		if ($("#areaSel")) {
     			$("#areaSel").click(function(){
@@ -157,7 +158,7 @@
 			});
     		}
 		
-		var menuCode = getParams('menuCode');
+		menuCode = getParams('menuCode');
 		// 服务器通信，并初始化菜单
 		$.ajax({ 
 				url: "/sib/menuInfo",
@@ -197,13 +198,14 @@
 						    		
 				    		    		$('#sendBtn').click(function(){
 						    			$('#modifyBtn').trigger("click");
-//						    			var sendData = buildSendData();
+						    			var sendData = buildSendData();
+						    			sendData.menuCode = menuCode;
 									if ($('#form1').valid()) {
 										$.ajax({
-											url: "/sib/sendData",
+											url: "/sib/sendData?",
 											type:"post",
 											dataType: "json",
-											data:JSON.stringify(buildSendData()),
+											data:JSON.stringify(sendData),
 											contentType:"application/json; charset=utf-8",
 											success: function(data){
 												alert('发送成功!');
