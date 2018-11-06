@@ -23,7 +23,7 @@ public class InitialMenuController extends BaseController {
     @Autowired
     private MenuItemService g_serviceMenuItem;
 
-    @RequestMapping(value = "/initialMenu", method = RequestMethod.GET)
+    @RequestMapping(value = "/menuInfo", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> getInitialInfo(HttpServletRequest request) {
         List<Map<String, Object>> p_ret = g_serviceMenuItem.getMenuItem();
         logger.info(JSON.toJSONString(p_ret, true));
