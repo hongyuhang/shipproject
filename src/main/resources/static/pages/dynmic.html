@@ -149,6 +149,7 @@
     <script src="../js/subArea.js"></script>
     <script type="text/javascript">
     	var menuCode;
+    	var clickFlag = false;
     	$(document).ready(function(){
     		if ($("#areaSel")) {
     			$("#areaSel").click(function(){
@@ -191,18 +192,22 @@
 											</div>');
 								$('form').first().append(submitBtn);
 								$('#modifyBtn').click(function(){
+									clickFlag = true;
 						    			$("[disabled]").removeAttr("disabled");
 						    			//$('#selpickerItm').prop('disabled', false); 
 						    			$('.selectpicker').selectpicker('refresh');
 						    		});
 						    		
 				    		    		$('#sendBtn').click(function(){
-						    			$('#modifyBtn').trigger("click");
+				    		    			$("[disabled]").removeAttr("disabled");
+						    			$('.selectpicker').selectpicker('refresh');
+	
 						    			var sendData = buildSendData();
+
 						    			sendData.menuCode = menuCode;
 									if ($('#form1').valid()) {
 										$.ajax({
-											url: "/sib/sendData?",
+											url: "/sib/sendData",
 											type:"post",
 											dataType: "json",
 											data:JSON.stringify(sendData),
@@ -214,6 +219,15 @@
 								      			alert('发送错误!');
 								      		}
 										});
+										// 如果没有点击过修改按钮，需要把所有控件置成disabled
+										if (!clickFlag) {
+							    				$('input').attr("disabled", true);
+							    				$('textarea').attr("disabled", true);
+							    				$('select').attr("disabled", true);
+							    				$('.selectpicker').attr("disabled", true);
+							    				$('.selectpicker').selectpicker('refresh');
+							    				$('#subArea').find('button:first').attr("disabled", true);
+							    			}
 									} else {
 										alert('请先修改输入错误!');
 									}
