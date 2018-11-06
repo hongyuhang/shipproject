@@ -47,5 +47,7 @@
   </root>
 
   <logger name="XXX.XXX" level="debug" />
-
+  <logger name="com.cbdz.sib.dao" level="debug" additivity="false">
+    <appender-ref ref="STDOUT" />
+  </logger>
 </configuration>

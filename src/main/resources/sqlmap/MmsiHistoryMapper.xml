@@ -306,11 +306,4 @@
       use_flag = #{useFlag,jdbcType=VARCHAR}
     where seq = #{seq,jdbcType=BIGINT}
   </update>
-
-  <insert id="saveMmsiHistory" parameterType="java.util.Date">
-    insert into mmsi_history
-    select *
-      from mmsi_current
-     where r_time &lt; #{r_time,jdbcType=TIMESTAMP}
-  </insert>
 </mapper>

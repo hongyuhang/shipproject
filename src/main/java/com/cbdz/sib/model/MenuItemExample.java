@@ -584,6 +584,76 @@ public class MenuItemExample {
             return (Criteria) this;
         }
 
+        public Criteria andMustFlagIsNull() {
+            addCriterion("must_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagIsNotNull() {
+            addCriterion("must_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagEqualTo(String value) {
+            addCriterion("must_flag =", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagNotEqualTo(String value) {
+            addCriterion("must_flag <>", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagGreaterThan(String value) {
+            addCriterion("must_flag >", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("must_flag >=", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagLessThan(String value) {
+            addCriterion("must_flag <", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagLessThanOrEqualTo(String value) {
+            addCriterion("must_flag <=", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagLike(String value) {
+            addCriterion("must_flag like", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagNotLike(String value) {
+            addCriterion("must_flag not like", value, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagIn(List<String> values) {
+            addCriterion("must_flag in", values, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagNotIn(List<String> values) {
+            addCriterion("must_flag not in", values, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagBetween(String value1, String value2) {
+            addCriterion("must_flag between", value1, value2, "mustFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMustFlagNotBetween(String value1, String value2) {
+            addCriterion("must_flag not between", value1, value2, "mustFlag");
+            return (Criteria) this;
+        }
+
         public Criteria andItemInitvalIsNull() {
             addCriterion("item_initval is null");
             return (Criteria) this;

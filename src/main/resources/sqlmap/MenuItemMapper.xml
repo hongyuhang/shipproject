@@ -10,6 +10,7 @@
       <arg column="item_type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="item_placeholder" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="item_sel_text" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="must_flag" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="item_initval" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     m_code, item_id, item_label, item_dispno, item_type, item_placeholder, item_sel_text, 
-    item_initval
+    must_flag, item_initval
   </sql>
   <select id="selectByExample" parameterType="com.cbdz.sib.model.MenuItemExample" resultMap="BaseResultMap">
     select
@@ -111,10 +112,12 @@
   <insert id="insert" parameterType="com.cbdz.sib.model.MenuItem">
     insert into menu_item (m_code, item_id, item_label, 
       item_dispno, item_type, item_placeholder, 
-      item_sel_text, item_initval)
+      item_sel_text, must_flag, item_initval
+      )
     values (#{mCode,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, #{itemLabel,jdbcType=VARCHAR}, 
       #{itemDispno,jdbcType=INTEGER}, #{itemType,jdbcType=VARCHAR}, #{itemPlaceholder,jdbcType=VARCHAR}, 
-      #{itemSelText,jdbcType=VARCHAR}, #{itemInitval,jdbcType=VARCHAR})
+      #{itemSelText,jdbcType=VARCHAR}, #{mustFlag,jdbcType=VARCHAR}, #{itemInitval,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cbdz.sib.model.MenuItem">
     insert into menu_item
@@ -139,6 +142,9 @@
       </if>
       <if test="itemSelText != null">
         item_sel_text,
+      </if>
+      <if test="mustFlag != null">
+        must_flag,
       </if>
       <if test="itemInitval != null">
         item_initval,
@@ -165,6 +171,9 @@
       </if>
       <if test="itemSelText != null">
         #{itemSelText,jdbcType=VARCHAR},
+      </if>
+      <if test="mustFlag != null">
+        #{mustFlag,jdbcType=VARCHAR},
       </if>
       <if test="itemInitval != null">
         #{itemInitval,jdbcType=VARCHAR},
@@ -201,6 +210,9 @@
       <if test="record.itemSelText != null">
         item_sel_text = #{record.itemSelText,jdbcType=VARCHAR},
       </if>
+      <if test="record.mustFlag != null">
+        must_flag = #{record.mustFlag,jdbcType=VARCHAR},
+      </if>
       <if test="record.itemInitval != null">
         item_initval = #{record.itemInitval,jdbcType=VARCHAR},
       </if>
@@ -218,6 +230,7 @@
       item_type = #{record.itemType,jdbcType=VARCHAR},
       item_placeholder = #{record.itemPlaceholder,jdbcType=VARCHAR},
       item_sel_text = #{record.itemSelText,jdbcType=VARCHAR},
+      must_flag = #{record.mustFlag,jdbcType=VARCHAR},
       item_initval = #{record.itemInitval,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,6 +254,9 @@
       <if test="itemSelText != null">
         item_sel_text = #{itemSelText,jdbcType=VARCHAR},
       </if>
+      <if test="mustFlag != null">
+        must_flag = #{mustFlag,jdbcType=VARCHAR},
+      </if>
       <if test="itemInitval != null">
         item_initval = #{itemInitval,jdbcType=VARCHAR},
       </if>
@@ -255,6 +271,7 @@
       item_type = #{itemType,jdbcType=VARCHAR},
       item_placeholder = #{itemPlaceholder,jdbcType=VARCHAR},
       item_sel_text = #{itemSelText,jdbcType=VARCHAR},
+      must_flag = #{mustFlag,jdbcType=VARCHAR},
       item_initval = #{itemInitval,jdbcType=VARCHAR}
     where m_code = #{mCode,jdbcType=VARCHAR}
       and item_id = #{itemId,jdbcType=VARCHAR}
