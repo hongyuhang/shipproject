@@ -1,0 +1,15 @@
+1.整体画面与页面跳转：
+	每个画面上都要有菜单初始化部分的代码，因为没有做成frame，各个画面之间是独立的
+		createMenu(menuData, menuCode);
+	通过画面间传递get参数，来激活对应的菜单项（page.html?menuCode=XXX）
+		var menuCode = getParams('menuCode');
+
+1.页面项目初始化：
+	通过菜单代码请求后台，从返回的数据来初始化页面各个项目以及check逻辑
+	initialInputItems(testdata);
+	initialChecks("#form1", testdata); // form1为表单id
+	initialEvents(testdata); // 初始化事件逻辑
+	initialSubArea(testdata, $('#subArea').find('.btn-circle')); // 初始化子区域
+
+3.子区域popup和画面项目
+	写死在页面的，以及点击动作的触发函数
