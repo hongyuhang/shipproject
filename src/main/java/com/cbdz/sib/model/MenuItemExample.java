@@ -653,6 +653,76 @@ public class MenuItemExample {
             addCriterion("item_initval not between", value1, value2, "itemInitval");
             return (Criteria) this;
         }
+
+        public Criteria andInitEnableFlagIsNull() {
+            addCriterion("init_enable_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagIsNotNull() {
+            addCriterion("init_enable_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagEqualTo(String value) {
+            addCriterion("init_enable_flag =", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagNotEqualTo(String value) {
+            addCriterion("init_enable_flag <>", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagGreaterThan(String value) {
+            addCriterion("init_enable_flag >", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("init_enable_flag >=", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagLessThan(String value) {
+            addCriterion("init_enable_flag <", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagLessThanOrEqualTo(String value) {
+            addCriterion("init_enable_flag <=", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagLike(String value) {
+            addCriterion("init_enable_flag like", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagNotLike(String value) {
+            addCriterion("init_enable_flag not like", value, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagIn(List<String> values) {
+            addCriterion("init_enable_flag in", values, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagNotIn(List<String> values) {
+            addCriterion("init_enable_flag not in", values, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagBetween(String value1, String value2) {
+            addCriterion("init_enable_flag between", value1, value2, "initEnableFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andInitEnableFlagNotBetween(String value1, String value2) {
+            addCriterion("init_enable_flag not between", value1, value2, "initEnableFlag");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

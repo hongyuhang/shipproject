@@ -5,10 +5,8 @@ import com.alibaba.fastjson.JSON;
 import com.cbdz.sib.common.AppUtils;
 import com.cbdz.sib.dao.MenuItemCheckMapper;
 import com.cbdz.sib.dao.MenuItemMapper;
-import com.cbdz.sib.model.MenuItem;
-import com.cbdz.sib.model.MenuItemCheck;
-import com.cbdz.sib.model.MenuItemCheckExample;
-import com.cbdz.sib.model.MenuItemExample;
+import com.cbdz.sib.dao.MenuMapper;
+import com.cbdz.sib.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,8 @@ import java.util.Map;
 public class PageItemService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
+    private MenuMapper g_mapperMenu;
+    @Autowired
     private MenuItemMapper g_mapperMenuItem;
     @Autowired
     private MenuItemCheckMapper g_mapperMenuItemCheck;
@@ -35,6 +35,8 @@ public class PageItemService {
         // 构造画面显示元素
         List<Map<String, Object>> p_itemsRet = new ArrayList();
         List<MenuItem> p_itemsDb = this.getItems(x_menuCd);
+        Menu p_menu = this.getMenu(x_menuCd);
+        p_ret.put("title", p_menu.getmName());
         for (MenuItem per : p_itemsDb) {
             Map<String, Object> p_tmp = new HashMap<>();
             p_tmp.put("type", per.getItemType());
@@ -42,6 +44,9 @@ public class PageItemService {
             p_tmp.put("id", per.getItemId());
             p_tmp.put("placeholder", AppUtils.getDefault(per.getItemPlaceholder(), ""));
             p_tmp.put("val", AppUtils.getDefault(per.getItemInitval(), ""));
+            if (StringUtils.isEmpty(per.getInitEnableFlag())) {
+                p_tmp.put("disabled", true);
+            }
             if (!StringUtils.isEmpty(per.getItemSelText())) {
                 List<Map<String, String>> options = new ArrayList<>();
                 Map<String, String> opt1 = new HashMap<>();
@@ -123,5 +128,8 @@ public class PageItemService {
         MenuItemCheckExample p_where = new MenuItemCheckExample();
         p_where.createCriteria().andMCodeEqualTo(x_menuCd);
         return g_mapperMenuItemCheck.selectByExample(p_where);
+    }
+    private Menu getMenu(String x_menuCd) {
+        return g_mapperMenu.selectByPrimaryKey(x_menuCd);
     }
 }
