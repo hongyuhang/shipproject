@@ -45,6 +45,7 @@ public class MenuItemService {
                 p_tmpMenu2Data.put("menuCode", per.getmCode());
                 p_tmpMenu2Data.put("menuName", per.getmName());
                 p_tmpMenu2Data.put("url", per.getmUrl());
+                p_menu2.add(p_tmpMenu2Data);
             }
         }
         logger.info(JSON.toJSONString(p_ret, true));
