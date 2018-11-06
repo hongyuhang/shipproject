@@ -196,6 +196,10 @@
 						    			$("[disabled]").removeAttr("disabled");
 						    			//$('#selpickerItm').prop('disabled', false); 
 						    			$('.selectpicker').selectpicker('refresh');
+						    			// 特殊处理
+						    			if ($('#servicesAvailability')) {
+						    				$('#servicesAvailability').trigger('change');
+						    			}
 						    		});
 						    		
 				    		    		$('#sendBtn').click(function(){
@@ -227,6 +231,11 @@
 							    				$('.selectpicker').attr("disabled", true);
 							    				$('.selectpicker').selectpicker('refresh');
 							    				$('#subArea').find('button:first').attr("disabled", true);
+							    			} else {
+							    				// 特殊处理
+							    				if ($('#servicesAvailability')) {
+								    				$('#servicesAvailability').trigger('change');
+								    			}
 							    			}
 									} else {
 										alert('请先修改输入错误!');

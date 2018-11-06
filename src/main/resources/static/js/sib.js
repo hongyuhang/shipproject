@@ -255,6 +255,10 @@ function initialEvents(jsonData) {
 		    if (val.eventType == 'click') {
 		    		$('#' + val.id).click(eval(val.method));
 		    } 
+		    
+		    if (val.eventType == 'change') {
+		    		$('#' + val.id).change(eval(val.method));
+		    }
 		}); 
 	}
 }
@@ -373,4 +377,21 @@ function createMenu(jsonData, activeMenuCode) {
 		sendData["subAreas"] = subAreaData;
 		
 		return sendData;
+	}
+	
+	/**
+	 * 控制控件状态
+	 */
+	function controlStatusInB9() {
+		if ($('#servicesAvailability')) {
+			if ($('#servicesAvailability').val() == '1') {
+				for(i = 1; i <= 22 ;i++) {
+					$('#typeOfServicesAvailable_' + i).removeAttr("disabled");
+				}
+			} else {
+				for(i = 1; i <= 22 ;i++) {
+					$('#typeOfServicesAvailable_' + i).attr("disabled", true);
+				}
+			}
+		}
 	}
