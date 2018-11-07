@@ -15,7 +15,7 @@ public class ReceiveShipInfoController extends BaseController {
     @Autowired
     private ReceiveMmsiService g_service;
 
-    @RequestMapping(value = "/receiveShipInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/receiveShipInfo", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject receiveMmsi(@RequestBody JSONObject params) {
         logger.debug("ReceiveShipInfoController.receiveMmsi() Param= " + JSON.toJSONString(params, true));

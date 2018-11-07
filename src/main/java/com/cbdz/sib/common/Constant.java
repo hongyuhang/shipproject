@@ -18,6 +18,9 @@ public class Constant {
 
 		public static final String CONST_SEND_FLAG_BROADCAST = "1";
 		public static final String CONST_SEND_FLAG_ADDRESSING = "2";
+
+		public static final String CONST_CURRENT_MMSI_USE_FLAG_IN_USE = "1";
+		public static final String CONST_CURRENT_MMSI_USE_FLAG_NO_USE = "0";
 	}
 	public class Key {
 		// 互联互通平台URL
@@ -45,6 +48,8 @@ public class Constant {
 		public static final String CFG_SEND_TIMEOUT = "send_timeout";
 		// MMSI保留时间（h）
 		public static final String CFG_MMSI_SAVE_TIME = "mmsi_save_time";
+		// MMSI有效时间（h）
+		public static final String CFG_MMSI_VALID_TIME = "mmsi_valid_time";
 	}
 
 	public static Environment s_environment;

@@ -3,6 +3,7 @@ package com.cbdz.sib.service;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cbdz.sib.common.Constant;
 import com.cbdz.sib.common.RSAUtils;
 import com.cbdz.sib.dao.DataSHistoryMapper;
 import com.cbdz.sib.dao.MenuMapper;
@@ -11,6 +12,7 @@ import com.cbdz.sib.exception.errorcode.ErrorCode;
 import com.cbdz.sib.model.DataSHistory;
 import com.cbdz.sib.model.Menu;
 import com.cbdz.sib.model.MmsiCurrent;
+import com.cbdz.sib.model.MmsiCurrentExample;
 import com.cbdz.sib.model.convertor.BaseConvertor;
 import com.cbdz.sib.model.sender.BaseSender;
 import org.slf4j.Logger;
@@ -52,7 +54,18 @@ public class ReceiveMmsiService {
             logger.error("ReceiveMmsiService.receiveMmsi() 转换JSON失败 ： " + p_param);
             return ErrorCode.RECEIVE_DATA_ERROR.getJson();
         }
+        // DB处理
         for (MmsiCurrent per : p_list) {
+            per.setUseFlag(Constant.Value.CONST_CURRENT_MMSI_USE_FLAG_IN_USE);
+
+            // 更新之前的MMSI为不可用
+            MmsiCurrent p_tmp = new MmsiCurrent();
+            p_tmp.setUseFlag(Constant.Value.CONST_CURRENT_MMSI_USE_FLAG_NO_USE);
+            MmsiCurrentExample p_where = new MmsiCurrentExample();
+            p_where.createCriteria().andMmsiEqualTo(per.getMmsi()).andUseFlagEqualTo(Constant.Value.CONST_CURRENT_MMSI_USE_FLAG_IN_USE);
+            g_mapper.updateByExampleSelective(p_tmp, p_where);
+
+            // 插入新的MMSI信息
             g_mapper.insert(per);
         }
         return ErrorCode.SUCCESS.getJson();

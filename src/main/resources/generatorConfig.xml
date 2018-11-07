@@ -62,40 +62,45 @@
         </javaClientGenerator>
 
 
-        <table tableName="menu" domainObjectName="Menu"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
-        <table tableName="menu_item" domainObjectName="MenuItem"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
-        <table tableName="menu_item_check" domainObjectName="MenuItemCheck"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
-        <table tableName="menu_item_initval" domainObjectName="MenuItemInitval"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
-        <table tableName="data_s_history" domainObjectName="DataSHistory"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
-        <table tableName="mmsi_current" domainObjectName="MmsiCurrent"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
-        <table tableName="mmsi_history" domainObjectName="MmsiHistory"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"><!--在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法-->
-        </table>
+        <!--<table tableName="menu" domainObjectName="Menu"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="menu_item" domainObjectName="MenuItem"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="menu_item_check" domainObjectName="MenuItemCheck"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="menu_item_initval" domainObjectName="MenuItemInitval"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="data_s_history" domainObjectName="DataSHistory"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="mmsi_current" domainObjectName="MmsiCurrent"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="mmsi_history" domainObjectName="MmsiHistory"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="menu_sub_area" domainObjectName="MenuSubArea"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">&lt;!&ndash;在这里，设置从数据库到实体类的对应关系名。且还可以设置是否生成增删查改方法&ndash;&gt;-->
+        <!--</table>-->
     </context>
 </generatorConfiguration>

@@ -21,6 +21,7 @@ public abstract  class BaseConvertor {
     private static final BaseConvertor const_b7Convertor = new SConvertorB7();
     private static final BaseConvertor const_b8Convertor = new SConvertorB8();
     private static final BaseConvertor const_b9Convertor = new SConvertorB9();
+    private static final BaseConvertor const_b11Convertor = new SConvertorB11();
     private static final BaseConvertor const_b13Convertor = new SConvertorB13();
     private static final BaseConvertor const_b14Convertor = new SConvertorB14();
     protected Method m_calcLongitude; // 经度
@@ -60,7 +61,8 @@ public abstract  class BaseConvertor {
     protected Method m_calcServicesAvailability; // 服务有效性
     protected Method m_calcSenderClassification; // 发送者分类
     protected Method m_calcRouteType; // 航线类型
-    protected Method m_calcDuration; // 航线类型
+    protected Method m_calcDuration; // 持续时间
+    protected Method m_calcNoticeDescription; // 公告说明
 
 
     public BaseConvertor() {
@@ -103,6 +105,7 @@ public abstract  class BaseConvertor {
             m_calcSenderClassification = BaseConvertor.class.getDeclaredMethod("calcSenderClassification", Integer.class);
             m_calcRouteType            = BaseConvertor.class.getDeclaredMethod("calcRouteType", Integer.class);
             m_calcDuration             = BaseConvertor.class.getDeclaredMethod("calcDuration", Integer.class);
+            m_calcNoticeDescription    = BaseConvertor.class.getDeclaredMethod("calcNoticeDescription", Integer.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,6 +153,8 @@ public abstract  class BaseConvertor {
             return const_b8Convertor;
         } else if (StringUtils.equals(x_msgCode, "9")) {
             return const_b9Convertor;
+        } else if (StringUtils.equals(x_msgCode, "11")) {
+            return const_b11Convertor;
         } else if (StringUtils.equals(x_msgCode, "13")) {
             return const_b13Convertor;
         } else if (StringUtils.equals(x_msgCode, "14")) {
@@ -694,6 +699,18 @@ public abstract  class BaseConvertor {
         // 默认值
         if (x_val == null) {
             return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 公告说明
+     * @param x_val
+     * @return
+     */
+    protected int calcNoticeDescription(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 127;
         }
         return x_val;
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class TestSimulateVdesController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(TestSimulateVdesController.class);
 
-    @RequestMapping(value = "/simulateVdes", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/message/addressed", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject sendData(@RequestBody JSONObject x_data) {
         return ErrorCode.SUCCESS.getJson();

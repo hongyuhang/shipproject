@@ -27,4 +27,5 @@ public interface MmsiCurrentMapper {
     int updateByPrimaryKeySelective(MmsiCurrent record);
 
     int updateByPrimaryKey(MmsiCurrent record);
+    List<MmsiCurrent> selectMmsiByExample(MmsiCurrentExample example);
 }
