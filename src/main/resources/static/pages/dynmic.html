@@ -166,7 +166,12 @@
 				context: document.body,
 				dataType: "json",
 				success: function(data){
-					createMenu(data.data, menuCode);
+					if (data.code == "200") {
+						createMenu(data.data, menuCode);
+					} else {
+						alert(data.message);
+					}
+					
 				},
 	      		error: function(request, error, exception) {
 	      			alert('error!');
@@ -181,6 +186,11 @@
 					context: document.body,
 					dataType: "json",
 					success: function(data){
+								if (data.code != "200") {
+									alert(data.message);
+									return;
+								}
+								
 		        					initialInputItems(data.data);
 								var submitBtn = $('<div class="form-group">\
 												<div class="col-sm-1 col-sm-offset-1">\
@@ -217,6 +227,10 @@
 											data:JSON.stringify(sendData),
 											contentType:"application/json; charset=utf-8",
 											success: function(data){
+												if (data.code != "200") {
+													alert(data.message);
+													return;
+												}
 												alert('发送成功!');
 								      		},
 								      		error: function(request, error, exception) {
