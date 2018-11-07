@@ -19,8 +19,8 @@ public enum ErrorCode {
         this.setCode(code);
         this.setMessage(message);
         json = new JSONObject();
-        json.put("rst_code", code);
-        json.put("rst_message", message);
+        json.put("code", code);
+        json.put("message", message);
     }
     public JSONObject getJson() {
         return json;

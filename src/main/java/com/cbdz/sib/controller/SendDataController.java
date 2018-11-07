@@ -26,10 +26,10 @@ public class SendDataController extends BaseController {
         JSONObject p_ret = g_service.sendData(p_mCode, params);
 
         logger.info("SendDataController return value= " + JSON.toJSONString(p_ret, true));
-        if (StringUtils.equals(p_ret.getString("rst_code"), "200")) {
+        if (StringUtils.equals(p_ret.getString("code"), "200")) {
             return this.success(p_ret);
         } else {
-            return super.fail(p_ret, p_ret.getString("rst_message"));
+            return super.fail(p_ret, p_ret.getString("message"));
         }
 
     }

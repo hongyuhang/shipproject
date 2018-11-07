@@ -39,8 +39,8 @@ public class SendDataService {
         p_data.setmCode(x_menuCd); // 菜单CODE
         p_data.setmName(p_menuInfo.getmName()); // 消息类型（等同于菜单名称）
         p_data.setMsgCode(p_menuInfo.getMsgCode()); // 安全消息CODE
-        p_data.setRetCode(p_ret.getString("rst_code")); // 返回结果CODE(200:成功、以外:失败）
-        p_data.setRetMsg(p_ret.getString("rst_message")); // 返回结果消息
+        p_data.setRetCode(p_ret.getString("code")); // 返回结果CODE(200:成功、以外:失败）
+        p_data.setRetMsg(p_ret.getString("message")); // 返回结果消息
         p_data.setPageJson(x_json.toJSONString()); // 页面JSON
         p_data.setsJson(p_sendData.toJSONString()); // 发送JSON
         p_data.setsTime(p_now); // 发送时间

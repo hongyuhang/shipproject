@@ -68,7 +68,7 @@ public class SConvertorB11 extends BaseConvertor {
         JSONObject p_ret = super.convertByArg(x_json, p_fields, p_ms);
 
         // 子区域
-
+        // TODO 子区域没显示到画面上，也不知道JSON是啥样
 
         return p_ret;
     }
