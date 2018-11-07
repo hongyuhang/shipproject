@@ -155,6 +155,12 @@ public class PageItemService {
                 p_subArea.put(p_tmp.getItemId(), p_tmp.getItemInitval());
             }
             p_ret.put("subAreaData", p_subAreasRet);
+
+            Map<String, Object> p_subDef = new HashMap<>();
+            p_subDef.put("label", "子区域");
+            p_subDef.put("modelId", "#myArea");
+            p_subDef.put("disabled", true);
+            p_ret.put("subArea", p_subDef);
         }
 
         logger.info(JSON.toJSONString(p_ret, true));
