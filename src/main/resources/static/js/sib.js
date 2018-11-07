@@ -339,7 +339,15 @@ function createMenu(jsonData, activeMenuCode) {
 				}
 			}
 		});
-		$.each($('#form1').find('textarea'), function(i, item) {
+		$.each($('#form1').find('select'), function(i, item) {
+			item = $(item);
+			if (item.attr('id')) {
+				if (item.attr('id').indexOf('_') <= 0) {
+					sendData[item.attr("id")] = item.val();
+				}
+			}
+		});
+		$.each($('#form1').find('.selectpicker'), function(i, item) {
 			item = $(item);
 			if (item.attr('id')) {
 				if (item.attr('id').indexOf('_') <= 0) {
@@ -357,19 +365,25 @@ function createMenu(jsonData, activeMenuCode) {
 			$.each(panel.find('input'), function(i, item) {
 				item = $(item);
 				if (item.attr('id')) {
-					temp[item.attr("id").substring(0, item.attr("id").indexOf('_') - 1)] = item.val();
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_'))] = item.val();
 				}
 			});
 			$.each(panel.find('textarea'), function(i, item) {
 				item = $(item);
 				if (item.attr('id')) {
-					temp[item.attr("id").substring(0, item.attr("id").indexOf('_') - 1)] = item.val();
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_'))] = item.val();
 				}
 			});
-			$.each(panel.find('textarea'), function(i, item) {
+			$.each(panel.find('select'), function(i, item) {
 				item = $(item);
 				if (item.attr('id')) {
-					temp[item.attr("id").substring(0, item.attr("id").indexOf('_') - 1)] = item.val();
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_'))] = item.val();
+				}
+			});
+			$.each(panel.find('.selectpicker'), function(i, item) {
+				item = $(item);
+				if (item.attr('id')) {
+					temp[item.attr("id").substring(0, item.attr("id").indexOf('_'))] = item.val();
 				}
 			});
 			subAreaData.push(temp);

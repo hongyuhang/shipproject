@@ -213,7 +213,10 @@
 						    		});
 						    		
 				    		    		$('#sendBtn').click(function(){
-				    		    			$("[disabled]").removeAttr("disabled");
+				    		    			var disabledControllers = $("[disabled]");
+				    		    			disabledControllers.removeAttr("disabled");
+				    		    			
+				    		    			//$("[disabled]").removeAttr("disabled");
 						    			$('.selectpicker').selectpicker('refresh');
 	
 						    			var sendData = buildSendData();
@@ -239,12 +242,8 @@
 										});
 										// 如果没有点击过修改按钮，需要把所有控件置成disabled
 										if (!clickFlag) {
-							    				$('input').attr("disabled", true);
-							    				$('textarea').attr("disabled", true);
-							    				$('select').attr("disabled", true);
-							    				$('.selectpicker').attr("disabled", true);
+							    				disabledControllers.attr("disabled", true);
 							    				$('.selectpicker').selectpicker('refresh');
-							    				$('#subArea').find('button:first').attr("disabled", true);
 							    			} else {
 							    				// 特殊处理
 							    				if ($('#servicesAvailability')) {
