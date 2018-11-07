@@ -27,8 +27,7 @@ public class SendDataService {
         Date p_now = new Date();
         Menu p_menuInfo = g_mapperMenu.selectByPrimaryKey(x_menuCd);
         // 1 根据页面的菜单CODE，对页面数据进行转换
-        BaseConvertor p_conv = BaseConvertor.getInstance(x_menuCd);
-        JSONObject p_sendData = p_conv.convert(x_json);
+        JSONObject p_sendData = BaseConvertor.getSendData(x_json, p_menuInfo.getMsgCode(), p_menuInfo.getsType());
 
         // 2 取得目标服务并调用发送
         BaseSender p_sender = BaseSender.getInstance(p_menuInfo.getsType());

@@ -2,6 +2,8 @@ package com.cbdz.sib.model.convertor;
 
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
+import com.cbdz.sib.common.AppUtils;
+import com.cbdz.sib.common.Constant;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -15,32 +17,52 @@ import java.math.RoundingMode;
  */
 public abstract  class BaseConvertor {
     private static final BaseConvertor const_b1Convertor = new SConvertorB1();
+    private static final BaseConvertor const_b3Convertor = new SConvertorB3();
+    private static final BaseConvertor const_b7Convertor = new SConvertorB7();
+    private static final BaseConvertor const_b8Convertor = new SConvertorB8();
+    private static final BaseConvertor const_b9Convertor = new SConvertorB9();
+    private static final BaseConvertor const_b13Convertor = new SConvertorB13();
+    private static final BaseConvertor const_b14Convertor = new SConvertorB14();
+    protected Method m_calcLongitude; // 经度
+    protected Method m_calcLatitude; // 纬度
+    protected Method m_calcUtcMonth; // UTC月
+    protected Method m_calcUtcDay; // UTC日
+    protected Method m_calcUtcHour; // UTC小时
+    protected Method m_calcUtcMinute; // UTC分
+    protected Method m_calcWindSpeed; // 风速
+    protected Method m_calcDirection; // 方向
+    protected Method m_calcAirTemperature; // 气温
+    protected Method m_calcRelativeHumidity; // 相对湿度
+    protected Method m_calcDewPoint; // 露点
+    protected Method m_calcAirPressure; // 气压
+    protected Method m_calcHorizontalVisibility; // 水平能见度
+    protected Method m_calcWaterLevel; // 水位（含潮汐）
+    protected Method m_calcSpeed; // 流速（含潮汐）、流速
+    protected Method m_calcMeasuringLevel; // 测流深度
+    protected Method m_calcWaveHeight; // 标识波高
+    protected Method m_calcPeriod; // 波浪周期
+    protected Method m_calcSeaState; // 海况
+    protected Method m_calcWaterTemperature; // 水温
+    protected Method m_calcSalinity; // 盐份
+    protected Method m_calcPositionAccuracy; // 位置精度
+    protected Method m_calcAirPressureTendency; // 气压趋势
+    protected Method m_calcWaterLevelTrend; // 水位趋势
+    protected Method m_calcPrecipitation; // 降水量（级别）
+    protected Method m_calcIce; // 结冰
+    protected Method m_calcMessageLinkageID; // 消息链接ID
+    protected Method m_calcBit6Char5Len; // 5个6位ASCII字符
+    protected Method m_calcBit6Char20Len; // 20个6位ASCII字符
+    protected Method m_calcStatusOfSignal; // 信号状态
+    protected Method m_calcSignalInService; // 在服务信号
+    protected Method m_calcBerthLength; // 泊位长度
+    protected Method m_calcWaterDepthAtBerth; // 泊位水深
+    protected Method m_calcMooringPosition; // 泊位位置
+    protected Method m_calcServicesAvailability; // 服务有效性
+    protected Method m_calcSenderClassification; // 发送者分类
+    protected Method m_calcRouteType; // 航线类型
+    protected Method m_calcDuration; // 航线类型
 
-    protected Method m_calcLongitude;
-    protected Method m_calcLatitude;
-    protected Method m_calcUtcDay;
-    protected Method m_calcUtcHour;
-    protected Method m_calcUtcMinute;
-    protected Method m_calcWindSpeed;
-    protected Method m_calcDirection;
-    protected Method m_calcAirTemperature;
-    protected Method m_calcRelativeHumidity;
-    protected Method m_calcDewPoint;
-    protected Method m_calcAirPressure;
-    protected Method m_calcHorizontalVisibility;
-    protected Method m_calcWaterLevel;
-    protected Method m_calcSpeed;
-    protected Method m_calcMeasuringLevel;
-    protected Method m_calcWaveHeight;
-    protected Method m_calcPeriod;
-    protected Method m_calcSeaState;
-    protected Method m_calcWaterTemperature;
-    protected Method m_calcSalinity;
-    protected Method m_calcPositionAccuracy;
-    protected Method m_calcAirPressureTendency;
-    protected Method m_calcWaterLevelTrend;
-    protected Method m_calcPrecipitation;
-    protected Method m_calcIce;
+
     public BaseConvertor() {
         try {
             m_calcLongitude            = BaseConvertor.class.getDeclaredMethod("calcLongitude", BigDecimal.class);
@@ -68,6 +90,19 @@ public abstract  class BaseConvertor {
             m_calcWaterLevelTrend      = BaseConvertor.class.getDeclaredMethod("calcWaterLevelTrend", Integer.class);
             m_calcPrecipitation        = BaseConvertor.class.getDeclaredMethod("calcPrecipitation", Integer.class);
             m_calcIce                  = BaseConvertor.class.getDeclaredMethod("calcIce", Integer.class);
+            m_calcUtcMonth             = BaseConvertor.class.getDeclaredMethod("calcIce", Integer.class);
+            m_calcMessageLinkageID     = BaseConvertor.class.getDeclaredMethod("calcMessageLinkageID", Integer.class);
+            m_calcBit6Char5Len         = BaseConvertor.class.getDeclaredMethod("calcBit6Char5Len", String.class);
+            m_calcBit6Char20Len        = BaseConvertor.class.getDeclaredMethod("calcBit6Char20Len", String.class);
+            m_calcStatusOfSignal       = BaseConvertor.class.getDeclaredMethod("calcStatusOfSignal", Integer.class);
+            m_calcSignalInService      = BaseConvertor.class.getDeclaredMethod("calcSignalInService", Integer.class);
+            m_calcBerthLength          = BaseConvertor.class.getDeclaredMethod("calcBerthLength", Integer.class);
+            m_calcWaterDepthAtBerth    = BaseConvertor.class.getDeclaredMethod("calcWaterDepthAtBerth", BigDecimal.class);
+            m_calcMooringPosition      = BaseConvertor.class.getDeclaredMethod("calcMooringPosition", Integer.class);
+            m_calcServicesAvailability = BaseConvertor.class.getDeclaredMethod("calcServicesAvailability", Integer.class);
+            m_calcSenderClassification = BaseConvertor.class.getDeclaredMethod("calcSenderClassification", Integer.class);
+            m_calcRouteType            = BaseConvertor.class.getDeclaredMethod("calcRouteType", Integer.class);
+            m_calcDuration             = BaseConvertor.class.getDeclaredMethod("calcDuration", Integer.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,16 +113,47 @@ public abstract  class BaseConvertor {
      * @param x_json
      * @return
      */
-    public abstract  JSONObject convert(JSONObject x_json);
+    protected abstract  JSONObject convert(JSONObject x_json);
 
     /**
-     * 返回指定菜单CODE对应的转换实例
-     * @param x_menuCd
+     * 主方法
+     * @param x_json
+     * @param x_msgCode
+     * @param x_sendType
      * @return
      */
-    public static BaseConvertor getInstance(String x_menuCd) {
-        if (StringUtils.equals(x_menuCd, "m1_1")) {
+    public static JSONObject getSendData(JSONObject x_json, String x_msgCode, String x_sendType) {
+        JSONObject p_ret = new JSONObject();
+        BaseConvertor p_convertor = getInstance(x_msgCode);
+        JSONObject p_data = p_convertor.convert(x_json);
+        p_ret.put("type", x_msgCode);
+        p_ret.put("data", p_data);
+        // 寻址发送时，需要写MMSI
+        if (StringUtils.equals(x_sendType, Constant.Value.CONST_SEND_FLAG_ADDRESSING)) {
+            p_ret.put("destinationMmsi", x_json.getString("destinationMmsi"));
+        }
+        return p_ret;
+    }
+    /**
+     * 返回指定菜单CODE对应的转换实例
+     * @param x_msgCode
+     * @return
+     */
+    private static BaseConvertor getInstance(String x_msgCode) {
+        if (StringUtils.equals(x_msgCode, "1")) {
             return const_b1Convertor;
+        } else if (StringUtils.equals(x_msgCode, "3")) {
+            return const_b3Convertor;
+        } else if (StringUtils.equals(x_msgCode, "7")) {
+            return const_b7Convertor;
+        } else if (StringUtils.equals(x_msgCode, "8")) {
+            return const_b8Convertor;
+        } else if (StringUtils.equals(x_msgCode, "9")) {
+            return const_b9Convertor;
+        } else if (StringUtils.equals(x_msgCode, "13")) {
+            return const_b13Convertor;
+        } else if (StringUtils.equals(x_msgCode, "14")) {
+            return const_b14Convertor;
         }
         return null;
     }
@@ -443,6 +509,193 @@ public abstract  class BaseConvertor {
         }
         return x_val;
     }
+    /**
+     * 计算UTC月
+     * @param x_val
+     * @return
+     */
+    protected int calcUtcMonth(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算消息链接ID
+     * @param x_val
+     * @return
+     */
+    protected int calcMessageLinkageID(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算6位ASCII字符
+     * @param x_val
+     * @param x_len
+     * @return
+     */
+    private String calcBit6Char(String x_val, Integer x_len) {
+        // 默认值
+        if (StringUtils.isEmpty(x_val)) {
+            return AppUtils.padLeft("", x_len, '@');
+        }
+        return x_val;
+    }
+    /**
+     * 计算5个6位ASCII字符
+     * @param x_val
+     * @return
+     */
+    protected String calcBit6Char5Len(String x_val) {
+        // 默认值
+        if (StringUtils.isEmpty(x_val)) {
+            return AppUtils.padLeft("", 5, '@');
+        }
+        return x_val;
+    }
+    /**
+     * 计算20个6位ASCII字符
+     * @param x_val
+     * @return
+     */
+    protected String calcBit6Char20Len(String x_val) {
+        // 默认值
+        if (StringUtils.isEmpty(x_val)) {
+            return AppUtils.padLeft("", 20, '@');
+        }
+        return x_val;
+    }
+    /**
+     * 计算信号状态
+     * @param x_val
+     * @return
+     */
+    protected int calcStatusOfSignal(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算在服务信号
+     * @param x_val
+     * @return
+     */
+    protected int calcSignalInService(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算泊位长度
+     * @param x_val
+     * @return
+     */
+    protected int calcBerthLength(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        if (x_val > 511) {
+            return 511;
+        }
+        return x_val;
+    }
 
+    /**
+     * 计算泊位水深
+     * @param x_val
+     * @return
+     */
+    protected int calcWaterDepthAtBerth(BigDecimal x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        if (x_val.doubleValue() > 25.5) {
+            return 255;
+        }
+        return x_val.multiply(BigDecimal.TEN).intValue();
+    }
+    /**
+     * 计算泊位长度
+     * @param x_val
+     * @return
+     */
+    protected int calcMooringPosition(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算服务有效性
+     * @param x_val
+     * @return
+     */
+    protected int calcServicesAvailability(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算可用服务类型
+     * @param x_val
+     * @return
+     */
+    protected int calcTypeOfServicesAvailable(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 发送者分类
+     * @param x_val
+     * @return
+     */
+    protected int calcSenderClassification(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 发送者分类
+     * @param x_val
+     * @return
+     */
+    protected int calcRouteType(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 持续时间、公告持续时间
+     * @param x_val
+     * @return
+     */
+    protected int calcDuration(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
 
 }

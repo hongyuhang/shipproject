@@ -113,6 +113,18 @@ public class PageItemService {
         p_ret.put("checkRules", p_checkRules);
         p_ret.put("checkMessages", p_checkMsgs);
 
+        // B9泊位数据专用JS追加
+        if (StringUtils.equals(x_menuCd, "m1_9")
+            || StringUtils.equals(x_menuCd, "m2_9")) {
+            List<Map<String, Object>> p_events = new ArrayList<>();
+            Map<String, Object> event = new HashMap<>();
+            event.put("id", "servicesAvailability");
+            event.put("eventType", "change");
+            event.put("method", "controlStatusInB9");
+            p_events.add(event);
+            p_ret.put("events", p_events);
+        }
+
         logger.info(JSON.toJSONString(p_ret, true));
 
         return p_ret;
