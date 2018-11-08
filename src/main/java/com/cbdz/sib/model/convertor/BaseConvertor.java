@@ -63,6 +63,10 @@ public abstract  class BaseConvertor {
     protected Method m_calcRouteType; // 航线类型
     protected Method m_calcDuration; // 持续时间
     protected Method m_calcNoticeDescription; // 公告说明
+    protected Method m_calcScaleFactor; // 比例因子
+    protected Method m_calcPrecision; // 精度
+    protected Method m_calcOrientation; // Orientation、左边界、右边界
+    protected Method m_calcPointAngle; // 倾角
 
 
     public BaseConvertor() {
@@ -106,6 +110,10 @@ public abstract  class BaseConvertor {
             m_calcRouteType            = BaseConvertor.class.getDeclaredMethod("calcRouteType", Integer.class);
             m_calcDuration             = BaseConvertor.class.getDeclaredMethod("calcDuration", Integer.class);
             m_calcNoticeDescription    = BaseConvertor.class.getDeclaredMethod("calcNoticeDescription", Integer.class);
+            m_calcScaleFactor          = BaseConvertor.class.getDeclaredMethod("calcScaleFactor", Integer.class);
+            m_calcPrecision            = BaseConvertor.class.getDeclaredMethod("calcPrecision", Integer.class);
+            m_calcOrientation          = BaseConvertor.class.getDeclaredMethod("calcOrientation", Integer.class);
+            m_calcPointAngle           = BaseConvertor.class.getDeclaredMethod("calcPointAngle", BigDecimal.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -713,6 +721,54 @@ public abstract  class BaseConvertor {
             return 127;
         }
         return x_val;
+    }
+    /**
+     * 比例因子
+     * @param x_val
+     * @return
+     */
+    protected int calcScaleFactor(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return BigDecimal.ONE.scaleByPowerOfTen(x_val).intValue();
+    }
+    /**
+     * 精度
+     * @param x_val
+     * @return
+     */
+    protected int calcPrecision(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 4;
+        }
+        return x_val;
+    }
+    /**
+     * Orientation
+     * @param x_val
+     * @return
+     */
+    protected int calcOrientation(Integer x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 0;
+        }
+        return x_val;
+    }
+    /**
+     * 计算泊位水深
+     * @param x_val
+     * @return
+     */
+    protected int calcPointAngle(BigDecimal x_val) {
+        // 默认值
+        if (x_val == null) {
+            return 720;
+        }
+        return x_val.multiply(BigDecimal.valueOf(2)).intValue();
     }
 
 }

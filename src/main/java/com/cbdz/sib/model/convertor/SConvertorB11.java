@@ -1,7 +1,9 @@
 package com.cbdz.sib.model.convertor;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cbdz.sib.common.AppUtils;
 
 import java.lang.reflect.Method;
 
@@ -16,46 +18,6 @@ public class SConvertorB11 extends BaseConvertor {
                 "utcMinute",
                 "duration"
         };
-//        protected Method m_calcLongitude; // 经度
-//        protected Method m_calcLatitude; // 纬度
-//        protected Method m_calcUtcMonth; // UTC月
-//        protected Method m_calcUtcDay; // UTC日
-//        protected Method m_calcUtcHour; // UTC小时
-//        protected Method m_calcUtcMinute; // UTC分
-//        protected Method m_calcWindSpeed; // 风速
-//        protected Method m_calcDirection; // 方向
-//        protected Method m_calcAirTemperature; // 气温
-//        protected Method m_calcRelativeHumidity; // 相对湿度
-//        protected Method m_calcDewPoint; // 露点
-//        protected Method m_calcAirPressure; // 气压
-//        protected Method m_calcHorizontalVisibility; // 水平能见度
-//        protected Method m_calcWaterLevel; // 水位（含潮汐）
-//        protected Method m_calcSpeed; // 流速（含潮汐）、流速
-//        protected Method m_calcMeasuringLevel; // 测流深度
-//        protected Method m_calcWaveHeight; // 标识波高
-//        protected Method m_calcPeriod; // 波浪周期
-//        protected Method m_calcSeaState; // 海况
-//        protected Method m_calcWaterTemperature; // 水温
-//        protected Method m_calcSalinity; // 盐份
-//        protected Method m_calcPositionAccuracy; // 位置精度
-//        protected Method m_calcAirPressureTendency; // 气压趋势
-//        protected Method m_calcWaterLevelTrend; // 水位趋势
-//        protected Method m_calcPrecipitation; // 降水量（级别）
-//        protected Method m_calcIce; // 结冰
-//        protected Method m_calcMessageLinkageID; // 消息链接ID
-//        protected Method m_calcBit6Char5Len; // 5个6位ASCII字符
-//        protected Method m_calcBit6Char20Len; // 20个6位ASCII字符
-//        protected Method m_calcStatusOfSignal; // 信号状态
-//        protected Method m_calcSignalInService; // 在服务信号
-//        protected Method m_calcBerthLength; // 泊位长度
-//        protected Method m_calcWaterDepthAtBerth; // 泊位水深
-//        protected Method m_calcMooringPosition; // 泊位位置
-//        protected Method m_calcServicesAvailability; // 服务有效性
-//        protected Method m_calcSenderClassification; // 发送者分类
-//        protected Method m_calcRouteType; // 航线类型
-//        protected Method m_calcDuration; // 持续时间
-//        protected Method m_calcNoticeDescription; // 公告说明
-
         Method[] p_ms = new Method[]{
                 m_calcMessageLinkageID,
                 m_calcNoticeDescription,
@@ -66,10 +28,171 @@ public class SConvertorB11 extends BaseConvertor {
                 m_calcDuration
         };
         JSONObject p_ret = super.convertByArg(x_json, p_fields, p_ms);
-
         // 子区域
-        // TODO 子区域没显示到画面上，也不知道JSON是啥样
+        JSONArray p_ary = x_json.getJSONArray("subAreas");
+        JSONArray p_aryRet = new JSONArray();
+        if (p_ary != null) {
+            for (int i = 0; i < p_ary.size(); i++) {
+                JSONObject p_tmp = p_ary.getJSONObject(i);
+                if (StringUtils.equals(p_tmp.getString("areaShape"), "0")) {
+                    p_aryRet.add(this.calcSubAreaOn0(p_tmp));
+                } else if (StringUtils.equals(p_tmp.getString("areaShape"), "1")) {
+                    p_aryRet.add(this.calcSubAreaOn1(p_tmp));
+                } else if (StringUtils.equals(p_tmp.getString("areaShape"), "2")) {
+                    p_aryRet.add(this.calcSubAreaOn2(p_tmp));
+                } else if (StringUtils.equals(p_tmp.getString("areaShape"), "3")
+                    || StringUtils.equals(p_tmp.getString("areaShape"), "4")) {
+                    p_aryRet.add(this.calcSubAreaOn34(p_tmp));
+                } else if (StringUtils.equals(p_tmp.getString("areaShape"), "5")) {
+                    p_aryRet.add(this.calcSubAreaOn5(p_tmp));
+                }
+            }
+        }
+        p_ret.put("subAreas", p_aryRet);
+        return p_ret;
+    }
 
+    /**
+     * 转换圆形或点状区域
+     * @param x_json
+     * @return
+     */
+    private JSONObject calcSubAreaOn0(JSONObject x_json) {
+        String[] p_fields = new String[]{
+                "scaleFactor",
+                "longitude",
+                "latitude",
+                "precision"
+        };
+        Method[] p_ms = new Method[]{
+                m_calcScaleFactor,
+                m_calcLongitude,
+                m_calcLatitude,
+                m_calcPrecision
+        };
+
+        JSONObject p_ret = super.convertByArg(x_json, p_fields, p_ms);
+        p_ret.put("areaShape", x_json.getInteger("areaShape"));
+        if (x_json.getInteger("radius") == null) {
+            p_ret.put("radius", 0);
+        } else {
+            p_ret.put("radius", x_json.getInteger("radius") * p_ret.getInteger("scaleFactor"));
+        }
+        return p_ret;
+    }
+    /**
+     * 转换矩形区域
+     * @param x_json
+     * @return
+     */
+    private JSONObject calcSubAreaOn1(JSONObject x_json) {
+        String[] p_fields = new String[]{
+                "scaleFactor",
+                "longitude",
+                "latitude",
+                "precision",
+                "orientation"
+        };
+        Method[] p_ms = new Method[]{
+                m_calcScaleFactor,
+                m_calcLongitude,
+                m_calcLatitude,
+                m_calcPrecision,
+                m_calcOrientation
+        };
+
+        JSONObject p_ret = super.convertByArg(x_json, p_fields, p_ms);
+        p_ret.put("areaShape", x_json.getInteger("areaShape"));
+        if (x_json.getInteger("dimensionE") == null) {
+            p_ret.put("dimensionE", 0);
+        } else {
+            p_ret.put("dimensionE", x_json.getInteger("dimensionE") * p_ret.getInteger("scaleFactor"));
+        }
+        if (x_json.getInteger("dimensionN") == null) {
+            p_ret.put("dimensionN", 0);
+        } else {
+            p_ret.put("dimensionN", x_json.getInteger("dimensionN") * p_ret.getInteger("scaleFactor"));
+        }
+        return p_ret;
+    }
+    /**
+     * 转换扇形区域
+     * @param x_json
+     * @return
+     */
+    private JSONObject calcSubAreaOn2(JSONObject x_json) {
+        String[] p_fields = new String[]{
+                "scaleFactor",
+                "longitude",
+                "latitude",
+                "precision",
+                "leftBoundary",
+                "rightBoundary"
+        };
+        Method[] p_ms = new Method[]{
+                m_calcScaleFactor,
+                m_calcLongitude,
+                m_calcLatitude,
+                m_calcPrecision,
+                m_calcOrientation,
+                m_calcOrientation
+        };
+
+        JSONObject p_ret = super.convertByArg(x_json, p_fields, p_ms);
+        p_ret.put("areaShape", x_json.getInteger("areaShape"));
+        if (x_json.getInteger("radius") == null) {
+            p_ret.put("radius", 0);
+        } else {
+            p_ret.put("radius", x_json.getInteger("radius") * p_ret.getInteger("scaleFactor"));
+        }
+        return p_ret;
+    }
+    /**
+     * 转换航路点/折线点/多边形
+     * @param x_json
+     * @return
+     */
+    private JSONObject calcSubAreaOn34(JSONObject x_json) {
+        String[] p_fields = new String[]{
+                "scaleFactor",
+                "pointAngle1",
+                "pointAngle2",
+                "pointAngle3",
+                "pointAngle4"
+        };
+        Method[] p_ms = new Method[]{
+                m_calcScaleFactor,
+                m_calcPointAngle,
+                m_calcPointAngle,
+                m_calcPointAngle,
+                m_calcPointAngle
+        };
+
+        JSONObject p_ret = super.convertByArg(x_json, p_fields, p_ms);
+        p_ret.put("areaShape", x_json.getInteger("areaShape"));
+        for (int i = 1; i <= 4; i++) {
+            if (x_json.getInteger("pointDistance" + i) == null) {
+                p_ret.put("pointDistance" + i, 0);
+            } else {
+                p_ret.put("pointDistance" + i, x_json.getInteger("pointDistance" + i) * p_ret.getInteger("scaleFactor"));
+            }
+        }
+        return p_ret;
+    }
+
+    /**
+     * 转换关联文本
+     * @param x_json
+     * @return
+     */
+    private JSONObject calcSubAreaOn5(JSONObject x_json) {
+        JSONObject p_ret = new JSONObject();
+        p_ret.put("areaShape", x_json.getInteger("areaShape"));
+        if (x_json.getInteger("text") == null) {
+            p_ret.put("text", AppUtils.padLeft("", 14, '@'));
+        } else {
+            p_ret.put("text", AppUtils.padLeft(x_json.getString("text"), 14, '@'));
+        }
         return p_ret;
     }
 }
