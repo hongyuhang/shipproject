@@ -12,7 +12,12 @@
 	                    		<input type="hidden" id="areaShape" name="areaShape" value="0"></input>\
 		                    <label class="col-sm-2 control-label">比例因子:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="scaleFactor" name="scaleFactor" class="form-control" placeholder="">\
+		                    	    <select id="scaleFactor" name="scaleFactor" class="form-control">\
+	                        			<option value="0">0</option>\
+	                        			<option value="1">1</option>\
+	                        			<option value="2">2</option>\
+	                        			<option value="3">3</option>\
+							    </select>\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">经度:</label>\
 	                        <div class="col-sm-3">\
@@ -60,34 +65,34 @@
 	// 注册圆形区域的校验规则
 	function registCheckForCircle() {
 		var index = $('#subAreaRow').find('.panel').length;
-		$("#scaleFactor" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入2位以内的数字"
-				}
-		});
 		$("#longitude" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,3"},
 					range: [-180, 180],
 					messages:{
-					dataTypeCheck: "请录入3位整数3位小数以内的数字",
-					range: "请录入-180到180之间的数字"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多3位。",
+					range: "请输入-180~180范围内的数值。"
 				}
 		});
 		$("#latitude" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N3,3"},
+					number: true,
+					dataTypeCheck : {dataType : "N2,3"},
 					range: [-90, 90],
 					messages:{
-					dataTypeCheck: "请录入3位整数3位小数以内的数字",
-					range: "请录入-90到90之间的数字"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多2位，小数部分最多3位。",
+					range: "请输入-90~90范围内的数值。"
 				}
 		});
 		$("#radius" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N12"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 4095],
 					messages:{
-					dataTypeCheck: "请录入12位以内的数字",
-					range: "请录入0到4095之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~4095范围内的数值。"
 				}
 		});
 	}
@@ -105,7 +110,12 @@
 	                    		<input type="hidden" id="areaShape" name="areaShape" value="1"></input>\
 		                    <label class="col-sm-2 control-label">比例因子:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="scaleFactor" name="scaleFactor" class="form-control" placeholder="">\
+		                    	    <select id="scaleFactor" name="scaleFactor" class="form-control">\
+	                        			<option value="0">0</option>\
+	                        			<option value="1">1</option>\
+	                        			<option value="2">2</option>\
+	                        			<option value="3">3</option>\
+							    </select>\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">经度:</label>\
 	                        <div class="col-sm-3">\
@@ -165,50 +175,54 @@
 	// 注册矩形区域的校验规则
 	function registCheckForRectangle() {
 		var index = $('#subAreaRow').find('.panel').length;
-		$("#scaleFactor" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入2位以内的数字"
-				}
-		});
 		$("#longitude" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,3"},
 					range: [-180, 180],
 					messages:{
-					dataTypeCheck: "请录入3位整数3位小数以内的数字",
-					range: "请录入-180到180之间的数字"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多3位。",
+					range: "请输入-180~180范围内的数值。"
 				}
 		});
 		$("#latitude" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N3,3"},
+					number: true,
+					dataTypeCheck : {dataType : "N2,3"},
 					range: [-90, 90],
 					messages:{
-					dataTypeCheck: "请录入3位整数3位小数以内的数字",
-					range: "请录入-90到90之间的数字"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多2位，小数部分最多3位。",
+					range: "请输入-90~90范围内的数值。"
 				}
 		});
 		$("#dimensionE" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N8"},
+					number: true,
+					dataTypeCheck : {dataType : "N3"},
 					range: [0, 255],
 					messages:{
-					dataTypeCheck: "请录入8位以内的数字",
-					range: "请录入0到255之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，没有小数。",
+					range: "请输入0~255范围内的数值。"
 				}
 		});
 		$("#dimensionN" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N8"},
+					number: true,
+					dataTypeCheck : {dataType : "N3"},
 					range: [0, 255],
 					messages:{
-					dataTypeCheck: "请录入8位以内的数字",
-					range: "请录入0到255之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，没有小数。",
+					range: "请输入0~255范围内的数值。"
 				}
 		});
 		$("#orientation" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N9"},
+					number: true,
+					dataTypeCheck : {dataType : "N3"},
 					range: [0, 359],
 					messages:{
-					dataTypeCheck: "请录入9位以内的数字",
-					range: "请录入0到359之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，没有小数。",
+					range: "请输入0~255范围内的数值。"
 				}
 		});
 	}
@@ -226,7 +240,12 @@
 	                    		<input type="hidden" id="areaShape" name="areaShape" value="2"></input>\
 		                    <label class="col-sm-2 control-label">比例因子:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="scaleFactor" name="scaleFactor" class="form-control" placeholder="">\
+		                    	    <select id="scaleFactor" name="scaleFactor" class="form-control">\
+	                        			<option value="0">0</option>\
+	                        			<option value="1">1</option>\
+	                        			<option value="2">2</option>\
+	                        			<option value="3">3</option>\
+							    </select>\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">经度:</label>\
 	                        <div class="col-sm-3">\
@@ -286,50 +305,54 @@
 	// 注册扇形区域的校验规则
 	function registCheckForFan() {
 		var index = $('#subAreaRow').find('.panel').length;
-		$("#scaleFactor" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入2位以内的数字"
-				}
-		});
 		$("#longitude" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,3"},
 					range: [-180, 180],
 					messages:{
-					dataTypeCheck: "请录入3位整数3位小数以内的数字",
-					range: "请录入-180到180之间的数字"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多3位。",
+					range: "请输入-180~180范围内的数值。"
 				}
 		});
 		$("#latitude" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N3,3"},
+					number: true,
+					dataTypeCheck : {dataType : "N2,3"},
 					range: [-90, 90],
 					messages:{
-					dataTypeCheck: "请录入3位整数3位小数以内的数字",
-					range: "请录入-90到90之间的数字"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多2位，小数部分最多3位。",
+					range: "请输入-90~90范围内的数值。"
 				}
 		});
 		$("#radius" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N12"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 4095],
 					messages:{
-					dataTypeCheck: "请录入12位以内的数字",
-					range: "请录入0到255之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~4095范围内的数值。"
 				}
 		});
 		$("#leftBoundary" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N9"},
+					number: true,
+					dataTypeCheck : {dataType : "N3"},
 					range: [0, 359],
 					messages:{
-					dataTypeCheck: "请录入9位以内的数字",
-					range: "请录入0到359之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，没有小数。",
+					range: "请输入0~359范围内的数值。"
 				}
 		});
 		$("#rightBoundary" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N9"},
+					number: true,
+					dataTypeCheck : {dataType : "N3"},
 					range: [0, 359],
 					messages:{
-					dataTypeCheck: "请录入9位以内的数字",
-					range: "请录入0到359之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，没有小数。",
+					range: "请输入0~359范围内的数值。"
 				}
 		});
 	}
@@ -347,7 +370,12 @@
 	                    		<input type="hidden" id="areaShape" name="areaShape" value="3"></input>\
 		                    <label class="col-sm-2 control-label">比例因子:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="scaleFactor" name="scaleFactor" class="form-control" placeholder="">\
+		                    	    <select id="scaleFactor" name="scaleFactor" class="form-control">\
+	                        			<option value="0">0</option>\
+	                        			<option value="1">1</option>\
+	                        			<option value="2">2</option>\
+	                        			<option value="3">3</option>\
+							    </select>\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">位置1倾角:</label>\
 	                        <div class="col-sm-3">\
@@ -410,77 +438,95 @@
 		});
 		return area;
 	}
-	// 注册扇形区域的校验规则
+	// 注册折线区域的校验规则
 	function registCheckForLine() {
 		var index = $('#subAreaRow').find('.panel').length;
-		$("#scaleFactor" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入2位以内的数字"
-				}
-		});
 		$("#pointAngle1" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance1" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 		$("#pointAngle2" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance2" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 		$("#pointAngle3" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance3" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 		$("#pointAngle4" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance4" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 	}
@@ -498,7 +544,12 @@
 	                    		<input type="hidden" id="areaShape" name="areaShape" value="4"></input>\
 		                    <label class="col-sm-2 control-label">比例因子:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="scaleFactor" name="scaleFactor" class="form-control" placeholder="">\
+		                    	    <select id="scaleFactor" name="scaleFactor" class="form-control">\
+	                        			<option value="0">0</option>\
+	                        			<option value="1">1</option>\
+	                        			<option value="2">2</option>\
+	                        			<option value="3">3</option>\
+							    </select>\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">位置1倾角:</label>\
 	                        <div class="col-sm-3">\
@@ -564,74 +615,92 @@
 	// 注册多边形区域的校验规则
 	function registCheckForPolygon() {
 		var index = $('#subAreaRow').find('.panel').length;
-		$("#scaleFactor" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入2位以内的数字"
-				}
-		});
 		$("#pointAngle1" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance1" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 		$("#pointAngle2" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance2" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 		$("#pointAngle3" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance3" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 		$("#pointAngle4" + "_" + index).rules("add",{
+					number: true,
 					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
+					step: 0.5,
+					range: [0, 359.5],
 					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多3位，小数部分最多1位。",
+					step: "请输入以0.5度为步进的数值。",
+					range: "请输入0~359.5范围内的数值。"
 				}
 		});
 		$("#pointDistance4" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
+					number: true,
+					dataTypeCheck : {dataType : "N4"},
 					range: [0, 1023],
 					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					number: "请输入数字。",
+					dataTypeCheck: "输入值的整数部分最多4位，没有小数。",
+					range: "请输入0~1023范围内的数值。"
 				}
 		});
 	}
@@ -656,7 +725,7 @@
                 </div>');
                 
 		area.find('#areaShape').attr("id", "areaShape" + "_" + index).attr("name", "areaShape" + "_" + index);
-		area.find('#scaleFactor').attr("id", "scaleFactor" + "_" + index).attr("name", "scaleFactor" + "_" + index);
+//		area.find('#scaleFactor').attr("id", "scaleFactor" + "_" + index).attr("name", "scaleFactor" + "_" + index);
 		area.find('#text').attr("id", "text" + "_" + index).attr("name", "text" + "_" + index);
 
 		area.find('div span:first').text(title);
@@ -668,72 +737,18 @@
 	// 注册多边形区域的校验规则
 	function registCheckForText() {
 		var index = $('#subAreaRow').find('.panel').length;
-		$("#scaleFactor" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N2"},
-					messages:{
-					dataTypeCheck: "请录入2位以内的数字"
-				}
-		});
+//		$("#scaleFactor" + "_" + index).rules("add",{
+//					dataTypeCheck : {dataType : "N2"},
+//					messages:{
+//					dataTypeCheck: "请录入2位以内的数字"
+//				}
+//		});
 		$("#text" + "_" + index).rules("add",{
-					maxlength : 84,
+					maxlength : 14,
+					checkReg : {reg : "^[\x20-\x5F]{0,14}$"},
 					messages:{
-					maxlength: "请录入84位以内的内容"
-				}
-		});
-		$("#pointDistance1" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
-					range: [0, 1023],
-					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
-				}
-		});
-		$("#pointAngle2" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
-					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
-				}
-		});
-		$("#pointDistance2" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
-					range: [0, 1023],
-					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
-				}
-		});
-		$("#pointAngle3" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
-					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
-				}
-		});
-		$("#pointDistance3" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
-					range: [0, 1023],
-					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
-				}
-		});
-		$("#pointAngle4" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N3,1"},
-					range: [0, 719],
-					messages:{
-					dataTypeCheck: "请录入3位整数1位小数以内的数字",
-					range: "请录入0到719之间的整数"
-				}
-		});
-		$("#pointDistance4" + "_" + index).rules("add",{
-					dataTypeCheck : {dataType : "N10"},
-					range: [0, 1023],
-					messages:{
-					dataTypeCheck: "请录入10位以内的数字",
-					range: "请录入0到1023之间的整数"
+					maxlength: "最多输入14个字符。",
+					checkReg : "请输入6bit字符表内的字符。"
 				}
 		});
 	}
