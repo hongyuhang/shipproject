@@ -820,9 +820,9 @@
 function initialSubArea(jsonData, obj) {
 	if (isNotNull(jsonData.subAreaData)) {
 		$.each(jsonData.subAreaData, function(i, subArea){
-			var node = createArea(subArea.type);
+			var node = createArea(subArea.areaShape);
         		obj.before(node);
-        		registCheckForSubArea(subArea.type);
+        		registCheckForSubArea(subArea.areaShape);
         		var index = $('#subAreaRow').find('.panel').length;
         		for (var key in subArea) {
 				$('#' + key + "_" + index).val(subArea[key]);
