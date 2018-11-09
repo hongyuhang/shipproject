@@ -160,3 +160,28 @@ var menuData = [
 		}
 	]
 
+var tableData = {
+	columns:[
+	    { data: 'engine', title : 'engine' },
+        { data: 'browser', title: 'browser' },
+        { data: 'platform', title: 'platform' },
+        { data: 'version', title: 'version' },
+        { data: 'grade', title: 'grade' }
+	],
+	datas:[
+		{
+			engine : "aaaa",
+			browser : "bbbb",
+			platform : "cccc",
+			version : "dddd",
+			grade : "eeee"
+		},
+		{	
+			engine : "aaaa",
+			browser : "bbbb",
+			platform : "cccc",
+			version : "dddd",
+			grade : "eeee"
+		}
+	]
+}
