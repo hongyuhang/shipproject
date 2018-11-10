@@ -161,27 +161,61 @@ var menuData = [
 	]
 
 var tableData = {
-	columns:[
-	    { data: 'engine', title : 'engine' },
-        { data: 'browser', title: 'browser' },
-        { data: 'platform', title: 'platform' },
-        { data: 'version', title: 'version' },
-        { data: 'grade', title: 'grade' }
-	],
-	datas:[
+	"total":"2",
+	"data":[
 		{
-			engine : "aaaa",
-			browser : "bbbb",
-			platform : "cccc",
-			version : "dddd",
-			grade : "eeee"
+			"engine":{
+				"linkField":"engine",
+				"linkFlg":true,
+				"linkParamValue":"param1",
+				"url":"www.baidu.com",
+				"value":"22222"
+			},
+			"browser":{
+				"linkFlg":false,
+				"value":"333333"
+			},
+			"grade":{
+				"linkFlg":false,
+				"value":"eeeee"
+			},
+			"version":{
+				"linkFlg":false,
+				"value":"ddddd"
+			},
+			"platform":{
+				"linkFlg":false,
+				"value":654654
+			}
 		},
-		{	
-			engine : "aaaa",
-			browser : "bbbb",
-			platform : "cccc",
-			version : "dddd",
-			grade : "eeee"
+		{
+			"engine":{"$ref":"$.data[0].engine"},
+			"browser":{"$ref":"$.data[0].browser"},
+			"grade":{"$ref":"$.data[0].grade"},
+			"version":{"$ref":"$.data[0].version"},
+			"platform":{"$ref":"$.data[0].platform"}
+		}
+	],
+	"columns":[
+		{
+			"data":"engine",
+			"title":"引擎"
+		},
+		{
+			"data":"browser",
+			"title":"浏览器"
+		},
+		{
+			"data":"platform",
+			"title":"平台"
+		},
+		{
+			"data":"version",
+			"title":"版本"
+		},
+		{
+			"data":"version",
+			"title":"版本"
 		}
 	]
 }

@@ -77,8 +77,15 @@
 		                    <div class="col-sm-3">
 		                    		<input type="text" id="leftBoundary" name="leftBoundary" type="text" class="form-control" placeholder="">
 		                    </div>
-		                
 	                    </div>
+    						<div class="form-group">
+							<div class="col-sm-1">
+								<button type="button" id="searchBtn" class="btn btn-primary control-label">查询</button>
+							</div>
+							<div class="col-sm-1">
+								<button type="button" id="resetBtn" class="btn btn-primary">重置</button>
+							</div>
+						</div>
 	                    <!-- /.panel-body -->        
                 		</div>
                 		<!-- /.panel -->
@@ -135,6 +142,7 @@
     <script src="../js/sb-admin-2.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/sib.js"></script>
+    <script src="../js/datatable.js"></script>
     <script type="text/javascript">
     	var menuCode;
     	$(document).ready(function(){	
@@ -157,27 +165,83 @@
 	      		}
 		});
 		
-//		if (isNotNull(menuCode)) {
-//		}
-
-		$('#dataTables-example').DataTable({
-            responsive: true,
-            searching: false,
-            ordering: false,
-            paging:false,
-            ajax: {
+		$.ajax({ 
 			    url: "/sib/tableInfo",
-			    dataSrc: "data"
-			  },
-			  columns: [
-		        { data: 'engine', title : 'engine' },
-		        { data: 'browser', title: 'browser' },
-		        { data: 'platform', title: 'platform' },
-		        { data: 'version', title: 'version' },
-		        { data: 'grade', title: 'grade' }
-		    ]
-        });
-
+	           "type": "POST",
+	           data : JSON.stringify( {} ),
+	           "contentType" : "application/json; charset=utf-8",
+	           "dataType" : "json",
+				success: function(data){
+					if (data.code == "200") {
+						var columns = new Array();
+						// 加工列信息数据
+						$.each(data.data.columns, function(itemIndex, item) {
+							var tmp = {};
+							$.extend(true, tmp, item);
+							$.extend(true, tmp, {render: renderCell});
+							columns.push(tmp);
+						});
+						// 初始化表格对象
+						$('#dataTables-example').DataTable({
+				            responsive: true,
+				            searching: false,
+				            serverSide: true,
+				            ajax: {
+							    url: "/sib/tableInfo",
+					           "type": "POST",
+					           "contentType" : "application/json; charset=utf-8",
+					           "data": function (d) {
+					           		  var orderColumn = d.columns[d.order[0].column].data;
+					           		  var orderDirection = d.order[0].dir;
+						              //删除多余请求参数
+						              for(var key in d){
+						                  if(key.indexOf("order")==0||key.indexOf("columns")==0||key.indexOf("search")==0){ //以columns开头的参数删除
+						                      delete d[key];
+						                  }
+						              }
+						              var searchParams= {
+						               "hyh":'hyh',
+						               "orderColumn":orderColumn,
+						               "orderDirection":orderDirection
+						               };
+						              //附加查询参数
+						              if(searchParams){
+						                  $.extend(d,searchParams); //给d扩展参数
+						              }
+						              d=JSON.stringify( d );
+						              return d;
+						           },
+						           "dataType" : "json",
+						           "dataFilter": function (json) {//json是服务器端返回的数据
+						               json = JSON.parse(json);
+						               var returnData = {};
+						               returnData.draw = json.data.draw;
+						               returnData.recordsTotal = json.data.total;//返回数据全部记录
+						               returnData.recordsFiltered = json.data.total;//后台不实现过滤功能，每次查询均视作全部结果
+						               returnData.data = json.data.data;//返回的数据列表
+						               return JSON.stringify(returnData);//这几个参数都是datatable需要的，必须要
+						           }
+							  },
+							  "columnDefs": [ {
+						    		  "targets": '_all',
+							      "createdCell": setAlign}
+							  ],
+							  columns: columns
+				        });
+						
+					} else {
+						alert(data.message);
+					}
+					
+				},
+	      		error: function(request, error, exception) {
+	      			alert('error!');
+	      		}
+		});
+		
+		$('#searchBtn').click(function() {
+			
+		});
 	});
 
     </script>
