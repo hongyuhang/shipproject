@@ -187,13 +187,6 @@ var tableData = {
 				"linkFlg":false,
 				"value":654654
 			}
-		},
-		{
-			"engine":{"$ref":"$.data[0].engine"},
-			"browser":{"$ref":"$.data[0].browser"},
-			"grade":{"$ref":"$.data[0].grade"},
-			"version":{"$ref":"$.data[0].version"},
-			"platform":{"$ref":"$.data[0].platform"}
 		}
 	],
 	"columns":[

@@ -59,7 +59,7 @@
             <!-- /.row -->
            <!-- /.row -->
             <div class="row">
-            	<form id="form1" class="form-horizontal" role="form">
+
             	<div class="col-lg-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -68,24 +68,70 @@
                     
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-	                    	<div class="form-group">
-		                    <label class="col-sm-2">半径:</label>
-		                    <div class="col-sm-3">
-		                    		<input type="text" id="radius" name="radius" type="text" class="form-control" placeholder="">
+                    		<form id="form1" class="form-horizontal" role="form">
+		                    	<div class="form-group">
+			                    <label class="col-sm-2" style="margin-top: 5px;">发送时间</label>
+			                    <div class="col-sm-3">
+			                    		<input id="s_time_fr" name="s_time_fr" type="text" id="radius" name="radius" type="text" class="form-control" placeholder="">
+			                    </div>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;text-align: center;">~</label>
+			                    <div class="col-sm-3">
+			                    		<input id="s_time_to" name="s_time_to" type="text" id="leftBoundary" name="leftBoundary" type="text" class="form-control" placeholder="">
+			                    </div>
 		                    </div>
-		                    	<label class="col-sm-2">左边界:</label>
-		                    <div class="col-sm-3">
-		                    		<input type="text" id="leftBoundary" name="leftBoundary" type="text" class="form-control" placeholder="">
+		                    	<div class="form-group">
+			                    <label class="col-sm-2" style="margin-top: 5px;">安全消息类别</label>
+			                    <div class="col-sm-3">
+			                    		<select id="msg_code" name="msg_code" class="form-control">
+		                        			<option value="1">B.1水文气象数据</option>
+		                        			<option value="3">B.3潮汐窗口</option>
+		                        			<option value="7">B.7进港清理航道时间</option>
+		                        			<option value="8">B.8海上交通信号</option>
+		                        			<option value="9">B.9泊位数据</option>
+		                        			<option value="11">B.11区域通告</option>
+		                        			<option value="14">B.14文本描述</option>
+							    		</select>
+			                    </div>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;"></label>
+			                    <div class="col-sm-3">
+			                    </div>
 		                    </div>
-	                    </div>
-    						<div class="form-group">
-							<div class="col-sm-1">
-								<button type="button" id="searchBtn" class="btn btn-primary control-label">查询</button>
+		                    	<div class="form-group">
+			                    <label class="col-sm-2" style="margin-top: 4px;">安全消息类别</label>
+			                    <div class="col-sm-3">
+			                    		<input name="s_type" value="1" type="checkbox" checked>广播</input><input name="s_type" value="2" type="checkbox">寻址</input>
+			                    </div>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;"></label>
+			                    <div class="col-sm-3">
+			                    </div>
+		                    </div>
+		                    	<div class="form-group">
+			                    <label class="col-sm-2" style="margin-top: 5px;">目标MMSI</label>
+			                    <div class="col-sm-3">
+			                    		<input id="mmsi" name="mmsi" type="text" id="radius" name="radius" type="text" class="form-control" placeholder="">
+			                    </div>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;text-align: center;"></label>
+			                    <div class="col-sm-3">
+			                    </div>
+		                    </div>
+		                    	<div class="form-group">
+			                    <label class="col-sm-2" style="margin-top: 4px;">处理结果</label>
+			                    <div class="col-sm-3">
+			                    		<input name="ret_code" value="1" type="checkbox" checked>成功</input><input name="ret_code" value="2" type="checkbox">失败</input>
+			                    </div>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;"></label>
+			                    <div class="col-sm-3">
+			                    </div>
+		                    </div>
+	    						<div class="form-group">
+								<div class="col-sm-1">
+									<button type="button" id="searchBtn" class="btn btn-primary control-label">查询</button>
+								</div>
+								<div class="col-sm-1">
+									<button type="button" id="resetBtn" class="btn btn-primary">重置</button>
+								</div>
 							</div>
-							<div class="col-sm-1">
-								<button type="button" id="resetBtn" class="btn btn-primary">重置</button>
-							</div>
-						</div>
+						</form>
 	                    <!-- /.panel-body -->        
                 		</div>
                 		<!-- /.panel -->
@@ -93,7 +139,6 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="col-lg-1"></div>
-            </form>
             </div>
             <!-- /.row -->
            <!-- /.row -->
@@ -110,11 +155,6 @@
 
                         </table>
                         <!-- /.table-responsive -->
-                        <div class="well">
-                            <h4>DataTables Usage Information</h4>
-                            <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-                            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
-                        </div>
 	                    <!-- /.panel-body -->        
                 		</div>
                 		<!-- /.panel -->
@@ -145,6 +185,8 @@
     <script src="../js/datatable.js"></script>
     <script type="text/javascript">
     	var menuCode;
+    	var dataTable;
+    	var searchCondition={};
     	$(document).ready(function(){	
 //		menuCode = getParams('menuCode');
 		// 服务器通信，并初始化菜单
@@ -166,7 +208,7 @@
 		});
 		
 		$.ajax({ 
-			    url: "/sib/tableInfo",
+			    url: "/historyList",
 	           "type": "POST",
 	           data : JSON.stringify( {} ),
 	           "contentType" : "application/json; charset=utf-8",
@@ -182,52 +224,7 @@
 							columns.push(tmp);
 						});
 						// 初始化表格对象
-						$('#dataTables-example').DataTable({
-				            responsive: true,
-				            searching: false,
-				            serverSide: true,
-				            ajax: {
-							    url: "/sib/tableInfo",
-					           "type": "POST",
-					           "contentType" : "application/json; charset=utf-8",
-					           "data": function (d) {
-					           		  var orderColumn = d.columns[d.order[0].column].data;
-					           		  var orderDirection = d.order[0].dir;
-						              //删除多余请求参数
-						              for(var key in d){
-						                  if(key.indexOf("order")==0||key.indexOf("columns")==0||key.indexOf("search")==0){ //以columns开头的参数删除
-						                      delete d[key];
-						                  }
-						              }
-						              var searchParams= {
-						               "hyh":'hyh',
-						               "orderColumn":orderColumn,
-						               "orderDirection":orderDirection
-						               };
-						              //附加查询参数
-						              if(searchParams){
-						                  $.extend(d,searchParams); //给d扩展参数
-						              }
-						              d=JSON.stringify( d );
-						              return d;
-						           },
-						           "dataType" : "json",
-						           "dataFilter": function (json) {//json是服务器端返回的数据
-						               json = JSON.parse(json);
-						               var returnData = {};
-						               returnData.draw = json.data.draw;
-						               returnData.recordsTotal = json.data.total;//返回数据全部记录
-						               returnData.recordsFiltered = json.data.total;//后台不实现过滤功能，每次查询均视作全部结果
-						               returnData.data = json.data.data;//返回的数据列表
-						               return JSON.stringify(returnData);//这几个参数都是datatable需要的，必须要
-						           }
-							  },
-							  "columnDefs": [ {
-						    		  "targets": '_all',
-							      "createdCell": setAlign}
-							  ],
-							  columns: columns
-				        });
+						dataTable = initialDataTable("dataTables-example", columns, "form1", searchCondition);
 						
 					} else {
 						alert(data.message);
@@ -240,7 +237,10 @@
 		});
 		
 		$('#searchBtn').click(function() {
-			
+			if (dataTable) {
+				searchCondition = $('#' + searchFormId).serializeFormJSON();
+				dataTable.ajax.reload(null, false );
+			}
 		});
 	});
 
