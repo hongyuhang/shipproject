@@ -829,6 +829,7 @@ function initialSubArea(jsonData, obj) {
 			}
         		node.find(".col-sm-3").children().attr("disabled", true);
         		node.find(".col-sm-8").children().attr("disabled", true);
+        		node.find("button").attr("disabled", true);
         });
 	}
 }

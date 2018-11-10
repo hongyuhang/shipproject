@@ -26,7 +26,8 @@ function checkReg(value, rule){
 		return true;
 	}
 	
-	rule = rule.replace('\\\\','\\');
+//	rule = rule.replace('\\\\','\\');
+//	alert(rule);
 	
 	var patt1=new RegExp(rule);
 	return value.match(patt1);
