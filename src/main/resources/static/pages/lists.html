@@ -186,6 +186,7 @@
     <script type="text/javascript">
     	var menuCode;
     	var dataTable;
+    	var searchCondition={};
     	$(document).ready(function(){	
 //		menuCode = getParams('menuCode');
 		// 服务器通信，并初始化菜单
@@ -207,7 +208,7 @@
 		});
 		
 		$.ajax({ 
-			    url: "/sib/tableInfo",
+			    url: "/historyList",
 	           "type": "POST",
 	           data : JSON.stringify( {} ),
 	           "contentType" : "application/json; charset=utf-8",
@@ -223,7 +224,7 @@
 							columns.push(tmp);
 						});
 						// 初始化表格对象
-						dataTable = initialDataTable("dataTables-example", columns, "form1");
+						dataTable = initialDataTable("dataTables-example", columns, "form1", searchCondition);
 						
 					} else {
 						alert(data.message);
@@ -237,6 +238,7 @@
 		
 		$('#searchBtn').click(function() {
 			if (dataTable) {
+				searchCondition = $('#' + searchFormId).serializeFormJSON();
 				dataTable.ajax.reload(null, false );
 			}
 		});
