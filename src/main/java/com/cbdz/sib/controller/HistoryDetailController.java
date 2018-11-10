@@ -2,6 +2,7 @@ package com.cbdz.sib.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cbdz.sib.service.HistoryDetailService;
 import com.cbdz.sib.service.HistoryListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,15 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-public class HistoryListController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(HistoryListController.class);
+public class HistoryDetailController extends BaseController {
+    private static final Logger logger = LoggerFactory.getLogger(HistoryDetailController.class);
     @Autowired
-    private HistoryListService g_service;
+    private HistoryDetailService g_service;
 
-    @RequestMapping(value = "/historyList", method = RequestMethod.POST)
+    @RequestMapping(value = "/historyDetail", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Map<String, Object>> getInitialInfo(@RequestParam JSONObject params) {
-        JSONObject result = g_service.getHistList(params);
+        JSONObject result = g_service.getHistDetail(params.getString("seq"));
         logger.info(JSON.toJSONString(result, true));
 
         return this.success(result);

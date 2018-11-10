@@ -112,6 +112,10 @@ public class PageItemService {
                 if (!StringUtils.isEmpty(per.getCheckParam())) {
                     p_tmpCheckRule.put(per.getCheckMethod(), Double.valueOf(per.getCheckParam()));
                 }
+            } else if (StringUtils.equals(per.getCheckMethod(), "checkReg")) {
+                Map<String, Object> p_dataTypeTmp = new HashMap<>();
+                p_dataTypeTmp.put("reg", per.getCheckParam());
+                p_tmpCheckRule.put(per.getCheckMethod(), p_dataTypeTmp);
             } else {
                 p_tmpCheckRule.put(per.getCheckMethod(), per.getCheckParam());
             }
