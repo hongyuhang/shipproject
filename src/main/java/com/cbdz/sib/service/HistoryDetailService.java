@@ -34,6 +34,7 @@ public class HistoryDetailService {
         List<Map<String, Object>> p_items = (List<Map<String, Object>>)p_pis.get("items");
         for (Map<String, Object> per : p_items) {
             per.put("val", AppUtils.getDefault(p_pageData.getString((String) per.get("id")), ""));
+            per.put("disabled", true);
         }
 
         JSONObject p_ret = (JSONObject) JSONObject.toJSON(p_pis);
