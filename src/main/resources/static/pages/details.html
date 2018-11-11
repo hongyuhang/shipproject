@@ -65,9 +65,6 @@
             <!-- /.row -->
             <div class="row">
             	<form id="form1" class="form-horizontal" role="form">
-				<div class="form-group" id="subAreaRow">
-					<input type="hidden"/>
-	            </div>
            	</form>
     </div>
     <!-- /#wrapper -->
@@ -150,11 +147,10 @@
 								});
 								
 		        					initialInputItems(data.data);
-		        					
+		        					initialChecks("#form1", data.data);
 								// 初始化子区域
-								initialSubArea(data.data, $('#subAreaRow').find('input'));
+								initialSubArea(data.data, $('#subAreaRow').find('button'));
 								if ($('#subAreaRow').find('.panel').length == 0) {
-									$('#subAreaRow').remove();
 									$('#subAreaRow').remove();
 								}
 								$('#subAreaBtn').remove();
