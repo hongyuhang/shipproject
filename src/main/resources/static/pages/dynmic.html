@@ -258,6 +258,10 @@
 							    			}
 									} else {
 										alert('请先修改输入错误!');
+										// 特殊处理
+						    				if ($('#servicesAvailability')) {
+							    				$('#servicesAvailability').trigger('change');
+							    			}
 									}
 						    		});
 						    		
