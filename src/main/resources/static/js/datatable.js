@@ -110,7 +110,8 @@ function initialDataTable(id, columns, searchFormId, searchCondition, url) {
 		  },
 		  "columnDefs": [ {
 	    		  "targets": '_all',
-		      "createdCell": setAlign}
+		      "createdCell": setAlign
+		  	}
 		  ],
 		  columns: columns
     });
