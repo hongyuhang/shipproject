@@ -88,6 +88,7 @@ public class PageItemService {
         Map<String, Object> p_checkRules = new HashMap<>();
         Map<String, Object> p_checkMsgs = new HashMap<>();
         List<MenuItemCheck> p_checksDb = this.getItemChecks(x_menuCd);
+        Map<String, Boolean> p_numObjects = new HashMap<>();
         for (MenuItemCheck per : p_checksDb) {
             Map<String, Object> p_tmpCheckRule = null;
             if (p_checkRules.containsKey(per.getItemId())) {
@@ -95,6 +96,10 @@ public class PageItemService {
             } else {
                 p_tmpCheckRule = new HashMap<>();
                 p_checkRules.put(per.getItemId(), p_tmpCheckRule);
+            }
+            if (StringUtils.equals(per.getCheckMethod(), "number")
+                && StringUtils.equals(per.getCheckParam(), "true")) {
+                p_numObjects.put(per.getItemId(), true);
             }
             if (StringUtils.equals(per.getCheckMethod(), "dataTypeCheck")) {
                 Map<String, Object> p_dataTypeTmp = new HashMap<>();
@@ -133,6 +138,16 @@ public class PageItemService {
         p_ret.put("checkRules", p_checkRules);
         p_ret.put("checkMessages", p_checkMsgs);
 
+        // 数字类型时，右对齐
+        for (Map<String, Object> per : p_itemsRet) {
+            if (StringUtils.equals((String)per.get("type"), "text")) {
+                if (p_numObjects.containsKey(per.get("id"))) {
+                    per.put("textAlign", "right");
+                } else {
+                    per.put("textAlign", "left");
+                }
+            }
+        }
         // B9泊位数据专用JS追加
         if (StringUtils.equals(x_menuCd, "m1_9")
             || StringUtils.equals(x_menuCd, "m2_9")) {
