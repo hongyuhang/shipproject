@@ -1,3 +1,4 @@
+
 function renderCell(data, type, row, meta) {
 	var htmlContext = "";
 	// 有link的字段的情况
@@ -36,7 +37,7 @@ function renderCell(data, type, row, meta) {
  * @param {Object} col
  */
 function setAlign(td, cellData, rowData, row, col) {
-	if (cellData.value) {
+	if (cellData.value != undefined) {
 		if ((typeof cellData.value) == 'number') {
 			$(td).css('text-align', 'right')
 		}
@@ -65,9 +66,8 @@ function setAlign(td, cellData, rowData, row, col) {
     };
 })(jQuery);
 
-function initialDataTable(id, columns, searchFormId, url) {
-	// 初始化表格对象
-	return $('#' + id).DataTable({
+function initialDataTable(id, columns, searchFormId, url, initialParam) {
+	var options = {
         responsive: true,
         searching: false,
         serverSide: true,
@@ -76,8 +76,24 @@ function initialDataTable(id, columns, searchFormId, url) {
            "type": "POST",
            "contentType" : "application/json; charset=utf-8",
            "data": function (d) {
+           	      if (!orderDirection) {
+           		  	  if ($.cookie('lists_idir') == 'asc') {
+           		  	  	d.order[0].dir = "desc";
+           		  	  } else {
+           		  	  	d.order[0].dir = "asc";
+           		  	  }
+           		  }
            		  var orderColumn = d.columns[d.order[0].column].data;
            		  var orderDirection = d.order[0].dir;
+
+           		  // 为了解决回退问题，保持datatables的状态到页面
+           		  $.cookie('lists_iorder', d.order[0].column); 
+           		  $.cookie('lists_idir', orderDirection); 
+           		  $.cookie('lists_iDisplayStart', d.start); 
+           		  $.cookie('lists_iDisplayLength', d.length); 
+           		  
+
+           		  
 	              //删除多余请求参数
 	              for(var key in d){
 	                  if(key.indexOf("order")==0||key.indexOf("columns")==0||key.indexOf("search")==0){ //以columns开头的参数删除
@@ -94,6 +110,7 @@ function initialDataTable(id, columns, searchFormId, url) {
 	              $.extend(searchParams,token);
 	              // 重置token
 	              $('#token').val("0");
+
 	              //附加查询参数
 	              if(searchCondition){
 	                  $.extend(d,searchParams); //给d扩展参数
@@ -119,5 +136,12 @@ function initialDataTable(id, columns, searchFormId, url) {
 		  	}
 		  ],
 		  columns: columns
-    });
+   };
+   
+   if (initialParam) {
+   		$.extend( options, initialParam);
+   }
+   
+	// 初始化表格对象
+	return $('#' + id).DataTable(options);
 }

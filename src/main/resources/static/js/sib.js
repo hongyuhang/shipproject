@@ -293,7 +293,7 @@ function createMenu(jsonData, activeMenuCode) {
 					flag = true;
 				}
             		var subItem = $('<li>\
-                                    <a href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + active + '>' + subval.menuName + '</a>\
+                                    <a onclick="removeCookie();" href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + active + '>' + subval.menuName + '</a>\
                                 </li>');
                 item.find('ul').append(subItem);
             });
@@ -307,7 +307,7 @@ function createMenu(jsonData, activeMenuCode) {
 				active = ' class="active"';
 			}
 			item = $('<li>\
-                        <a href="' + val.url + '?menuCode=' + val.menuCode + '" ' + active + '><i class="fa fa-dashboard fa-fw"></i> ' + val.menuName + '</a>\
+                        <a onclick="removeCookie();" href="' + val.url + '?menuCode=' + val.menuCode + '" ' + active + '><i class="fa fa-dashboard fa-fw"></i> ' + val.menuName + '</a>\
                     </li>');
 		}
 		navSidebar.find('#side-menu').append(item);
@@ -315,6 +315,13 @@ function createMenu(jsonData, activeMenuCode) {
     
     $('.navbar-header').after(navSidebar);
     $("#side-menu").metisMenu();
+}
+
+function removeCookie() {
+   	  $.cookie('lists_iorder', '', { expires: -1 }); 
+	  $.cookie('lists_idir', '', { expires: -1 }); 
+	  $.cookie('lists_iDisplayStart', '', { expires: -1 }); 
+	  $.cookie('lists_iDisplayLength', '', { expires: -1 }); 
 }
 
 	/**

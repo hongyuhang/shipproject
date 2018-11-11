@@ -5,6 +5,9 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<meta HTTP-EQUIV="expires" CONTENT="0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -70,6 +73,10 @@
                     <div class="panel-body">
                     		<form id="form1" class="form-horizontal" role="form">
                     			<input type="hidden" id="token" value="1"></input>
+                    			<input type="hidden" id="iDisplayStart" value=""></input>
+                    			<input type="hidden" id="iDisplayLength" value=""></input>
+                    			<input type="hidden" id="iorder" value=""></input>
+                    			<input type="hidden" id="idir" value=""></input>
 		                    	<div class="form-group">
 			                    <label class="col-sm-2" style="margin-top: 5px;">发送时间</label>
 			                    <div class="col-sm-3">
@@ -171,6 +178,7 @@
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.cookie.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
@@ -245,8 +253,23 @@
 							columns.push(tmp);
 						});
 						// 初始化表格对象
-						dataTable = initialDataTable("dataTables-example", columns, "form1", "/sib/historyList");
-						
+						if (!dataTable) {
+							if (!$.cookie('lists_iorder')) {
+								dataTable = initialDataTable("dataTables-example", columns, "form1", "/sib/historyList");
+							} else {
+								var initialParam = {};
+								var config = [];
+								var orderConfig = [];
+								orderConfig.push($.cookie('lists_iorder'));
+								orderConfig.push($.cookie('lists_idir'));
+								config.push(orderConfig);
+								initialParam.order = config;
+								initialParam.displayStart = $.cookie('lists_iDisplayStart');
+								initialParam.pageLength = $.cookie('lists_iDisplayLength');
+								dataTable = initialDataTable("dataTables-example", columns, "form1", "/sib/historyList", initialParam);
+							}
+							
+						}
 					} else {
 						alert(data.message);
 					}
@@ -258,15 +281,9 @@
 		});
 		
 		$('#searchBtn').click(function() {
-			$('#token').val("1");
-			
+			$('#token').val("1");	
 			if (dataTable) {
-				searchCondition = $('#form1').serializeFormJSON();
-				
-				dataTable.ajax.reload( function ( json ) {
-					
-				} );
-//				dataTable.ajax.reload(null, false );
+				dataTable.ajax.reload(null, false );
 			}
 		});
 	});
