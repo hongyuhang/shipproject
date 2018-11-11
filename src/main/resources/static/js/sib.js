@@ -56,6 +56,10 @@ function createInputItem(jsonData) {
 			if (isNotNull(jsonData.val)) {
 				inputItem.find("input:first").val(jsonData.val);
 			}
+			
+			if (isNotNull(jsonData.text-align)) {
+				inputItem.find("input:first").css("text-align", jsonData.text-align);
+			}
 			break;
 		case 'select':
 			inputItem = $('<label class="col-sm-2 control-label"></label>\

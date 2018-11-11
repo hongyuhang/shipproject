@@ -47,14 +47,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">安全信息播发系统</a>
+                <span class="navbar-brand">安全信息播发系统</span>
             </div>
         </nav>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-10">
-                    <h1 class="page-header">历史数据</h1>
+                    <h1 class="page-header" style="font-size: 18px;margin-top: 15px;">历史数据</h1>
                 </div>
                 <div class="col-lg-1"></div>
                 <!-- /.col-lg-12 -->
@@ -101,17 +101,9 @@
 		                        			<option value="14">B.14文本描述</option>
 							    		</select>
 			                    </div>
-			                    	<label  class="col-sm-2" style="margin-top: 5px;"></label>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;text-align: right;">发送类型</label>
 			                    <div class="col-sm-3">
-			                    </div>
-		                    </div>
-		                    	<div class="form-group">
-			                    <label class="col-sm-2" style="margin-top: 4px;">发送类型</label>
-			                    <div class="col-sm-3">
-			                    		<input name="s_type" value="1" type="checkbox">广播</input><input name="s_type" value="2" type="checkbox">寻址</input>
-			                    </div>
-			                    	<label  class="col-sm-2" style="margin-top: 5px;"></label>
-			                    <div class="col-sm-3">
+			                    		<input name="s_type" value="1" type="checkbox">广播</input>&nbsp;&nbsp;<input name="s_type" value="2" type="checkbox">寻址</input>
 			                    </div>
 		                    </div>
 		                    	<div class="form-group">
@@ -119,17 +111,9 @@
 			                    <div class="col-sm-3">
 			                    		<input id="mmsi" name="mmsi" type="text" id="radius" name="radius" type="text" class="form-control" placeholder="">
 			                    </div>
-			                    	<label  class="col-sm-2" style="margin-top: 5px;text-align: center;"></label>
+			                    	<label  class="col-sm-2" style="margin-top: 5px;text-align: right;">处理结果</label>
 			                    <div class="col-sm-3">
-			                    </div>
-		                    </div>
-		                    	<div class="form-group">
-			                    <label class="col-sm-2" style="margin-top: 4px;">处理结果</label>
-			                    <div class="col-sm-3">
-			                    		<input name="ret_code" value="1" type="checkbox" checked>成功</input><input name="ret_code" value="2" type="checkbox">失败</input>
-			                    </div>
-			                    	<label  class="col-sm-2" style="margin-top: 5px;"></label>
-			                    <div class="col-sm-3">
+			                    		<input name="ret_code" value="1" type="checkbox" checked>成功</input>&nbsp;&nbsp;<input name="ret_code" value="2" type="checkbox">失败</input>
 			                    </div>
 		                    </div>
 	    						<div class="form-group">
@@ -214,12 +198,12 @@
     		$('#extendsPanelBtn').click(function() {
     			if ($('#queryPanelBody').css("display") == 'none') {
     				$('#queryPanelBody').css("display", "");
-    				$('#extendsPanelBtnIcon').removeClass('fa-sort-up');
-    				$('#extendsPanelBtnIcon').addClass('fa-sort-down');
-    			} else {
-    				$('#queryPanelBody').css("display", "none");
     				$('#extendsPanelBtnIcon').removeClass('fa-sort-down');
     				$('#extendsPanelBtnIcon').addClass('fa-sort-up');
+    			} else {
+    				$('#queryPanelBody').css("display", "none");
+    				$('#extendsPanelBtnIcon').removeClass('fa-sort-up');
+    				$('#extendsPanelBtnIcon').addClass('fa-sort-down');
     			}
     		});
     		
