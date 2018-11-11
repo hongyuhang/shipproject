@@ -57,8 +57,8 @@ function createInputItem(jsonData) {
 				inputItem.find("input:first").val(jsonData.val);
 			}
 			
-			if (isNotNull(jsonData.text-align)) {
-				inputItem.find("input:first").css("text-align", jsonData.text-align);
+			if (isNotNull(jsonData.textAlign)) {
+				inputItem.find("input:first").css("text-align", jsonData.textAlign);
 			}
 			break;
 		case 'select':

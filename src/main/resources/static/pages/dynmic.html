@@ -40,7 +40,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="navbar-inverse">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -116,7 +116,7 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
-
+		</div>
     </div>
     <!-- /#wrapper -->
 
@@ -172,7 +172,7 @@
 					} else {
 						alert(data.message);
 					}
-					
+					$('.sidebar-nav').addClass('navbar-inverse');
 				},
 	      		error: function(request, error, exception) {
 	      			alert('error!');
