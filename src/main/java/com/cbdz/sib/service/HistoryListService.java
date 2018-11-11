@@ -44,29 +44,31 @@ public class HistoryListService {
         p_ret.put("columns", p_cols);
 
         // 设定数据
-        List<DataSHistory> p_dbData = this.getSearchResult(x_json);
-        Map<String, String> p_msgMap = this.getSendTypeKeyValue();
-        JSONArray p_datas = new JSONArray();
-        int p_rowno = (x_json.getInteger("start") - 1) * x_json.getInteger("length");
-        for (int i = 0; i < p_dbData.size(); i++) {
-            DataSHistory p_per = p_dbData.get(i);
+        if (x_json != null) {
+            List<DataSHistory> p_dbData = this.getSearchResult(x_json);
+            Map<String, String> p_msgMap = this.getSendTypeKeyValue();
+            JSONArray p_datas = new JSONArray();
+            int p_rowno = (x_json.getInteger("start") - 1) * x_json.getInteger("length");
+            for (int i = 0; i < p_dbData.size(); i++) {
+                DataSHistory p_per = p_dbData.get(i);
 
-            JSONObject p_tmp = new JSONObject();
-            p_tmp.put("rowno", getCellJsonNoLink(p_rowno + i + 1));
-            p_tmp.put("s_time", getCellJsonWithLink("seq", String.valueOf(p_per.getSeq()), p_per.getsTime()));
-            p_tmp.put("m_name", getCellJsonNoLink(p_msgMap.get(p_per.getMsgCode())));
-            if (StringUtils.equals(p_per.getsType(), Constant.Value.CONST_SEND_FLAG_BROADCAST)) {
-                p_tmp.put("s_type", getCellJsonNoLink("广播"));
-            } else {
-                p_tmp.put("s_type", getCellJsonNoLink("寻址"));
+                JSONObject p_tmp = new JSONObject();
+                p_tmp.put("rowno", getCellJsonNoLink(p_rowno + i + 1));
+                p_tmp.put("s_time", getCellJsonWithLink("seq", String.valueOf(p_per.getSeq()), p_per.getsTime()));
+                p_tmp.put("m_name", getCellJsonNoLink(p_msgMap.get(p_per.getMsgCode())));
+                if (StringUtils.equals(p_per.getsType(), Constant.Value.CONST_SEND_FLAG_BROADCAST)) {
+                    p_tmp.put("s_type", getCellJsonNoLink("广播"));
+                } else {
+                    p_tmp.put("s_type", getCellJsonNoLink("寻址"));
+                }
+                p_tmp.put("mmsi", getCellJsonNoLink(p_per.getMmsi()));
+                p_tmp.put("ret_msg", getCellJsonNoLink(p_per.getRetMsg()));
+                p_tmp.put("exec_ms",getCellJsonNoLink(p_per.getExecMs()));
+                p_datas.add(p_tmp);
             }
-            p_tmp.put("mmsi", getCellJsonNoLink(p_per.getMmsi()));
-            p_tmp.put("ret_msg", getCellJsonNoLink(p_per.getRetMsg()));
-            p_tmp.put("exec_ms",getCellJsonNoLink(p_per.getExecMs()));
-            p_datas.add(p_tmp);
+            p_ret.put("data", p_datas);
+            p_ret.put("total", this.getSearchCount(x_json));
         }
-        p_ret.put("data", p_datas);
-
         return p_ret;
     }
     private JSONObject getCellJsonNoLink(Object x_val) {
