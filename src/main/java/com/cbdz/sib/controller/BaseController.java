@@ -1,5 +1,7 @@
 package com.cbdz.sib.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
@@ -28,7 +30,12 @@ public abstract class BaseController {
     protected <T> ResponseEntity<Map<String, Object>> success(T data, String message) {
         Map<String, Object> responseEntityBodyMap = this.getResponseEntityBodyMap("200", message);
         if (data != null) {
-            responseEntityBodyMap.put("data", data);
+            if (data.getClass().equals(JSONObject.class)) {
+                String p_tmp = JSONObject.toJSONStringWithDateFormat(data, "yyyy-MM-dd HH:mm:ss", SerializerFeature.WriteDateUseDateFormat);
+                responseEntityBodyMap.put("data", JSONObject.parseObject(p_tmp));
+            } else {
+                responseEntityBodyMap.put("data", data);
+            }
         }
         ResponseEntity<Map<String, Object>> successResponse = this.setApiVersion(ResponseEntity.ok())
                 .body(responseEntityBodyMap);
