@@ -1,14 +1,19 @@
 package com.cbdz.sib.controller;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cbdz.sib.service.HistoryListService;
+import com.github.pagehelper.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,8 +24,19 @@ public class HistoryListController extends BaseController {
 
     @RequestMapping(value = "/historyList", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> searchHistory(@RequestBody JSONObject params) {
-        JSONObject result = g_service.getHistList(params);
+    public ResponseEntity<Map<String, Object>> searchHistory(@RequestBody JSONObject params, HttpServletRequest request) {
+        JSONObject p_searchParam = (JSONObject) params.clone();
+        // 向Session放置检索条件
+        if (StringUtils.equals("1", params.getString("token"))) {
+            request.getSession().setAttribute("search_token", params);
+        }
+        // 构建检索参数
+        JSONObject p_ssParam = (JSONObject) request.getSession().getAttribute("search_token");
+        String[] p_fields = new String[]{"s_time_fr", "s_time_to", "msg_code", "s_type", "mmsi", "ret_code"};
+        for (String per : p_fields) {
+            p_searchParam.put(per, p_ssParam.getString(per));
+        }
+        JSONObject result = g_service.getHistList(p_searchParam);
         logger.info(JSON.toJSONString(result, true));
 
         return this.success(result);
