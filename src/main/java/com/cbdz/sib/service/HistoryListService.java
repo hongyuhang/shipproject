@@ -123,7 +123,11 @@ public class HistoryListService {
         String p_order = "seq DESC";
         if (!StringUtils.isEmpty(x_json.getString("orderColumn"))
             && !StringUtils.equals(x_json.getString("orderColumn"), "rowno")) {
-            p_order = x_json.getString("orderColumn") + " " + x_json.getString("orderDirection");
+            if (StringUtils.equals(x_json.getString("orderColumn"), "m_name")) {
+                p_order = "LPAD(msg_code, 3, '0') " + x_json.getString("orderDirection");
+            } else {
+                p_order = x_json.getString("orderColumn") + " " + x_json.getString("orderDirection");
+            }
         }
         PageHelper.startPage(x_json.getInteger("start") / x_json.getInteger("length") + 1, x_json.getInteger("length"), p_order);
         List<DataSHistory> p_datas = g_mapper.selectByExample(p_example);
