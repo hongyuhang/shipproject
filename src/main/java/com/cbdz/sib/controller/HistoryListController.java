@@ -34,11 +34,7 @@ public class HistoryListController extends BaseController {
         JSONObject p_ssParam = (JSONObject) request.getSession().getAttribute("search_token");
         String[] p_fields = new String[]{"s_time_fr", "s_time_to", "msg_code", "s_type", "mmsi", "ret_code"};
         for (String per : p_fields) {
-            if (StringUtils.equals(per, "msg_code") && StringUtils.equals(p_ssParam.getString(per), "0")) {
-                p_searchParam.put(per, "");
-            } else {
-                p_searchParam.put(per, p_ssParam.getString(per));
-            }
+            p_searchParam.put(per, p_ssParam.getString(per));
         }
         JSONObject result = g_service.getHistList(p_searchParam);
         logger.info(JSON.toJSONString(result, true));
