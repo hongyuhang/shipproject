@@ -21,13 +21,13 @@
 		                    </div>\
 	                        <label class="col-sm-2 control-label">经度:</label>\
 	                        <div class="col-sm-3">\
-	                        		<input type="text" id="longitude" name="longitude" class="form-control" placeholder="">\
+	                        		<input type="text" style="text-align: right;" id="longitude" name="longitude" class="form-control" placeholder="">\
 	                        </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">纬度:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="latitude" name="latitude" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="latitude" name="latitude" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">精度:</label>\
 	                        <div class="col-sm-3">\
@@ -43,7 +43,7 @@
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">半径:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="radius" name="radius" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="radius" name="radius" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
                     </div>\
@@ -119,13 +119,13 @@
 		                    </div>\
 	                        <label class="col-sm-2 control-label">经度:</label>\
 	                        <div class="col-sm-3">\
-	                        		<input type="text" id="longitude" name="longitude" class="form-control" placeholder="">\
+	                        		<input type="text" style="text-align: right;" id="longitude" name="longitude" class="form-control" placeholder="">\
 	                        </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">纬度:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="latitude" name="latitude" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="latitude" name="latitude" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">精度:</label>\
 	                        <div class="col-sm-3">\
@@ -141,17 +141,17 @@
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">dimension E:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="dimensionE" name="dimensionE" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="dimensionE" name="dimensionE" type="text" class="form-control" placeholder="">\
 		                    </div>\
 		                    	<label class="col-sm-2 control-label">dimension N:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="dimensionN" name="dimensionN" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="dimensionN" name="dimensionN" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">Orientation:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="orientation" name="orientation" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="orientation" name="orientation" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
                     </div>\
@@ -249,13 +249,13 @@
 		                    </div>\
 	                        <label class="col-sm-2 control-label">经度:</label>\
 	                        <div class="col-sm-3">\
-	                        		<input type="text" id="longitude" name="longitude" class="form-control" placeholder="">\
+	                        		<input type="text" style="text-align: right;" id="longitude" name="longitude" class="form-control" placeholder="">\
 	                        </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">纬度:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="latitude" name="latitude" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="latitude" name="latitude" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">精度:</label>\
 	                        <div class="col-sm-3">\
@@ -271,17 +271,17 @@
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">半径:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="radius" name="radius" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="radius" name="radius" type="text" class="form-control" placeholder="">\
 		                    </div>\
 		                    	<label class="col-sm-2 control-label">左边界:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="leftBoundary" name="leftBoundary" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="leftBoundary" name="leftBoundary" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">右边界:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="rightBoundary" name="rightBoundary" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="rightBoundary" name="rightBoundary" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
                     </div>\
@@ -379,43 +379,43 @@
 		                    </div>\
 	                        <label class="col-sm-2 control-label">位置1倾角:</label>\
 	                        <div class="col-sm-3">\
-	                        		<input type="text" id="pointAngle1" name="pointAngle1" class="form-control" placeholder="">\
+	                        		<input type="text" style="text-align: right;" id="pointAngle1" name="pointAngle1" class="form-control" placeholder="">\
 	                        </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置1距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance1" name="pointDistance1" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance1" name="pointDistance1" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">位置2倾角:</label>\
 							<div class="col-sm-3">\
-		                    		<input type="text" id="pointAngle2" name="pointAngle2" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointAngle2" name="pointAngle2" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置2距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance2" name="pointDistance2" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance2" name="pointDistance2" type="text" class="form-control" placeholder="">\
 		                    </div>\
 		                    	<label class="col-sm-2 control-label">位置3倾角:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointAngle3" name="pointAngle3" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointAngle3" name="pointAngle3" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置3距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance3" name="pointDistance3" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance3" name="pointDistance3" type="text" class="form-control" placeholder="">\
 		                    </div>\
 		                    <label class="col-sm-2 control-label">位置4倾角:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointAngle4" name="pointAngle4" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointAngle4" name="pointAngle4" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置4距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance4" name="pointDistance4" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance4" name="pointDistance4" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
                     </div>\
@@ -553,43 +553,43 @@
 		                    </div>\
 	                        <label class="col-sm-2 control-label">位置1倾角:</label>\
 	                        <div class="col-sm-3">\
-	                        		<input type="text" id="pointAngle1" name="pointAngle1" class="form-control" placeholder="">\
+	                        		<input type="text" style="text-align: right;" id="pointAngle1" name="pointAngle1" class="form-control" placeholder="">\
 	                        </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置1距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance1" name="pointDistance1" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance1" name="pointDistance1" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                        <label class="col-sm-2 control-label">位置2倾角:</label>\
 							<div class="col-sm-3">\
-		                    		<input type="text" id="pointAngle2" name="pointAngle2" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointAngle2" name="pointAngle2" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置2距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance2" name="pointDistance2" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance2" name="pointDistance2" type="text" class="form-control" placeholder="">\
 		                    </div>\
 		                    	<label class="col-sm-2 control-label">位置3倾角:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointAngle3" name="pointAngle3" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointAngle3" name="pointAngle3" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    	<div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置3距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance3" name="pointDistance3" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance3" name="pointDistance3" type="text" class="form-control" placeholder="">\
 		                    </div>\
 		                    <label class="col-sm-2 control-label">位置4倾角:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointAngle4" name="pointAngle4" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointAngle4" name="pointAngle4" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
 	                    <div class="form-group">\
 		                    <label class="col-sm-2 control-label">位置4距离:</label>\
 		                    <div class="col-sm-3">\
-		                    		<input type="text" id="pointDistance4" name="pointDistance4" type="text" class="form-control" placeholder="">\
+		                    		<input type="text" style="text-align: right;" id="pointDistance4" name="pointDistance4" type="text" class="form-control" placeholder="">\
 		                    </div>\
 	                    </div>\
                     </div>\
