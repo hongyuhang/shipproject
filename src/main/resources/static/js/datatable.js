@@ -65,7 +65,7 @@ function setAlign(td, cellData, rowData, row, col) {
     };
 })(jQuery);
 
-function initialDataTable(id, columns, searchFormId, searchCondition, url) {
+function initialDataTable(id, columns, searchFormId, url) {
 	// 初始化表格对象
 	return $('#' + id).DataTable({
         responsive: true,
@@ -88,10 +88,15 @@ function initialDataTable(id, columns, searchFormId, searchCondition, url) {
 	               "orderColumn":orderColumn,
 	               "orderDirection":orderDirection
 	              };
-	              //var searchParams= $('#' + searchFormId).serializeFormJSON();
+	              
+	              var searchParams= $('#' + searchFormId).serializeFormJSON();
+	              var token = {"token" : $('#token').val()};
+	              $.extend(searchParams,token);
+	              // 重置token
+	              $('#token').val("0");
 	              //附加查询参数
 	              if(searchCondition){
-	                  $.extend(d,searchCondition); //给d扩展参数
+	                  $.extend(d,searchParams); //给d扩展参数
 	                  $.extend(d,orderParams); //给d扩展参数
 	              }
 	              d=JSON.stringify( d );
