@@ -208,9 +208,9 @@
 		});
 		
 		$.ajax({ 
-			    url: "/sib/historyList",
-	           "type": "POST",
-	           data : JSON.stringify( {} ),
+			    url: "/sib/historyInitList",
+	           "type": "GET",
+	           //data : JSON.stringify( {} ),
 	           "contentType" : "application/json; charset=utf-8",
 	           "dataType" : "json",
 				success: function(data){
@@ -232,7 +232,7 @@
 					
 				},
 	      		error: function(request, error, exception) {
-	      			alert('error!');
+	      			alert('初始化一览结构错误!');
 	      		}
 		});
 		
