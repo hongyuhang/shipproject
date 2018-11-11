@@ -112,7 +112,8 @@ public class HistoryListService {
         DataSHistoryExample p_example = getSearchExample(x_json);
         // order by
         String p_order = "seq DESC";
-        if (!StringUtils.isEmpty(x_json.getString("orderColumn"))) {
+        if (!StringUtils.isEmpty(x_json.getString("orderColumn"))
+            && !StringUtils.equals(x_json.getString("orderColumn"), "rowno")) {
             p_order = x_json.getString("orderColumn") + " " + x_json.getString("orderDirection");
         }
         PageHelper.startPage(x_json.getInteger("start"), x_json.getInteger("length"), p_order);
