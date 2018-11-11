@@ -3,6 +3,7 @@ package com.cbdz.sib.service;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cbdz.sib.common.AppUtils;
 import com.cbdz.sib.common.Constant;
 import com.cbdz.sib.dao.DataSHistoryMapper;
 import com.cbdz.sib.dao.MenuMapper;
@@ -51,7 +52,7 @@ public class HistoryListService {
             List<DataSHistory> p_dbData = this.getSearchResult(x_json);
             Map<String, String> p_msgMap = this.getSendTypeKeyValue();
             JSONArray p_datas = new JSONArray();
-            int p_rowno = (x_json.getInteger("start") - 1) * x_json.getInteger("length");
+            int p_rowno = x_json.getInteger("start");
             for (int i = 0; i < p_dbData.size(); i++) {
                 DataSHistory p_per = p_dbData.get(i);
 
@@ -77,7 +78,11 @@ public class HistoryListService {
     private JSONObject getCellJsonNoLink(Object x_val) {
         JSONObject p_ret = new JSONObject();
         p_ret.put("linkFlg", false);
-        p_ret.put("value", x_val);
+        if (x_val == null) {
+            p_ret.put("value", "");
+        } else {
+            p_ret.put("value", x_val);
+        }
         return p_ret;
     }
     private JSONObject getCellJsonWithLink(String x_linkKey, String x_linkVal, Object x_val) {
@@ -86,7 +91,11 @@ public class HistoryListService {
         p_ret.put("linkParamValue", x_linkVal);
         p_ret.put("url", "/pages/details.html");
         p_ret.put("linkFlg", true);
-        p_ret.put("value", x_val);
+        if (x_val == null) {
+            p_ret.put("value", "");
+        } else {
+            p_ret.put("value", x_val);
+        }
         return p_ret;
     }
     /**
@@ -116,7 +125,7 @@ public class HistoryListService {
             && !StringUtils.equals(x_json.getString("orderColumn"), "rowno")) {
             p_order = x_json.getString("orderColumn") + " " + x_json.getString("orderDirection");
         }
-        PageHelper.startPage(x_json.getInteger("start"), x_json.getInteger("length"), p_order);
+        PageHelper.startPage(x_json.getInteger("start") / x_json.getInteger("length") + 1, x_json.getInteger("length"), p_order);
         List<DataSHistory> p_datas = g_mapper.selectByExample(p_example);
         return p_datas;
     }
