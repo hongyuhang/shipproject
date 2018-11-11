@@ -39,6 +39,9 @@ public class HistoryListService {
             JSONObject p_tmp = new JSONObject();
             p_tmp.put("data", p_itemIdsInList[i]);
             p_tmp.put("title", p_titlesInList[i]);
+            if (i == 0) {
+                p_tmp.put("orderable", false);
+            }
             p_cols.add(p_tmp);
         }
         p_ret.put("columns", p_cols);

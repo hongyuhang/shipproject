@@ -19,7 +19,7 @@ public class HistoryListController extends BaseController {
 
     @RequestMapping(value = "/historyList", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> searchHistory(@RequestParam JSONObject params) {
+    public ResponseEntity<Map<String, Object>> searchHistory(@RequestBody JSONObject params) {
         JSONObject result = g_service.getHistList(params);
         logger.info(JSON.toJSONString(result, true));
 
