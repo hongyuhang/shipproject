@@ -72,7 +72,7 @@ function initialDataTable(id, columns, searchFormId, searchCondition, url) {
         searching: false,
         serverSide: true,
         ajax: {
-		    url: "/sib/tableInfo",
+		    url: url,
            "type": "POST",
            "contentType" : "application/json; charset=utf-8",
            "data": function (d) {
