@@ -76,7 +76,7 @@ public class SConvertorB9 extends BaseConvertor {
 
         // 服务有效性 为0 = 服务类型未知时，各 可用服务类型 均为0 = 服务不可用或无申请（前者针对岸，后者针对船） = 默认；
         // 否则，拼接各 可用服务类型
-        if (p_ret.getInteger("") == 1) {
+        if (p_ret.getInteger("servicesAvailability") == 1) {
             p_ret.put("typeOfServicesAvailable", AppUtils.padRight("", 26, '0'));
         } else {
             StringBuilder p_tmp = new StringBuilder();
