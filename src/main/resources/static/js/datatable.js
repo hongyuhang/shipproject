@@ -2,7 +2,7 @@ function renderCell(data, type, row, meta) {
 	var htmlContext = "";
 	// 有link的字段的情况
 	if (data.linkFlg) {
-		htmlContext = '<a href=/sib"' + data.url + '?' + data.linkField + '=' + data.linkParamValue + '"><span>' + data.value + '</span>';
+		htmlContext = '<a href="/sib' + data.url + '?' + data.linkField + '=' + data.linkParamValue + '"><span>' + data.value + '</span>';
 	} else {
 		htmlContext = '<span>' + data.value + '</span>';
 	}
