@@ -18,10 +18,10 @@ public class HistoryDetailController extends BaseController {
     @Autowired
     private HistoryDetailService g_service;
 
-    @RequestMapping(value = "/historyDetail", method = RequestMethod.POST)
+    @RequestMapping(value = "/historyDetail", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> getInitialInfo(@RequestParam JSONObject params) {
-        JSONObject result = g_service.getHistDetail(params.getString("seq"));
+    public ResponseEntity<Map<String, Object>> getInitialInfo(@RequestParam String seq) {
+        JSONObject result = g_service.getHistDetail(seq);
         logger.info(JSON.toJSONString(result, true));
 
         return this.success(result);

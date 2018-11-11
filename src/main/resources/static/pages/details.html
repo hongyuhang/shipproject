@@ -101,8 +101,10 @@
     <script src="../js/subArea.js"></script>
     <script type="text/javascript">
     	var seq;
+    	var menuCode;
     	$(document).ready(function(){	
 		seq = getParams('seq');
+		
 		// 服务器通信，并初始化菜单
 		$.ajax({ 
 				url: "/sib/menuInfo",
@@ -126,6 +128,7 @@
 			// 服务器通信，并初始化画面项目以及check
 			$.ajax({ 
 					url: "/sib/historyDetail?seq=" + seq,
+					"type": "GET",
 					context: document.body,
 					dataType: "json",
 					success: function(data){
@@ -147,8 +150,14 @@
 								});
 								
 		        					initialInputItems(data.data);
+		        					
 								// 初始化子区域
 								initialSubArea(data.data, $('#subAreaRow').find('input'));
+								if ($('#subAreaRow').find('.panel').length == 0) {
+									$('#subAreaRow').remove();
+									$('#subAreaRow').remove();
+								}
+								$('#subAreaBtn').remove();
 		      			},
 		      		error: function(request, error, exception) {
 		      			alert('error!');

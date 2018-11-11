@@ -140,7 +140,7 @@ function createSubArea(jsonData){
 	var inputItem = $('<div class="form-group" id="subAreaRow">\
 		                    	<label class="col-sm-2 control-label">子区域:</label>\
 			                <div class="col-sm-8" id="subArea">\
-			                    	<button type="button" class="btn btn-default btn-circle btn-xl" data-toggle="modal" data-target="#myArea"><i class="fa fa-plus"></i>\
+			                    	<button type="button" id="subAreaBtn" class="btn btn-default btn-circle btn-xl" data-toggle="modal" data-target="#myArea"><i class="fa fa-plus"></i>\
 			                </div>\
 	                    </div>');
 	inputItem.find('label:first').html(jsonData.label);
