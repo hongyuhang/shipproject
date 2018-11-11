@@ -10,6 +10,7 @@ import com.cbdz.sib.model.DataSHistory;
 import com.cbdz.sib.model.DataSHistoryExample;
 import com.cbdz.sib.model.Menu;
 import com.cbdz.sib.model.MenuExample;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class HistoryListService {
         JSONObject p_ret = new JSONObject();
         // 设定标题
         JSONArray p_cols = new JSONArray();
-        String[] p_itemIdsInList = new String[]{"seq", "s_time", "m_name", "s_type", "mmsi", "ret_msg", "exec_ms"};
+        String[] p_itemIdsInList = new String[]{"rowno", "s_time", "m_name", "s_type", "mmsi", "ret_msg", "exec_ms"};
         String[] p_titlesInList = new String[]{"序号", "发送时间", "安全消息类别", "发送类型", "目标MMSI", "处理结果", "执行时间(ms)"};
         for (int i = 0; i < p_itemIdsInList.length; i++) {
             JSONObject p_tmp = new JSONObject();
@@ -46,28 +47,43 @@ public class HistoryListService {
         List<DataSHistory> p_dbData = this.getSearchResult(x_json);
         Map<String, String> p_msgMap = this.getSendTypeKeyValue();
         JSONArray p_datas = new JSONArray();
+        int p_rowno = (x_json.getInteger("start") - 1) * x_json.getInteger("length");
         for (int i = 0; i < p_dbData.size(); i++) {
             DataSHistory p_per = p_dbData.get(i);
 
             JSONObject p_tmp = new JSONObject();
-            p_tmp.put("seq", p_per.getSeq());
-            p_tmp.put("s_time", p_per.getsTime());
-            p_tmp.put("m_name", p_msgMap.get(p_per.getMsgCode()));
+            p_tmp.put("rowno", getCellJsonNoLink(p_rowno + i + 1));
+            p_tmp.put("s_time", getCellJsonWithLink("seq", String.valueOf(p_per.getSeq()), p_per.getsTime()));
+            p_tmp.put("m_name", getCellJsonNoLink(p_msgMap.get(p_per.getMsgCode())));
             if (StringUtils.equals(p_per.getsType(), Constant.Value.CONST_SEND_FLAG_BROADCAST)) {
-                p_tmp.put("s_type", "广播");
+                p_tmp.put("s_type", getCellJsonNoLink("广播"));
             } else {
-                p_tmp.put("s_type", "寻址");
+                p_tmp.put("s_type", getCellJsonNoLink("寻址"));
             }
-            p_tmp.put("mmsi", p_per.getMmsi());
-            p_tmp.put("ret_msg", p_per.getRetMsg());
-            p_tmp.put("exec_ms", p_per.getExecMs());
+            p_tmp.put("mmsi", getCellJsonNoLink(p_per.getMmsi()));
+            p_tmp.put("ret_msg", getCellJsonNoLink(p_per.getRetMsg()));
+            p_tmp.put("exec_ms",getCellJsonNoLink(p_per.getExecMs()));
             p_datas.add(p_tmp);
         }
-        p_ret.put("datas", p_datas);
+        p_ret.put("data", p_datas);
 
         return p_ret;
     }
-
+    private JSONObject getCellJsonNoLink(Object x_val) {
+        JSONObject p_ret = new JSONObject();
+        p_ret.put("linkFlg", false);
+        p_ret.put("value", x_val);
+        return p_ret;
+    }
+    private JSONObject getCellJsonWithLink(String x_linkKey, String x_linkVal, Object x_val) {
+        JSONObject p_ret = new JSONObject();
+        p_ret.put("linkField", x_linkKey);
+        p_ret.put("linkParamValue", x_linkVal);
+        p_ret.put("url", "/pages/details.html");
+        p_ret.put("linkFlg", true);
+        p_ret.put("value", x_val);
+        return p_ret;
+    }
     /**
      * 安全消息类型CODE+名称
      * @return
@@ -88,6 +104,32 @@ public class HistoryListService {
      * @return
      */
     private List<DataSHistory> getSearchResult(JSONObject x_json) {
+        DataSHistoryExample p_example = getSearchExample(x_json);
+        // order by
+        String p_order = "seq DESC";
+        if (!StringUtils.isEmpty(x_json.getString("orderColumn"))) {
+            p_order = x_json.getString("orderColumn") + " " + x_json.getString("orderDirection");
+        }
+        PageHelper.startPage(x_json.getInteger("start"), x_json.getInteger("length"), p_order);
+        List<DataSHistory> p_datas = g_mapper.selectByExample(p_example);
+        return p_datas;
+    }
+
+    /**
+     * 检索结果件数
+     * @param x_json
+     * @return
+     */
+    private long getSearchCount(JSONObject x_json) {
+        DataSHistoryExample p_example = getSearchExample(x_json);
+        return g_mapper.countByExample(p_example);
+    }
+    /**
+     * 检索条件
+     * @param x_json
+     * @return
+     */
+    private DataSHistoryExample getSearchExample(JSONObject x_json) {
 
         DataSHistoryExample p_example = new DataSHistoryExample();
         DataSHistoryExample.Criteria p_where = p_example.createCriteria();
@@ -124,11 +166,6 @@ public class HistoryListService {
                 p_where.andRetCodeNotEqualTo("200");
             }
         }
-
-        // order by
-        p_example.setOrderByClause("seq DESC");
-
-        List<DataSHistory> p_datas = g_mapper.selectByExample(p_example);
-        return p_datas;
+        return p_example;
     }
 }
