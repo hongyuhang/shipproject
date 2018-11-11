@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>sib - Bootstrap Admin Theme</title>
+    <title>安全信息播发系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SIB System</a>
+                <a class="navbar-brand" href="index.html">安全信息播发系统</a>
             </div>
         </nav>
 
@@ -66,11 +66,11 @@
             	<div class="col-lg-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        查询条件
+                        查询条件<button type="button" id="extendsPanelBtn" style="float:right"><i id="extendsPanelBtnIcon" class="fa fa-sort-up"></i>
                     </div>
                     
                     <!-- /.panel-heading -->
-                    <div class="panel-body">
+                    <div class="panel-body" id="queryPanelBody">
                     		<form id="form1" class="form-horizontal" role="form">
                     			<input type="hidden" id="token" value="1"></input>
                     			<input type="hidden" id="iDisplayStart" value=""></input>
@@ -197,7 +197,10 @@
     	var menuCode;
     	var dataTable;
     	var searchCondition={};
+
     	$(document).ready(function(){	
+    		panelHeight = $('#queryPanelBody').height();
+    		
     		$('#s_time_fr').bind({
     			click : function() {
 //          		if (condition.format) {
@@ -206,6 +209,18 @@
             			laydate({});
 //          		}
             }
+    		});
+    		
+    		$('#extendsPanelBtn').click(function() {
+    			if ($('#queryPanelBody').css("display") == 'none') {
+    				$('#queryPanelBody').css("display", "");
+    				$('#extendsPanelBtnIcon').removeClass('fa-sort-up');
+    				$('#extendsPanelBtnIcon').addClass('fa-sort-down');
+    			} else {
+    				$('#queryPanelBody').css("display", "none");
+    				$('#extendsPanelBtnIcon').removeClass('fa-sort-down');
+    				$('#extendsPanelBtnIcon').addClass('fa-sort-up');
+    			}
     		});
     		
     		$('#s_time_to').bind({
@@ -283,8 +298,12 @@
 		$('#searchBtn').click(function() {
 			$('#token').val("1");	
 			if (dataTable) {
-				dataTable.ajax.reload(null, false );
+				dataTable.ajax.reload(null, true );
 			}
+		});
+		
+		$('#resetBtn').click(function() {
+			$('#form1')[0].reset();
 		});
 	});
 
