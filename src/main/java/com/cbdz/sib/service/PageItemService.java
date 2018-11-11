@@ -142,9 +142,9 @@ public class PageItemService {
         for (Map<String, Object> per : p_itemsRet) {
             if (StringUtils.equals((String)per.get("type"), "text")) {
                 if (p_numObjects.containsKey(per.get("id"))) {
-                    per.put("text-align", "right");
+                    per.put("textAlign", "right");
                 } else {
-                    per.put("text-align", "left");
+                    per.put("textAlign", "left");
                 }
             }
         }
