@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en">
 
 <head>
 
@@ -13,6 +13,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="../css/skins/skin-black.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -25,69 +27,50 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- selectpicker -->
-    <link href="../vendor/selectpicker/css/bootstrap-select.css" rel="stylesheet" type="text/css">
+    
+     <!-- selectpicker -->
+    <link href="../vendor/selectpicker/css/bootstrap-select.css" rel="stylesheet" type="text/css">   
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }/*这里是关键*/
 
-        #wrapper {
-            /*border: 2px solid #333333;*/
-            margin: 0 auto;
-            height: 100%;
-        }
-        #page-context {
-            /*border: 2px solid #333333;*/
-            margin: 0 auto;
-            height: 100%;
-        }
-    </style>
 </head>
 
-<body>
+<body class="skin-black">
 
-<div id="wrapper" class="navbar-inverse">
+    <div id="wrapper">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation" style="margin-bottom: 0;">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span class="navbar-brand">安全信息播发系统</span>
-        </div>
-    </nav>
-
-    <div id="page-wrapper">
-        <div class="row" id="page-context">
-            <div class="col-lg-12">
-                <h1 class="page-header" style="font-size: 18px;margin-top: 15px;"></h1>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand">安全信息播发系统</span>
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <form id="form1" class="form-horizontal" role="form">
+        </nav>
 
-            </form>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header" style="font-size: 18px;margin-top: 15px;"></h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+            	<form id="form1" class="form-horizontal" role="form">
 
-            <!-- Modal -->
+           	</form>
+
+   		    <!-- Modal -->
             <div class="modal fade" id="myArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -103,22 +86,22 @@
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
                                     <div class="row">
-                                        <form id="form2" class="form-horizontal" role="form">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">区域类型:</label>
-                                                <div class="col-sm-4">
-                                                    <select id="areatype" class="form-control">
-                                                        <option value="0">0:圆形或点</option>
-                                                        <option value="1">1:矩形</option>
-                                                        <option value="2">2:扇形</option>
-                                                        <option value="3">3:折线</option>
-                                                        <option value="4">4:多边形</option>
-                                                        <option value="5">5:关联文本</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+						            	<form id="form2" class="form-horizontal" role="form">
+						                	<div class="form-group">
+							                    <label class="col-sm-2 control-label">区域类型:</label>
+							                    <div class="col-sm-4">
+								                    	<select id="areatype" class="form-control">
+								                    	  <option value="0">0:圆形或点</option>
+													  <option value="1">1:矩形</option>
+													  <option value="2">2:扇形</option>
+													  <option value="3">3:折线</option>
+													  <option value="4">4:多边形</option>
+													  <option value="5">5:关联文本</option>
+													</select>
+							                    </div>
+						                    </div>
+						                </form>
+						            </div>
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.panel-body -->
@@ -135,7 +118,7 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
-        </div>
+		</div>
     </div>
     <!-- /#wrapper -->
 
@@ -161,58 +144,58 @@
     <script src="../vendor/validation/additional-methods.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
-
+    
     <!-- test data -->
     <script src="../testdata/testdata.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/sib.js"></script>
     <script src="../js/subArea.js"></script>
     <script type="text/javascript">
-        var menuCode;
-        var clickFlag = false;
-        $(document).ready(function(){
-            if ($("#areaSel")) {
-                $("#areaSel").click(function(){
-                    $('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
-                    registCheckForSubArea($('#areatype').val());
-                    $('#myArea').modal('hide');
-                });
-            }
-
-            menuCode = getParams('menuCode');
-            // 服务器通信，并初始化菜单
-            $.ajax({
-                url: "/sib/menuInfo",
-                context: document.body,
-                dataType: "json",
-                success: function(data){
-                    if (data.code == "200") {
-                        createMenu(data.data, menuCode);
-                    } else {
-                        alert(data.message);
-                    }
-                    $('.sidebar-nav').addClass('navbar-inverse');
-                },
-                error: function(request, error, exception) {
-                    alert('error!');
-                }
-            });
-
-
-            if (isNotNull(menuCode)) {
-                // 服务器通信，并初始化画面项目以及check
-                $.ajax({
-                    url: "/sib/initialInfo?menuCode=" + menuCode,
-                    context: document.body,
-                    dataType: "json",
-                    success: function(data){
-                        if (data.code != "200") {
-                            alert(data.message);
-                            return;
-                        }
-
-                        initialInputItems(data.data);
-                        var submitBtn = $('<div class="form-group">\
+    	var menuCode;
+    	var clickFlag = false;
+    	$(document).ready(function(){
+    		if ($("#areaSel")) {
+    			$("#areaSel").click(function(){
+				$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
+				registCheckForSubArea($('#areatype').val());
+				$('#myArea').modal('hide');
+			});
+    		}
+		
+		menuCode = getParams('menuCode');
+		// 服务器通信，并初始化菜单
+		$.ajax({ 
+				url: "/sib/menuInfo",
+				context: document.body,
+				dataType: "json",
+				success: function(data){
+					if (data.code == "200") {
+						createMenu(data.data, menuCode);
+					} else {
+						alert(data.message);
+					}
+//					$('.sidebar-nav').addClass('navbar-inverse');
+				},
+	      		error: function(request, error, exception) {
+	      			alert('error!');
+	      		}
+		});
+		
+		
+		if (isNotNull(menuCode)) {
+			// 服务器通信，并初始化画面项目以及check
+			$.ajax({ 
+					url: "/sib/initialInfo?menuCode=" + menuCode,
+					context: document.body,
+					dataType: "json",
+					success: function(data){
+								if (data.code != "200") {
+									alert(data.message);
+									return;
+								}
+								
+		        					initialInputItems(data.data);
+								var submitBtn = $('<div class="form-group">\
 												<div class="col-sm-1 col-sm-offset-1">\
 													<button type="button" id="sendBtn" class="btn btn-primary control-label">发送</button>\
 												</div>\
@@ -220,92 +203,91 @@
 													<button type="button" id="modifyBtn" class="btn btn-primary">修改</button>\
 												</div>\
 											</div>');
-                        $('form').first().append(submitBtn);
-                        $('#modifyBtn').click(function(){
-                            clickFlag = true;
-                            $("[disabled]").removeAttr("disabled");
-                            //$('#selpickerItm').prop('disabled', false);
-                            $('.selectpicker').selectpicker('refresh');
-                            // 特殊处理
-                            if ($('#servicesAvailability')) {
-                                $('#servicesAvailability').trigger('change');
-                            }
-                        });
+								$('form').first().append(submitBtn);
+								$('#modifyBtn').click(function(){
+									clickFlag = true;
+						    			$("[disabled]").removeAttr("disabled");
+						    			//$('#selpickerItm').prop('disabled', false); 
+						    			$('.selectpicker').selectpicker('refresh');
+						    			// 特殊处理
+						    			if ($('#servicesAvailability')) {
+						    				$('#servicesAvailability').trigger('change');
+						    			}
+						    		});
+						    		
+				    		    		$('#sendBtn').click(function(){
+				    		    			var disabledControllers = $("[disabled]");
+				    		    			disabledControllers.removeAttr("disabled");
+				    		    			
+				    		    			//$("[disabled]").removeAttr("disabled");
+						    			$('.selectpicker').selectpicker('refresh');
+	
+						    			var sendData = buildSendData();
 
-                        $('#sendBtn').click(function(){
-                            var disabledControllers = $("[disabled]");
-                            disabledControllers.removeAttr("disabled");
+						    			sendData.menuCode = menuCode;
+									if ($('#form1').valid()) {
+										$.ajax({
+											url: "/sib/sendData",
+											type:"post",
+											dataType: "json",
+											data:JSON.stringify(sendData),
+											contentType:"application/json; charset=utf-8",
+											success: function(data){
+												if (data.code != "200") {
+													alert(data.message);
+													return;
+												}
+												alert('发送成功!');
+								      		},
+								      		error: function(request, error, exception) {
+								      			alert('发送错误!');
+								      		}
+										});
+										// 如果没有点击过修改按钮，需要把所有控件置成disabled
+										if (!clickFlag) {
+							    				disabledControllers.attr("disabled", true);
+							    				$('.selectpicker').selectpicker('refresh');
+							    				
+							    				// 特殊处理
+							    				if ($('#servicesAvailability')) {
+								    				$('#servicesAvailability').trigger('change');
+								    			}
+							    			} else {
+							    				// 特殊处理
+							    				if ($('#servicesAvailability')) {
+								    				$('#servicesAvailability').trigger('change');
+								    			}
+							    			}
+									} else {
+										alert('请先修改输入错误!');
+										// 特殊处理
+						    				if ($('#servicesAvailability')) {
+							    				$('#servicesAvailability').trigger('change');
+							    			}
+									}
+						    		});
+						    		
+								initialChecks("#form1", data.data);
+								initialEvents(data.data);
+								// 初始化子区域
+								initialSubArea(data.data, $('#subArea').find('.btn-circle'));
+		      			},
+		      		error: function(request, error, exception) {
+		      			alert('error!');
+		      		}
+			});
+		}
 
-                            //$("[disabled]").removeAttr("disabled");
-                            $('.selectpicker').selectpicker('refresh');
-
-                            var sendData = buildSendData();
-
-                            sendData.menuCode = menuCode;
-                            if ($('#form1').valid()) {
-                                $.ajax({
-                                    url: "/sib/sendData",
-                                    type:"post",
-                                    dataType: "json",
-                                    data:JSON.stringify(sendData),
-                                    contentType:"application/json; charset=utf-8",
-                                    success: function(data){
-                                        if (data.code != "200") {
-                                            alert(data.message);
-                                            return;
-                                        }
-                                        alert('发送成功!');
-                                    },
-                                    error: function(request, error, exception) {
-                                        alert('发送错误!');
-                                    }
-                                });
-                                // 如果没有点击过修改按钮，需要把所有控件置成disabled
-                                if (!clickFlag) {
-                                    disabledControllers.attr("disabled", true);
-                                    $('.selectpicker').selectpicker('refresh');
-
-                                    // 特殊处理
-                                    if ($('#servicesAvailability')) {
-                                        $('#servicesAvailability').trigger('change');
-                                    }
-                                } else {
-                                    // 特殊处理
-                                    if ($('#servicesAvailability')) {
-                                        $('#servicesAvailability').trigger('change');
-                                    }
-                                }
-                            } else {
-                                alert('请先修改输入错误!');
-                                // 特殊处理
-                                if ($('#servicesAvailability')) {
-                                    $('#servicesAvailability').trigger('change');
-                                }
-                            }
-                        });
-
-                        initialChecks("#form1", data.data);
-                        initialEvents(data.data);
-                        // 初始化子区域
-                        initialSubArea(data.data, $('#subArea').find('.btn-circle'));
-                    },
-                    error: function(request, error, exception) {
-                        alert('error!');
-                    }
-                });
-            }
-
-        });
-
-        function itemTxtLostFouse() {
-            if (isNotNull($('#txtItm1').val())) {
-                $('#selItm').removeAttr("disabled");
-            } else {
-                $('#selItm').attr("disabled", "disabled");
-            }
-        }
+	});
+    		
+	function itemTxtLostFouse() {
+		if (isNotNull($('#txtItm1').val())) {
+			$('#selItm').removeAttr("disabled");
+		} else {
+			$('#selItm').attr("disabled", "disabled");
+		}
+	}
     </script>
-</div>
 </body>
 
 </html>
