@@ -61,14 +61,16 @@ function dataTypeCheck(value, type) {
 			if (Math.pow(10, temp[0]) <= value) {
 				return false;
 			}
+			var dotLen = 0;
 			if (temp.length >1) {
-				var strValue = value + "";
-				if (strValue.indexOf(".") > 0) {
-					if (strValue.split(".")[1] >= Math.pow(10, temp[1])) {
-						return false;
-					}
-				}
+                dotLen = temp[1];
 			}
+            var strValue = value + "";
+            if (strValue.indexOf(".") > 0) {
+                if (strValue.split(".")[1] >= Math.pow(10, dotLen)) {
+                    return false;
+                }
+            }
 		}
 		
 		// 字符串的情况
