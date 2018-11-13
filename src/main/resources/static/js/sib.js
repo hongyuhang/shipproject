@@ -244,8 +244,6 @@ function initialChecks(formId, jsonData) {
 				}
 		});
 	}
-	
-
 }
 
 // 初始化事件处理
@@ -273,23 +271,27 @@ function createModelDialog() {
 }
 
 // 创建菜单
-function createMenu(jsonData, activeMenuCode) {
-	var navSidebar = $('<!-- /.navbar-header -->\
-            <div class="navbar-default sidebar" role="navigation">\
-                <div class="sidebar-nav navbar-collapse">\
-                    <ul class="nav" id="side-menu">\
-                    </ul>\
-                </div>\
-                <!-- /.sidebar-collapse -->\
-            </div>\
-            <!-- /.navbar-static-side -->');
+function createMenu(jsonData, activeMenuCode) {    
+    var navSidebar = $('\
+      <ul class="sidebar-menu" data-widget="tree">\
+        <li class="header">功能菜单</li>\
+      </ul>');
+    
     $.each(jsonData, function(i,val){ 
     		var item;
 		if (isNotNull(val.subMenu)) {
 			var flag = false;
-			item = $('<li><a href="#"><i class="fa fa-files-o fa-fw"></i> ' + val.menuName + '<span class="fa arrow"></span></a>\
-                      <ul class="nav nav-second-level">\
-                      </ul></li>');
+            item = $('<li class="treeview">\
+				          <a href="#">\
+				            <i class="fa fa-dashboard"></i> <span>' + val.menuName + '</span>\
+				            <span class="pull-right-container">\
+				              <i class="fa fa-angle-left pull-right"></i>\
+				            </span>\
+				          </a>\
+				          <ul class="treeview-menu">\
+				          </ul>\
+        				  </li>');
+
             $.each(val.subMenu, function(i, subval){
             		var active = ''; 
 				if (activeMenuCode == subval.menuCode) {
@@ -297,13 +299,14 @@ function createMenu(jsonData, activeMenuCode) {
 					flag = true;
 				}
             		var subItem = $('<li>\
-                                    <a onclick="removeCookie();" href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + active + '>' + subval.menuName + '</a>\
+                                    <a onclick="removeCookie();" href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + active + '><i class="fa fa-circle-o"></i>' + subval.menuName + '</a>\
                                 </li>');
                 item.find('ul').append(subItem);
             });
             
             if (flag) {
             		item.addClass('active');
+            		item.addClass('menu-open');
             }
 		} else {
 			var active = '';
@@ -311,14 +314,15 @@ function createMenu(jsonData, activeMenuCode) {
 				active = ' class="active"';
 			}
 			item = $('<li>\
-                        <a onclick="removeCookie();" href="' + val.url + '?menuCode=' + val.menuCode + '" ' + active + '><i class="fa fa-dashboard fa-fw"></i> ' + val.menuName + '</a>\
+                        <a onclick="removeCookie();" href="' + val.url + '?menuCode=' + val.menuCode + '" ' + active + '><i class="fa fa-circle-o"></i> ' + val.menuName + '</a>\
                     </li>');
 		}
-		navSidebar.find('#side-menu').append(item);
+		navSidebar.append(item);
+		
+		//$('.sidebar-menu').tree();
 	}); 
     
-    $('.navbar-header').after(navSidebar);
-    $("#side-menu").metisMenu();
+    $('.main-sidebar').find('.sidebar:first').after(navSidebar);
 }
 
 function removeCookie() {
