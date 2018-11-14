@@ -76,23 +76,21 @@ function initialDataTable(id, columns, searchFormId, url, initialParam) {
            "type": "POST",
            "contentType" : "application/json; charset=utf-8",
            "data": function (d) {
-           	      if (!orderDirection) {
-           		  	  if ($.cookie('lists_idir') == 'asc') {
-           		  	  	d.order[0].dir = "desc";
-           		  	  } else {
-           		  	  	d.order[0].dir = "asc";
-           		  	  }
-           		  }
+           	      // if (!orderDirection) {
+           		  // 	  if ($.cookie('lists_idir') == 'asc') {
+           		  // 	  	d.order[0].dir = "desc";
+           		  // 	  } else {
+           		  // 	  	d.order[0].dir = "asc";
+           		  // 	  }
+           		  // }
            		  var orderColumn = d.columns[d.order[0].column].data;
            		  var orderDirection = d.order[0].dir;
 
            		  // 为了解决回退问题，保持datatables的状态到页面
-           		  $.cookie('lists_iorder', d.order[0].column); 
+           		  $.cookie('lists_iorder', d.order[0].column);
            		  $.cookie('lists_idir', orderDirection); 
            		  $.cookie('lists_iDisplayStart', d.start); 
-           		  $.cookie('lists_iDisplayLength', d.length); 
-           		  
-
+           		  $.cookie('lists_iDisplayLength', d.length);
            		  
 	              //删除多余请求参数
 	              for(var key in d){
