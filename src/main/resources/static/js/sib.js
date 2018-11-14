@@ -157,7 +157,7 @@ function createSubArea(jsonData){
 
 // 初始化各个控件
 function initialInputItems(jsonData) {
-	$('.page-header').text(jsonData.title);
+	$('#title').text(jsonData.title);
 	if (jsonData.items) {
 		var inputItem1;
 		var inputItem2;

@@ -1,293 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>安全信息播发系统</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="../css/skins/skin-black.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-     <!-- selectpicker -->
-    <link href="../vendor/selectpicker/css/bootstrap-select.css" rel="stylesheet" type="text/css">   
+    <title>AdminLTE 2 | General Form Elements</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- selectpicker -->
+    <link href="../vendor/selectpicker/css/bootstrap-select.css" rel="stylesheet" type="text/css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../AdminLTE/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../AdminLTE/dist/css/skins/_all-skins.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-<body class="skin-black">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
 
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <span class="navbar-brand">安全信息播发系统</span>
-            </div>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>安全信息播发系统</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
         </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar" data-widget="tree">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header" style="font-size: 18px;margin-top: 15px;"></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1 id="title">
+
+                <!--<small>Preview</small>-->
+            </h1>
+            <!--
+            <ol class="breadcrumb">
+              <li><a style="font-size: large;" href="#"><i class="fa fa-dashboard"></i> 返回</a></li>
+            </ol>
+            -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
             <!-- /.row -->
             <div class="row">
-            	<form id="form1" class="form-horizontal" role="form">
+                <form id="form1" class="form-horizontal" role="form">
 
-           	</form>
+                </form>
 
-   		    <!-- Modal -->
-            <div class="modal fade" id="myArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">请选择</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    形状选择
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="row">
-						            	<form id="form2" class="form-horizontal" role="form">
-						                	<div class="form-group">
-							                    <label class="col-sm-2 control-label">区域类型:</label>
-							                    <div class="col-sm-4">
-								                    	<select id="areatype" class="form-control">
-								                    	  <option value="0">0:圆形或点</option>
-													  <option value="1">1:矩形</option>
-													  <option value="2">2:扇形</option>
-													  <option value="3">3:折线</option>
-													  <option value="4">4:多边形</option>
-													  <option value="5">5:关联文本</option>
-													</select>
-							                    </div>
-						                    </div>
-						                </form>
-						            </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.panel-body -->
+                <!-- Modal -->
+                <div class="modal fade" id="myArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">请选择</h4>
                             </div>
-                            <!-- /.panel -->
+                            <div class="modal-body">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        形状选择
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <form id="form2" class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">区域类型:</label>
+                                                    <div class="col-sm-4">
+                                                        <select id="areatype" class="form-control">
+                                                            <option value="0">0:圆形或点</option>
+                                                            <option value="1">1:矩形</option>
+                                                            <option value="2">2:扇形</option>
+                                                            <option value="3">3:折线</option>
+                                                            <option value="4">4:多边形</option>
+                                                            <option value="5">5:关联文本</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" id="areaSel" class="btn btn-primary">选择</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" id="areaSel" class="btn btn-primary">选择</button>
-                        </div>
+                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-content -->
+                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal-dialog -->
+                <!-- /.modal -->
             </div>
-            <!-- /.modal -->
-		</div>
+
+        </section>
+        <!-- /.content -->
     </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/jquery/jquery.cookie.js"></script>
+</div>
+<!-- ./wrapper -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- jQuery 3 -->
+<script src="../AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../vendor/jquery/jquery.cookie.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- selectpicker JavaScript -->
+<script src="../vendor/selectpicker/js/bootstrap-select.js"></script>
+<script src="../vendor/validation/jquery.validate.js"></script>
+<script src="../vendor/validation/additional-methods.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- selectpicker JavaScript -->
-    <script src="../vendor/selectpicker/js/bootstrap-select.js"></script>
+<!-- AdminLTE App -->
+<script src="../AdminLTE/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../AdminLTE/dist/js/demo.js"></script>
+<!-- test data -->
+<script src="../testdata/testdata.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/sib.js"></script>
+<script src="../js/subArea.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <!--<script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>-->
-    <!-- validation -->
-    <script src="../vendor/validation/jquery.validate.js"></script>
-    <script src="../vendor/validation/additional-methods.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../js/sb-admin-2.js"></script>
-    
-    <!-- test data -->
-    <script src="../testdata/testdata.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/sib.js"></script>
-    <script src="../js/subArea.js"></script>
-    <script type="text/javascript">
-    	var menuCode;
-    	var clickFlag = false;
-    	$(document).ready(function(){
-    		if ($("#areaSel")) {
-    			$("#areaSel").click(function(){
-				$('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
-				registCheckForSubArea($('#areatype').val());
-				$('#myArea').modal('hide');
-			});
-    		}
-		
-		menuCode = getParams('menuCode');
-		// 服务器通信，并初始化菜单
-		$.ajax({ 
-				url: "/sib/menuInfo",
-				context: document.body,
-				dataType: "json",
-				success: function(data){
-					if (data.code == "200") {
-						createMenu(data.data, menuCode);
-					} else {
-						alert(data.message);
-					}
-//					$('.sidebar-nav').addClass('navbar-inverse');
-				},
-	      		error: function(request, error, exception) {
-	      			alert('error!');
-	      		}
-		});
-		
-		
-		if (isNotNull(menuCode)) {
-			// 服务器通信，并初始化画面项目以及check
-			$.ajax({ 
-					url: "/sib/initialInfo?menuCode=" + menuCode,
-					context: document.body,
-					dataType: "json",
-					success: function(data){
-								if (data.code != "200") {
-									alert(data.message);
-									return;
-								}
-								
-		        					initialInputItems(data.data);
-								var submitBtn = $('<div class="form-group">\
-												<div class="col-sm-1 col-sm-offset-1">\
-													<button type="button" id="sendBtn" class="btn btn-primary control-label">发送</button>\
-												</div>\
-												<div class="col-sm-1">\
-													<button type="button" id="modifyBtn" class="btn btn-primary">修改</button>\
-												</div>\
-											</div>');
-								$('form').first().append(submitBtn);
-								$('#modifyBtn').click(function(){
-									clickFlag = true;
-						    			$("[disabled]").removeAttr("disabled");
-						    			//$('#selpickerItm').prop('disabled', false); 
-						    			$('.selectpicker').selectpicker('refresh');
-						    			// 特殊处理
-						    			if ($('#servicesAvailability')) {
-						    				$('#servicesAvailability').trigger('change');
-						    			}
-						    		});
-						    		
-				    		    		$('#sendBtn').click(function(){
-				    		    			var disabledControllers = $("[disabled]");
-				    		    			disabledControllers.removeAttr("disabled");
-				    		    			
-				    		    			//$("[disabled]").removeAttr("disabled");
-						    			$('.selectpicker').selectpicker('refresh');
-	
-						    			var sendData = buildSendData();
+<script type="text/javascript">
+    var menuCode;
+    var clickFlag = false;
+    $(document).ready(function(){
+        if ($("#areaSel")) {
+            $("#areaSel").click(function(){
+                $('#subArea').find('.btn-circle').before(createArea($('#areatype').val()));
+                registCheckForSubArea($('#areatype').val());
+                $('#myArea').modal('hide');
+            });
+        }
 
-						    			sendData.menuCode = menuCode;
-									if ($('#form1').valid()) {
-										$.ajax({
-											url: "/sib/sendData",
-											type:"post",
-											dataType: "json",
-											data:JSON.stringify(sendData),
-											contentType:"application/json; charset=utf-8",
-											success: function(data){
-												if (data.code != "200") {
-													alert(data.message);
-													return;
-												}
-												alert('发送成功!');
-								      		},
-								      		error: function(request, error, exception) {
-								      			alert('发送错误!');
-								      		}
-										});
-										// 如果没有点击过修改按钮，需要把所有控件置成disabled
-										if (!clickFlag) {
-							    				disabledControllers.attr("disabled", true);
-							    				$('.selectpicker').selectpicker('refresh');
-							    				
-							    				// 特殊处理
-							    				if ($('#servicesAvailability')) {
-								    				$('#servicesAvailability').trigger('change');
-								    			}
-							    			} else {
-							    				// 特殊处理
-							    				if ($('#servicesAvailability')) {
-								    				$('#servicesAvailability').trigger('change');
-								    			}
-							    			}
-									} else {
-										alert('请先修改输入错误!');
-										// 特殊处理
-						    				if ($('#servicesAvailability')) {
-							    				$('#servicesAvailability').trigger('change');
-							    			}
-									}
-						    		});
-						    		
-								initialChecks("#form1", data.data);
-								initialEvents(data.data);
-								// 初始化子区域
-								initialSubArea(data.data, $('#subArea').find('.btn-circle'));
-		      			},
-		      		error: function(request, error, exception) {
-		      			alert('error!');
-		      		}
-			});
-		}
+        menuCode = getParams('menuCode');
+        // 服务器通信，并初始化菜单
+        $.ajax({
+            url: "/sib/menuInfo",
+            context: document.body,
+            dataType: "json",
+            success: function(data){
+                if (data.code == "200") {
+                    createMenu(data.data, menuCode);
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function(request, error, exception) {
+                alert('error!');
+            }
+        });
 
-	});
-    		
-	function itemTxtLostFouse() {
-		if (isNotNull($('#txtItm1').val())) {
-			$('#selItm').removeAttr("disabled");
-		} else {
-			$('#selItm').attr("disabled", "disabled");
-		}
-	}
-    </script>
+
+        if (isNotNull(menuCode)) {
+            // 服务器通信，并初始化画面项目以及check
+            $.ajax({
+                url: "/sib/initialInfo?menuCode=" + menuCode,
+                context: document.body,
+                dataType: "json",
+                success: function(data){
+                    if (data.code != "200") {
+                        alert(data.message);
+                        return;
+                    }
+
+                    initialInputItems(data.data);
+                    var submitBtn = $('<div class="form-group">\
+											<div class="col-sm-1 col-sm-offset-1">\
+												<button type="button" id="sendBtn" class="btn btn-primary control-label">发送</button>\
+											</div>\
+											<div class="col-sm-1">\
+												<button type="button" id="modifyBtn" class="btn btn-primary">修改</button>\
+											</div>\
+										</div>');
+                    $('form').first().append(submitBtn);
+                    $('#modifyBtn').click(function(){
+                        clickFlag = true;
+                        $("[disabled]").removeAttr("disabled");
+                        //$('#selpickerItm').prop('disabled', false);
+                        $('.selectpicker').selectpicker('refresh');
+                        // 特殊处理
+                        if ($('#servicesAvailability')) {
+                            $('#servicesAvailability').trigger('change');
+                        }
+                    });
+
+                    $('#sendBtn').click(function(){
+                        var disabledControllers = $("[disabled]");
+                        disabledControllers.removeAttr("disabled");
+
+                        //$("[disabled]").removeAttr("disabled");
+                        $('.selectpicker').selectpicker('refresh');
+
+                        var sendData = buildSendData();
+
+                        sendData.menuCode = menuCode;
+                        if ($('#form1').valid()) {
+                            $.ajax({
+                                url: "/sib/sendData",
+                                type:"post",
+                                dataType: "json",
+                                data:JSON.stringify(sendData),
+                                contentType:"application/json; charset=utf-8",
+                                success: function(data){
+                                    if (data.code != "200") {
+                                        alert(data.message);
+                                        return;
+                                    }
+                                    alert('发送成功!');
+                                },
+                                error: function(request, error, exception) {
+                                    alert('发送错误!');
+                                }
+                            });
+                            // 如果没有点击过修改按钮，需要把所有控件置成disabled
+                            if (!clickFlag) {
+                                disabledControllers.attr("disabled", true);
+                                $('.selectpicker').selectpicker('refresh');
+
+                                // 特殊处理
+                                if ($('#servicesAvailability')) {
+                                    $('#servicesAvailability').trigger('change');
+                                }
+                            } else {
+                                // 特殊处理
+                                if ($('#servicesAvailability')) {
+                                    $('#servicesAvailability').trigger('change');
+                                }
+                            }
+                        } else {
+                            alert('请先修改输入错误!');
+                            // 特殊处理
+                            if ($('#servicesAvailability')) {
+                                $('#servicesAvailability').trigger('change');
+                            }
+                        }
+                    });
+
+                    initialChecks("#form1", data.data);
+                    initialEvents(data.data);
+                    // 初始化子区域
+                    initialSubArea(data.data, $('#subArea').find('.btn-circle'));
+                },
+                error: function(request, error, exception) {
+                    alert('error!');
+                }
+            });
+        }
+
+    });
+
+    function itemTxtLostFouse() {
+        if (isNotNull($('#txtItm1').val())) {
+            $('#selItm').removeAttr("disabled");
+        } else {
+            $('#selItm').attr("disabled", "disabled");
+        }
+    }
+</script>
+
 </body>
-
 </html>
