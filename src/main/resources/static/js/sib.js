@@ -271,7 +271,9 @@ function createModelDialog() {
 }
 
 // 创建菜单
-function createMenu(jsonData, activeMenuCode) {    
+function createMenu(jsonData, activeMenuCode) {
+    $('a[id^="' + activeMenuCode + '"]').parent().removeClass("active");
+
     var navSidebar = $('\
       <ul class="sidebar-menu" data-widget="tree">\
         <li class="header">功能菜单</li>\
@@ -281,6 +283,8 @@ function createMenu(jsonData, activeMenuCode) {
     		var item;
 		if (isNotNull(val.subMenu)) {
 			var flag = false;
+			var block = ' style="display: block;"';
+
             item = $('<li class="treeview">\
 				          <a href="#">\
 				            <i class="fa fa-dashboard"></i> <span>' + val.menuName + '</span>\
@@ -288,33 +292,34 @@ function createMenu(jsonData, activeMenuCode) {
 				              <i class="fa fa-angle-left pull-right"></i>\
 				            </span>\
 				          </a>\
-				          <ul class="treeview-menu">\
+				          <ul class="treeview-menu" id="subMenu' + i + '">\
 				          </ul>\
         				  </li>');
 
-            $.each(val.subMenu, function(i, subval){
+            $.each(val.subMenu, function(j, subval){
             		var active = ''; 
 				if (activeMenuCode == subval.menuCode) {
 					active = ' class="active"';
 					flag = true;
 				}
-            		var subItem = $('<li>\
-                                    <a onclick="removeCookie();" href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + active + '><i class="fa fa-circle-o"></i>' + subval.menuName + '</a>\
+            		var subItem = $('<li' + active + '>\
+                                    <a id="'+ subval.menuCode +'" onclick="removeCookie();" href="' + subval.url + '?menuCode=' + subval.menuCode + '" ' + '' + '><i class="fa fa-circle-o"></i>' + subval.menuName + '</a>\
                                 </li>');
                 item.find('ul').append(subItem);
             });
             
             if (flag) {
-            		item.addClass('active');
+            		//item.addClass('active');
             		item.addClass('menu-open');
+                	item.find('ul').css("display","block");
             }
 		} else {
 			var active = '';
 			if (activeMenuCode == val.menuCode) {
 				active = ' class="active"';
 			}
-			item = $('<li>\
-                        <a onclick="removeCookie();" href="' + val.url + '?menuCode=' + val.menuCode + '" ' + active + '><i class="fa fa-circle-o"></i> ' + val.menuName + '</a>\
+			item =  $('<li' + active + '>\
+                        <a id="'+ subval.menuCode +'" onclick="removeCookie();" href="' + val.url + '?menuCode=' + val.menuCode + '" ' + '' + '><i class="fa fa-circle-o"></i> ' + val.menuName + '</a>\
                     </li>');
 		}
 		navSidebar.append(item);

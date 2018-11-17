@@ -96,37 +96,33 @@
     <!-- /#wrapper -->
 
 <!-- jQuery 3 -->
-    <script src="../AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../vendor/jquery/jquery.cookie.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="../AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="../AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../vendor/jquery/jquery.cookie.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- selectpicker JavaScript -->
+<script src="../vendor/selectpicker/js/bootstrap-select.js"></script>
+<script src="../vendor/validation/jquery.validate.js"></script>
+<script src="../vendor/validation/additional-methods.js"></script>
 
-    <!-- selectpicker JavaScript -->
-    <script src="../vendor/selectpicker/js/bootstrap-select.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <!--<script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>-->
-    <!-- validation -->
-    <script src="../vendor/validation/jquery.validate.js"></script>
-    <script src="../vendor/validation/additional-methods.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../js/sb-admin-2.js"></script>
-    
-    <!-- test data -->
-    <script src="../testdata/testdata.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/sib.js"></script>
-    <script src="../js/subArea.js"></script>
+<!-- AdminLTE App -->
+<script src="../AdminLTE/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../AdminLTE/dist/js/demo.js"></script>
+<!-- test data -->
+<script src="../testdata/testdata.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/sib.js"></script>
+<script src="../js/subArea.js"></script>
     <script type="text/javascript">
     	var seq;
     	var menuCode;
     	$(document).ready(function(){	
 		seq = getParams('seq');
-		
+		menuCode = getParams('menuCode');
 		// 服务器通信，并初始化菜单
 		$.ajax({ 
 				url: "/sib/menuInfo",
