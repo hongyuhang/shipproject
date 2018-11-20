@@ -69,7 +69,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 id="title">
-
+                <h1 id="title">历史数据</h1>
                 <!--<small>Preview</small>-->
             </h1>
             <!--
@@ -81,13 +81,13 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="row" id="page-context">
-                <div class="col-lg-10">
-                    <h1 class="page-header" style="font-size: 18px;margin-top: 15px;">历史数据</h1>
-                </div>
-                <div class="col-lg-1"></div>
-                <!-- /.col-lg-12 -->
-            </div>
+            <!--<div class="row" id="page-context">-->
+                <!--<div class="col-lg-10">-->
+                    <!--<h1 class="page-header" style="font-size: 18px;margin-top: 15px;">历史数据</h1>-->
+                <!--</div>-->
+                <!--<div class="col-lg-1"></div>-->
+                <!--&lt;!&ndash; /.col-lg-12 &ndash;&gt;-->
+            <!--</div>-->
             <!-- /.row -->
             <!-- /.row -->
             <div class="row">
@@ -304,6 +304,7 @@
                                 config.push(orderConfig);
                                 initialParam.order = config;
                                 initialParam.displayStart = $.cookie('lists_iDisplayStart');
+                                alert( $.cookie('lists_iDisplayStart'));
                                 initialParam.pageLength = $.cookie('lists_iDisplayLength');
                                 dataTable = initialDataTable("dataTables-example", columns, "form1", "/sib/historyList", initialParam);
                             }

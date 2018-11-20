@@ -1,5 +1,6 @@
 package com.cbdz.sib.service;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -33,6 +34,9 @@ public class HistoryDetailService {
         // 用画面JSON覆盖初始设定
         List<Map<String, Object>> p_items = (List<Map<String, Object>>)p_pis.get("items");
         for (Map<String, Object> per : p_items) {
+            if (StringUtils.equals((String) per.get("id"), "destinationMmsi")) {
+                per.put("type", "text");
+            }
             per.put("val", AppUtils.getDefault(p_pageData.getString((String) per.get("id")), ""));
             per.put("disabled", true);
         }

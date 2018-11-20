@@ -165,10 +165,10 @@ public class HistoryListService {
         }
         // 发送类型
         if (!StringUtil.isEmpty(x_json.getString("s_type"))) {
-            String[] p_sTypes = x_json.getString("s_type").split(",");
+            String[] p_sTypes = x_json.getString("s_type").replaceAll("\\[", "").replaceAll("]", "").split(",");
             List<String> p_listTmp = new ArrayList<String>();
             for (String per : p_sTypes) {
-                p_listTmp.add(per);
+                p_listTmp.add(per.trim());
             }
             p_where.andSTypeIn(p_listTmp);
         }
