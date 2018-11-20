@@ -97,7 +97,7 @@
     </dependencies>
 
     <build>
-        <finalName>maven</finalName>
+        <finalName>sib</finalName>
         <plugins><!--逆向工程-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
